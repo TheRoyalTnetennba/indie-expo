@@ -14,7 +14,9 @@ sufficient CSS styling:
 - [ ] Hosting on Heroku
 - [ ] New account creation, login, and guest/demo login
 - [ ] Campaigns
-- [ ] Marketplace
+- [ ] Contributions
+- [ ] Perks
+- [ ] Profiles
 - [ ] Production README [sample](docs/production_readme.md)
 
 ## Design Docs
@@ -36,19 +38,23 @@ sufficient CSS styling:
 
 **Objective:** Functioning rails project with front-end Authentication
 
-### Phase 2: Campaigns Model, API, and components (3 days)
+### Phase 2: Navbar, Footer (1 day)
+
+**Objective:** Modal styling, navbar, and footer
+
+### Phase 3: Campaigns Model, API, and components (4 days)
 
 **Objective:** Campaigns can be created, read, edited and destroyed through
 the API.
 
-### Phase 3: Product Marketplace (3 days)
+### Phase 4: Perks and Contributions (2 days)
 
-**Objective:** Campaigns and products belong to users and can be subscribed to or purchased by other users
-
-### Phase 4: User Interactions (3 days)
-
-**Objective:** Users can create and subscribe to campaigns. Users can sell and purchase items
+**Objective:** Users can contribute to campaigns and receive perks
 
 ### Phase 5: Polish and styling
 
 **Objective:** Clean up user UI and UX
+
+### Bonus 1: Categories
+### Bonus 2: Follows
+### Bonus 3: Marketplace
