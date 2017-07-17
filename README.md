@@ -2,10 +2,7 @@
 
 [Heroku link][heroku] **Note:** This should be a link to your production site
 
-[Trello link][trello]
-
 [heroku]: https://calm-brook-59615.herokuapp.com/
-[trello]: https://trello.com/b/ALgfuX0Q/freshernote
 
 ## Minimum Viable Product
 
