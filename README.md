@@ -1,15 +1,15 @@
-# IndieGogo
+# IndieGogol
 
 [Heroku link][heroku] **Note:** This should be a link to your production site
 
 [Trello link][trello]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: https://calm-brook-59615.herokuapp.com/
 [trello]: https://trello.com/b/ALgfuX0Q/freshernote
 
 ## Minimum Viable Product
 
-IndieGogo is a web application inspired by IndieGogo built using Ruby on Rails
+IndieGogol is a web application inspired by IndieGogo built using Ruby on Rails
 and React/Redux.  By the end of Week 9, this app will, at a minimum, satisfy the
 following criteria with smooth, bug-free navigation, adequate seed data and
 sufficient CSS styling:
