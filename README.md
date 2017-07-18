@@ -2,7 +2,7 @@
 
 [Heroku link][heroku]
 
-[heroku]: https://calm-brook-59615.herokuapp.com/
+[heroku]: https://serene-brushlands-97294.herokuapp.com/
 
 ## Minimum Viable Product
 
