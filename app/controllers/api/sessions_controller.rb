@@ -1,8 +1,7 @@
 class Api::SessionsController < ApplicationController
   def create
-    @user = User.find_by_credentials(user_params[:username], user_params[:password])
+    @user = User.find_by_credentials(user_params[:email], user_params[:password])
     if @user
-      debugger
       login(@user)
       render "api/users/show"
     else
@@ -21,6 +20,6 @@ class Api::SessionsController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :bio, :password, :image_url, :email, :session_token)
+    params.require(:user).permit(:id, :bio, :first_name, :last_name, :password, :image_url, :email, :session_token)
   end
 end

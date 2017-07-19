@@ -3,10 +3,11 @@ import Modal from 'react-modal';
 
 class LoginModal extends React.Component {
   constructor(props) {
-    super(props)
-
+    super(props);
     this.state = {
       modalOpen: false,
+      email: '',
+      password: '',
     };
 
     this.closeModal = this.closeModal.bind(this);
@@ -14,11 +15,11 @@ class LoginModal extends React.Component {
   }
 
   closeModal() {
-    this.setState({ modalOpen: false })
+    this.setState({ modalOpen: false });
   }
 
   openModal() {
-    this.setState({ modalOpen: true })
+    this.setState({ modalOpen: true });
   }
 
   render() {

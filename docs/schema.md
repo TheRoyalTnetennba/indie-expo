@@ -4,12 +4,13 @@
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
-username        | string    | not null, indexed, unique
+last_name       | string    | not null
+first_name      | string    | not null
 image_url       | string    | default
 bio             | text      | not null
-email           | string    | not null, indexed, unique
+email           | string    | not null, unique
 password_digest | string    | not null
-session_token   | string    | not null, indexed, unique
+session_token   | string    | not null, unique
 
 ## campaigns
 column name | data type | details
