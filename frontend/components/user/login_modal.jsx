@@ -9,7 +9,8 @@ class LoginModal extends React.Component {
       email: '',
       password: '',
     };
-
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.update = this.update.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.openModal = this.openModal.bind(this);
   }
@@ -22,6 +23,16 @@ class LoginModal extends React.Component {
     this.setState({ modalOpen: true });
   }
 
+  update(property) {
+    return e => this.setState({ [property]: e.currentTarget.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const newState = Object.assign({}, this.state);
+    this.props.login(newState);
+  }
+
   render() {
     return (
       <div>
@@ -32,10 +43,12 @@ class LoginModal extends React.Component {
           isOpen={this.state.modalOpen}
           className="SessionForm"
           onRequestClose={this.closeModal}>
+          <i className="fa fa-times" aria-hidden="true" onClick={this.closeModal}></i>
           <button>Guest User</button>
-          <input type="email" placeholder="email" />
-          <input type="password" placeholder="password" />
-
+          <p>Or log in with email</p>
+          <input type="email" placeholder="email" value={this.state.email} onChange={this.update('email')} />
+          <input type="password" placeholder="password" value={this.state.password} onChange={this.update('password')} />
+          <button onClick={this.handleSubmit}>LOG IN</button>
         </Modal>
       </div>
 

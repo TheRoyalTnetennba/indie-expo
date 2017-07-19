@@ -20,16 +20,19 @@ export const receiveCurrentUser = currentUser => ({
 });
 
 export const receiveErrors = errors => ({
-  tyoe: RECEIVE_ERRORS,
+  type: RECEIVE_ERRORS,
   errors,
 });
 
-export const login = user => dispatch => (
-  APIUtil.login(user).then((userInfo) => {
+export const login = user => (dispatch) => {
+  const userDetails = {
+    user,
+  };
+  return (APIUtil.login(userDetails).then((userInfo) => {
     dispatch(receiveCurrentUser(userInfo));
     dispatch(clearErrors());
-  }, err => (dispatch(receiveErrors(err.responseJSON))))
-);
+  }, err => (dispatch(receiveErrors(err.responseJSON)))));
+};
 
 export const logout = () => dispatch => (
   APIUtil.logout().then(() => {
