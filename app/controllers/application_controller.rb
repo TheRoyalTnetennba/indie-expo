@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
     @current_user ||= @user.find_by(session_token: session[:session_token])
   end
 
-  def login(username, password)
-    @user = User.find_by_credentials(username, password)
+  def login(user)
+    @user = user
     session[:session_token] = @user.reset_session_token if @user
   end
 
