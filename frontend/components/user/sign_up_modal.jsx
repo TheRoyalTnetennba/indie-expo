@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-class LoginModal extends React.Component {
+class SignUpModal extends React.Component {
   constructor(props) {
     super(props)
 
@@ -22,18 +22,18 @@ class LoginModal extends React.Component {
   }
 
   render() {
-    return (
+    return(
       <div>
-        <h2 onClick={this.openModal}>Log In</h2>
+        <h2 onClick={this.openModal}>Sign Up</h2>
         <Modal
-          style={this.props.style}
-          contentLabel={this.props.contentLabel}
           isOpen={this.state.modalOpen}
-          className="SessionForm"
+          style={this.props.style}
+          className="SessionModal"
+          contentLabel={this.props.contentLabel}
           onRequestClose={this.closeModal}>
-          <button>Guest User</button>
-          <input type="email" placeholder="email" />
-          <input type="password" placeholder="password" />
+          <h2>Im a modal!</h2>
+          <p>modal modal modal modal modal</p>
+          <p>mooooooooodal!</p>
 
         </Modal>
       </div>
@@ -42,4 +42,4 @@ class LoginModal extends React.Component {
   }
 }
 
-export default LoginModal;
+export default SignUpModal;
