@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import LoginModalContainer from './user/login_modal_container';
 // import SignUpModalContainer from './user/sign_up_modal_container';
+import AuthContainer from './user/auth_container';
 
 class NavBar extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class NavBar extends React.Component {
           <h2>Search</h2>
           <h2>Start A Campaign</h2>
           <h2>Sign Up</h2>
+          <AuthContainer />
           <LoginModalContainer />
         </nav>
       </header>
