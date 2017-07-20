@@ -1,11 +1,11 @@
-var path = require("path");
+var path = require('path');
 
 module.exports = {
   context: __dirname,
-  entry: "./index.jsx",
+  entry: './index.jsx',
   output: {
     path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
-    filename: "bundle.js",
+    filename: 'bundle.js',
   },
   module: {
     loaders: [
@@ -21,6 +21,6 @@ module.exports = {
   },
   devtool: 'source-maps',
   resolve: {
-    extensions: [".js", ".jsx", "*"]
-  }
+    extensions: ['.js', '.jsx', '*']
+  },
 };

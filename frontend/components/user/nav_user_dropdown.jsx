@@ -31,8 +31,7 @@ class NavUserDropdown extends React.Component {
     name = `${name} ${this.props.state.session.currentUser.last_name} `;
     const icon = this.state.modalOpen ? 'fa fa-angle-up' : 'fa fa-angle-down'
     return (
-      <div>
-        <h2 onClick={this.openModal}>{name}<i className={icon} aria-hidden="true"></i></h2>
+      <h2 onClick={this.openModal}>{name}<i className={icon} aria-hidden="true"></i>
         <Modal
           style={this.props.style}
           contentLabel={this.props.contentLabel}
@@ -45,7 +44,7 @@ class NavUserDropdown extends React.Component {
           <a>My Settings</a>
           <a onClick={this.handleSubmit}>Logout</a>
         </Modal>
-      </div>
+      </h2>
 
     );
   }
