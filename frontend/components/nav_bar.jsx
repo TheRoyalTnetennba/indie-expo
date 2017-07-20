@@ -9,13 +9,11 @@ class NavBar extends React.Component {
     return (
       <header>
         <nav>
-          <img alt="An homage to IndieGogo" src="assets/IndieLogo.png" />
+          <div><img alt="An homage to IndieGogo" src="assets/IndieLogo.png" /></div>
           <h2>Explore</h2>
           <h2>Search</h2>
           <h2>Start A Campaign</h2>
-          <h2>Sign Up</h2>
           <AuthContainer />
-          <LoginModalContainer />
         </nav>
       </header>
     );

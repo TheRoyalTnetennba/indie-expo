@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { login } from '../../actions/session_actions';
+import { signup, login } from '../../actions/session_actions';
 import SignUpModal from './sign_up_modal';
 
 const style = {
@@ -13,18 +13,23 @@ const style = {
     zIndex: 10,
   },
   content: {
-    position: 'fixed',
-    top: '100px',
-    left: '150px',
-    right: '150px',
-    bottom: '100px',
+    backgroundColor: '#f5f5f5',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    position: 'relative',
+    marginTop: '77px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    maxWidth: '300px',
+    minHeight: '450px',
     border: '1px solid #ccc',
-    padding: '20px',
-    zIndex: 11,
+    padding: '10px',
+    zIndex: 911,
   },
 };
 
-const contentLabel = 'Sign Up';
+const contentLabel = 'Log In';
 
 const mapStateToProps = state => ({
   state,
@@ -33,6 +38,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  signup: user => dispatch(signup(user)),
   login: user => dispatch(login(user)),
 });
 

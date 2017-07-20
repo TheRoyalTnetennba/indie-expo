@@ -13,30 +13,83 @@
  *= require_tree .
  *= require_self
  */
+ body {
+   padding: 0;
+   margin: 0;
+ }
+
 nav {
   display: flex;
   width: 100%;
   position: fixed;
   top: 0px;
-  padding: 0;
+  height: 80px;
   border-style: solid;
   border-width: thin;
-  margin-left: 0;
-  margin-right: 0;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
-nav img {
-  height: auto;
+
+nav div {
+  flex: 1;
+  /*height: auto;
   width: auto;
   max-width: 160px;
-  max-height: 30px;
+  max-height: 30px;*/
+  cursor: pointer;
+  align-content: center;
 }
-nav * {
+
+nav div img {
+  display: block;
+  margin: 0 auto;
+}
+
+nav h2 {
   padding: 16px;
   flex: 1;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
 }
+
+nav h2:hover, nav h2:focus {
+  color: #eb1478;
+}
+
 .SessionForm * {
   flex: 1;
   max-height: 40px;
+}
+
+.close-button {
+  align-self: flex-end;
+}
+
+.nav-session-links {
+  flex: 2;
+  display: flex;
+  margin-left: 0;
+  margin-right: 0;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+.nav-session-links div * {
+  flex: 1;
+  cursor: pointer;
+}
+
+.user-nav-dropdown {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-nav-dropdown a {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.user-nav-dropdown a:hover, .user-nav-dropdown a:focus {
+  color: #eb1478;
 }

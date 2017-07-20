@@ -2,20 +2,19 @@ import React from 'react';
 
 import LoginModalContainer from './login_modal_container';
 import SignUpModalContainer from './sign_up_modal_container';
+import NavUserDropdownContainer from './nav_user_dropdown_container';
 
 class Auth extends React.Component {
   render() {
-    console.log(this.props);
-    let content;
-    if (this.props.state.session.currentUser) {
-      content = 'logged_in';
-    } else {
-      'not_logged_in';
+    if (this.props.state.session.currentUser && Object.keys(this.props.state.session.currentUser).length) {
+      return (
+        <NavUserDropdownContainer />
+      );
     }
     return (
-      <h1>
-        { content }
-      </h1>
+      <div className="nav-session-links">
+        <SignUpModalContainer /><LoginModalContainer />
+      </div>
     );
   }
 }
