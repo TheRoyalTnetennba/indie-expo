@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { login } from '../../actions/session_actions';
+import { login, guestLogin } from '../../actions/session_actions';
 import LoginModal from './login_modal';
 
 const style = {
@@ -39,6 +39,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   login: user => dispatch(login(user)),
+  guestLogin: () => dispatch(guestLogin()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);

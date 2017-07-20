@@ -9,6 +9,12 @@ class Api::SessionsController < ApplicationController
     end
   end
 
+  def guest_user
+    @user = User.all.first
+    login(@user)
+    render "api/users/show"
+  end
+
   def destroy
     @user = current_user
     if @user

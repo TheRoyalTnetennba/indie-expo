@@ -34,6 +34,13 @@ export const login = user => (dispatch) => {
   }, err => (dispatch(receiveErrors(err.responseJSON)))));
 };
 
+export const guestLogin = () => dispatch => (
+  APIUtil.guestLogin().then((userInfo) => {
+    dispatch(receiveCurrentUser(userInfo));
+    dispatch(clearErrors());
+  }, err => (dispatch(receiveErrors(err.responseJSON))))
+);
+
 export const signup = user => (dispatch) => {
   const userDetails = {
     user,

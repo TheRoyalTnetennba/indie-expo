@@ -36,16 +36,29 @@ class LoginModal extends React.Component {
 
   handleGuest(e) {
     e.preventDefault();
-    this.state = {
-      modalOpen: false,
-      email: 'gpaye8@gmail.com',
-      password: 'test1234',
-    };
-    const newState = Object.assign({}, this.state);
-    this.props.login(newState);
+    this.props.guestLogin();
+  }
+
+  instructions() {
+    if (this.props.state.session.errors && this.props.state.session.errors.length > 0) {
+      return (
+        <ul className="session-errors">
+          {this.props.state.session.errors.map((error, idx) => (
+            <li key={`sessionerror${idx}`}>{error.split(' #')[0]}</li>
+          ))}
+          <p className="session-instructions">Or log in with email</p>
+        </ul>
+      );
+    }
+    return (
+      <ul className="session-errors">
+        <p className="session-instructions">Or log in with email</p>
+      </ul>
+    );
   }
 
   render() {
+    console.log(this.props);
     return (
       <h2 onClick={this.openModal}>Log In
         <Modal
@@ -56,7 +69,7 @@ class LoginModal extends React.Component {
           onRequestClose={this.closeModal}>
           <i className="fa fa-times close-button" aria-hidden="true" onClick={this.closeModal}></i>
           <button onClick={this.handleGuest} className="guest-login-button">Login As Guest User</button>
-          <p>Or log in with email</p>
+          {this.instructions()}
           <input type="email" placeholder="Email" value={this.state.email} onChange={this.update('email')} />
           <input type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
           <button className='login-button' onClick={this.handleSubmit}>LOG IN</button>

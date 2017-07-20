@@ -20,3 +20,10 @@ export const logout = () => (
     method: 'DELETE',
   })
 );
+
+export const guestLogin = () => (
+  $.ajax({
+    url: 'api/session/guest_user',
+    method: 'GET',
+  })
+);

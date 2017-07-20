@@ -129,3 +129,24 @@ nav h2:hover, nav h2:focus {
 .SessionForm p {
   text-align: center;
 }
+.session-errors {
+  flex: 1;
+  margin: 1;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  flex-direction: column;
+}
+
+.session-errors li {
+  text-align: center;
+  flex: 1;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+}
+
+.session-errors p {
+  flex: 1;
+  color: #a8a8a8;
+}
