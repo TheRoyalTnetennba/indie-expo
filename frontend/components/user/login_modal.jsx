@@ -58,7 +58,6 @@ class LoginModal extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <h2 onClick={this.openModal}>Log In
         <Modal

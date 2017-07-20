@@ -73,7 +73,7 @@ class SignUpModal extends React.Component {
           <input type="text" placeholder="Last Name" value={this.state.last_name} onChange={this.update('last_name')} />
           <input type="email" placeholder="Email" value={this.state.email} onChange={this.update('email')} />
           <input type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
-          <button className='login-button' onClick={this.handleSubmit}>SIGN UP</button>
+          <button className="signup-button" onClick={this.handleSubmit}>CREATE AN ACCOUNT</button>
         </Modal>
       </h2>
     );

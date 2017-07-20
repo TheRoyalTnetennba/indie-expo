@@ -18,7 +18,7 @@ class AuthedNavBar extends React.Component {
     return (
       <header>
         <nav>
-          <div><img alt="An homage to IndieGogo" src="assets/IndieLogo.png" /></div>
+          <div><img alt="An homage to IndieGogo" src={window.logoURL} /></div>
           <h2>Explore</h2>
           <h2>Search</h2>
           <h2 onClick={this.handleSubmit}>Start A Campaign</h2>

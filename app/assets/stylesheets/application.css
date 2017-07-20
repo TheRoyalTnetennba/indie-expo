@@ -105,6 +105,16 @@ nav h2:hover, nav h2:focus {
   margin-left: 60%;
 }
 
+.signup-button {
+  background-color: #eb1478;
+  border: none;
+  margin-top: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+  margin-left: 45%;
+}
+
 .login-button:hover, .SessionForm .login-button:focus {
   background-color: #fa1681;
 }
