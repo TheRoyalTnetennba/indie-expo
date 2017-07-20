@@ -25,9 +25,10 @@ nav {
   top: 0px;
   height: 80px;
   border-style: solid;
-  border-width: thin;
+  border-width: 0;
   align-items: center;
   justify-content: space-evenly;
+  padding: 0;
 }
 
 nav div {
@@ -68,27 +69,17 @@ nav h2:hover, nav h2:focus {
   align-self: flex-end;
 }
 
-.nav-session-links {
-  flex: 2;
-  display: flex;
-  padding: none;
-  align-items: flex-end;
-  justify-content: space-evenly;
-}
-.nav-session-links div * {
-  flex: 1;
-  cursor: pointer;
-}
-
 .user-nav-dropdown {
-  display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  padding: 0;
 }
 
 .user-nav-dropdown a {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   cursor: pointer;
+  flex: 1;
 }
 
 .user-nav-dropdown a:hover, .user-nav-dropdown a:focus {
@@ -159,4 +150,8 @@ nav h2:hover, nav h2:focus {
 .session-errors p {
   flex: 1;
   color: #a8a8a8;
+}
+
+section {
+  display: block;
 }

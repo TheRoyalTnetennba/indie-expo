@@ -17,7 +17,7 @@ const style = {
     backgroundColor: '#f5f5f5',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-evenly',
+    justifyContent: 'stretch',
     position: 'relative',
     marginTop: '80px',
     marginLeft: 'auto',

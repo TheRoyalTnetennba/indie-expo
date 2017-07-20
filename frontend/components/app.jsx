@@ -4,7 +4,7 @@ import { Route, Redirect, Switch, Link, HashRouter } from 'react-router-dom';
 import AuthedNavBar from './common/authed_nav_bar';
 import UnauthedNavBar from './common/unauthed_nav_bar';
 
-//
+import CampaignFormContainer from './campaigns/campaign_form_container';
 // import GreetingContainer from './greeting/greeting_container';
 // import SessionFormContainer from './session_form/session_form_container';
 // import SearchContainer from './search/search_container';
@@ -35,6 +35,9 @@ class App extends React.Component {
         <header>
           {this.getNavigation()}
         </header>
+        <Switch>
+          <Route path="/campaigns/new" component={CampaignFormContainer} />
+        </Switch>
       </div>
     );
   }
