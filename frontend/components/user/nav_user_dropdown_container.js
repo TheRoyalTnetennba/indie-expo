@@ -24,7 +24,7 @@ const style = {
     marginRight: '8%',
     width: '150px',
     // minHeight: '450px',
-    border: '1px solid #f5f5f5',
+    border: '17px solid #f5f5f5',
     padding: '10px',
     zIndex: 911,
   },

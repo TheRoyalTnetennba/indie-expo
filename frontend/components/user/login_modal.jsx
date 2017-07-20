@@ -56,11 +56,11 @@ class LoginModal extends React.Component {
           className="SessionForm"
           onRequestClose={this.closeModal}>
           <i className="fa fa-times close-button" aria-hidden="true" onClick={this.closeModal}></i>
-          <button onClick={this.handleGuest}>Guest User</button>
+          <button onClick={this.handleGuest} className="guest-login-button">Login As Guest User</button>
           <p>Or log in with email</p>
-          <input type="email" placeholder="email" value={this.state.email} onChange={this.update('email')} />
-          <input type="password" placeholder="password" value={this.state.password} onChange={this.update('password')} />
-          <button onClick={this.handleSubmit}>LOG IN</button>
+          <input type="email" placeholder="Email" value={this.state.email} onChange={this.update('email')} />
+          <input type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
+          <button className='login-button' onClick={this.handleSubmit}>LOG IN</button>
         </Modal>
       </div>
 

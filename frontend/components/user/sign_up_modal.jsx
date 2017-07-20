@@ -58,13 +58,13 @@ class SignUpModal extends React.Component {
           className="SessionForm"
           onRequestClose={this.closeModal}>
           <i className="fa fa-times close-button" aria-hidden="true" onClick={this.closeModal}></i>
-          <button onClick={this.handleGuest}>Guest User</button>
+          <button onClick={this.handleGuest} className="guest-login-button">Login As Guest User</button>
           <p>Or sign up with email</p>
           <input type="text" placeholder="First Name" value={this.state.first_name} onChange={this.update('first_name')} />
           <input type="text" placeholder="Last Name" value={this.state.last_name} onChange={this.update('last_name')} />
-          <input type="email" placeholder="email" value={this.state.email} onChange={this.update('email')} />
-          <input type="password" placeholder="password" value={this.state.password} onChange={this.update('password')} />
-          <button onClick={this.handleSubmit}>SIGN UP</button>
+          <input type="email" placeholder="Email" value={this.state.email} onChange={this.update('email')} />
+          <input type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
+          <button className='login-button' onClick={this.handleSubmit}>SIGN UP</button>
         </Modal>
       </div>
 

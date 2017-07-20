@@ -27,7 +27,7 @@ nav {
   border-style: solid;
   border-width: thin;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 nav div {
@@ -71,8 +71,9 @@ nav h2:hover, nav h2:focus {
   display: flex;
   margin-left: 0;
   margin-right: 0;
+  padding: none;
   align-items: flex-end;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 .nav-session-links div * {
   flex: 1;
@@ -92,4 +93,39 @@ nav h2:hover, nav h2:focus {
 
 .user-nav-dropdown a:hover, .user-nav-dropdown a:focus {
   color: #eb1478;
+}
+
+.login-button {
+  background-color: #eb1478;
+  border: none;
+  margin-top: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+  margin-left: 60%;
+}
+
+.login-button:hover, .SessionForm .login-button:focus {
+  background-color: #fa1681;
+}
+
+.guest-login-button {
+  background-color: #405d9d;
+  border: none;
+  margin-top: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.guest-login-button:hover, .guest-login-button:focus {
+  background-color: #5675ba;
+}
+
+.fa:hover, .fa:focus {
+  color: #eb1478;
+}
+
+.SessionForm p {
+  text-align: center;
 }
