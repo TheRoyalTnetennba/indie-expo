@@ -37,7 +37,9 @@ nav div {
   max-width: 160px;
   max-height: 30px;*/
   cursor: pointer;
+  justify-content: center;
   align-content: center;
+  margin: 0 4%;
 }
 
 nav div img {
@@ -46,11 +48,11 @@ nav div img {
 }
 
 nav h2 {
-  padding: 16px;
   flex: 1;
   cursor: pointer;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
+  margin: 0 4%;
 }
 
 nav h2:hover, nav h2:focus {
@@ -69,8 +71,6 @@ nav h2:hover, nav h2:focus {
 .nav-session-links {
   flex: 2;
   display: flex;
-  margin-left: 0;
-  margin-right: 0;
   padding: none;
   align-items: flex-end;
   justify-content: space-evenly;
