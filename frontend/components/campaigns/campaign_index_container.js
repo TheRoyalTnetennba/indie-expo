@@ -1,15 +1,9 @@
 import { connect } from 'react-redux';
 import { login, guestLogin } from '../../actions/session_actions';
-import LoginModal from './login_modal';
-import { style } from './modal_style';
-
-const contentLabel = 'Log In';
+import CampaignIndex from './campaign_index';
 
 const mapStateToProps = state => ({
   state,
-  style,
-  contentLabel,
-  modalInitial: false,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -17,4 +11,4 @@ const mapDispatchToProps = dispatch => ({
   guestLogin: () => dispatch(guestLogin()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);
+export default connect(mapStateToProps, mapDispatchToProps)(CampaignIndex);

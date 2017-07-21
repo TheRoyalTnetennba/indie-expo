@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
 import App from './app';
 
 const mapStateToProps = state => ({
   state,
 });
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));

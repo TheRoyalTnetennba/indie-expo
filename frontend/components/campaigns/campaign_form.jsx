@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { NavBar } from '../common/component_helper';
 
 class CampaignForm extends React.Component {
   constructor(props) {
@@ -7,8 +10,9 @@ class CampaignForm extends React.Component {
       title: '',
       goal: '',
       image_url: '',
+      section: 'Basics',
     };
-    console.log(this.props);
+    this.NavBar = NavBar.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
   }
@@ -25,9 +29,21 @@ class CampaignForm extends React.Component {
 
   render() {
     return (
-      <section>
-        <h1>Form</h1>
-      </section>
+      <div className="cf campaign-form-main-div">
+        <aside className="col col-1-4">
+          <div className="annotation-pill-yellow">DRAFT CAMPAIGN</div>
+          <p>{this.state.title}</p>
+        </aside>
+        <div className="col col-3-4">
+          {this.NavBar(this.props)}
+          <nav className="secondary-nav">
+            <div>Campaign / <a className="purple-text">{this.state.section}</a></div>
+            <a>Preview</a>
+            <a>Save Campaign</a>
+            <span className="purple-button">Review & Launch</span>
+          </nav>
+        </div>
+      </div>
     );
   }
 }

@@ -1,17 +1,17 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LoginModalContainer from '../user/login_modal_container';
 import SignUpModalContainer from '../user/sign_up_modal_container';
 
 class UnauthedNavBar extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.startCampaign = this.startCampaign.bind(this);
   }
 
-  handleSubmit(e) {
+  startCampaign(e) {
     e.preventDefault();
-    // this.props.history.push('/ooiuoiu/');
+    this.props.history.push('/campaigns/new');
   }
 
 
@@ -19,10 +19,10 @@ class UnauthedNavBar extends React.Component {
     return (
       <header>
         <nav>
-          <div><img alt="An homage to IndieGogo" src={window.logoURL} /></div>
-          <h2>Explore</h2>
-          <h2>Search</h2>
-          <h2 onClick={this.handleSubmit}>Start A Campaign</h2>
+          <Link to="/"><img alt="An homage to IndieGogo" src={window.logoURL} /></Link>
+          <a>Explore</a>
+          <a>Search</a>
+          <Link to="/campaigns/new">Start A Campaign</Link>
           <SignUpModalContainer />
           <LoginModalContainer />
         </nav>

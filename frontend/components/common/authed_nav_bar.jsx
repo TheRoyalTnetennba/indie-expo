@@ -1,27 +1,27 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import NavUserDropdownContainer from '../user/nav_user_dropdown_container';
+import { withRouter } from 'react-router';
 
 class AuthedNavBar extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.startCampaign = this.startCampaign.bind(this);
   }
 
-  handleSubmit(e) {
+  startCampaign(e) {
     e.preventDefault();
-    // this.props.history.push('/ooiuoiu/');
+    this.props.history.push('/campaigns/new');
   }
-
 
   render() {
     return (
       <header>
         <nav>
-          <div><img alt="An homage to IndieGogo" src={window.logoURL} /></div>
-          <h2>Explore</h2>
-          <h2>Search</h2>
-          <h2 onClick={this.handleSubmit}>Start A Campaign</h2>
+          <Link to="/"><img alt="An homage to IndieGogo" src={window.logoURL} /></Link>
+          <a>Explore</a>
+          <a>Search</a>
+          <a onClick={this.startCampaign}>Start A Campaign</a>
           <NavUserDropdownContainer />
         </nav>
       </header>
@@ -29,4 +29,5 @@ class AuthedNavBar extends React.Component {
   }
 }
 
-export default AuthedNavBar;
+export default withRouter(AuthedNavBar);
+// <Link to="/campaigns/new">Start A Campaign</Link>

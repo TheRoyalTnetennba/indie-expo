@@ -59,7 +59,7 @@ class LoginModal extends React.Component {
 
   render() {
     return (
-      <h2 onClick={this.openModal}>Log In
+      <a onClick={this.openModal}>Log In
         <Modal
           style={this.props.style}
           contentLabel={this.props.contentLabel}
@@ -73,7 +73,7 @@ class LoginModal extends React.Component {
           <input type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
           <button className='login-button' onClick={this.handleSubmit}>LOG IN</button>
         </Modal>
-      </h2>
+      </a>
     );
   }
 }

@@ -5,7 +5,7 @@ class SignUpModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalOpen: false,
+      modalOpen: this.props.modalInitial,
       email: '',
       password: '',
       first_name: '',
@@ -48,18 +48,20 @@ class SignUpModal extends React.Component {
           {this.props.state.session.errors.map((error, idx) => (
             <li key={`sessionerror${idx}`}>{error.split(' #')[0]}</li>
           ))}
-          <p className="session-instructions">Or log in with email</p>
+          <p className="session-instructions">Or sign up with email</p>
         </ul>
       );
     }
     return (
-      <p className="session-instructions">Or log in with email</p>
+      <ul className="session-errors">
+        <p className="session-instructions">Or sign up with email</p>
+      </ul>
     );
   }
 
   render() {
     return (
-      <h2 onClick={this.openModal}>Sign Up
+      <a onClick={this.openModal}>Sign Up
         <Modal
           style={this.props.style}
           contentLabel={this.props.contentLabel}
@@ -75,7 +77,7 @@ class SignUpModal extends React.Component {
           <input type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
           <button className="signup-button" onClick={this.handleSubmit}>CREATE AN ACCOUNT</button>
         </Modal>
-      </h2>
+      </a>
     );
   }
 }
