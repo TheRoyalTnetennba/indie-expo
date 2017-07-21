@@ -1,3 +1,6 @@
+
+
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -8,6 +11,7 @@ class CampaignForm extends React.Component {
     super(props);
     this.state = {
       title: '',
+      tagline: '',
       goal: '',
       image_url: '',
       section: 'Basics',
@@ -42,17 +46,61 @@ class CampaignForm extends React.Component {
             <a>Save Campaign</a>
             <span className="purple-button">Review & Launch</span>
             <ul>
-              <li href="#basics"></li>
+              <li href="#basics">BASICS</li>
             </ul>
           </nav>
           <div>
             <h1 id="basics">Basics</h1>
             <p>Make a good first impression: introduce your campaign objectives and entice
-            people to learn more. This basic information will represent your campaign on your
-            campaign page, on your campaign card, and in searches.</p>
-          <div className="campaign-form-field">
-            <label for="campaign-title">Campaign Title<span className="required"></span></label>
-          </div>
+              people to learn more. This basic information will represent your campaign on your
+              campaign page, on your campaign card, and in searches.</p>
+            <div className="campaign-form-field">
+              <label htmlFor="campaign-title">
+                Campaign Title<span className="required" />
+              </label>
+              <legend className="session-errors">
+                What is the title of your campaign?
+              </legend>
+              <input id="campaign-title" type="text" value={this.title}></input>
+            </div>
+            <div className="campaign-form-field">
+              <label htmlFor="campaign-tagline">
+                Campaign Tagline<span className="required" />
+              </label>
+              <legend className="session-errors">
+                Provide a short description that best describes your campaign to your audience.
+              </legend>
+              <input id="campaign-tagline" type="text" value={this.tagline}></input>
+            </div>
+            <div className="campaign-form-field">
+              <label htmlFor="campaign-card-image">
+                Campaign Card Image<span className="required" />
+              </label>
+              <legend className="session-errors">
+                Upload a square image that represents your campaign.
+              </legend>
+              <legend className="session-errors">
+                640 x 640 recommended resolution, 220 x 220 minimum resolution.
+              </legend>
+              <div className="campaign-form-field-image">
+                <div className="campaign-form-field-image-label">
+                  <i className="fa fa-camera camera-circle" aria-hidden="true" />
+                  <a>UPLOAD IMAGE</a>
+                </div>
+              </div>
+            </div>
+            <div className="campaign-form-field">
+              <label htmlFor="campaign-card-location">
+                Campaign Card Image<span className="required" />
+              </label>
+              <legend className="session-errors">
+                Upload a square image that represents your campaign.
+              </legend>
+              <legend className="session-errors">
+                640 x 640 recommended resolution, 220 x 220 minimum resolution.
+              </legend>
+              <input id="campaign-card-location" type="text" value={this.image_url} />
+            </div>
           </div>
         </div>
       </div>
