@@ -46,7 +46,7 @@ nav a {
   cursor: pointer;
   font-family: inherit;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 100;
   color: black;
   margin: 0;
   padding: 0;
@@ -56,6 +56,23 @@ nav a {
 
 nav a:hover, nav a:focus {
   color: #eb1478;
+}
+
+.start-campaign-nav-button {
+  background-color: #eb1478;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 20px 10px 20px 10px;
+  padding: 11px 5px 11px 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.start-campaign-nav-button:hover, .start-campaign-nav-button:focus {
+  background-color: #fa1681;
+  color: white;
 }
 
 .SessionForm * {
@@ -155,31 +172,46 @@ nav a:hover, nav a:focus {
 }
 
 .campaign-form-main-div aside {
+  position: fixed;
   background-color: #2a2a2a;
   padding: 20px 20px;
+  width: 230px;
+  height: 100%;
 }
 
-.campaign-form-main-div > nav {
+.camp-form-content {
+  margin-left: 230px;
+  width: calc(100% - 230px)
+}
+
+.campaign-form-main-div > div > nav {
   background-color: #f5f5f5;
-  height: 70px;
-}
-
-.secondary-nav {
-  display: flex;
   padding: 0;
   margin: 0;
+  height: 70px;
+  max-height: 70px;
+  border-bottom: 1px solid #C8C8C8;
+  text-transform: uppercase;
+  display: flex;
   align-content: flex-end;
   justify-content: space-between;
   white-space: nowrap;
-  background-color: #f5f5f5;
-  height: 70px;
+  align-items: center;
+}
+
+.campaign-form-main-div > div > nav > div {
+  padding-left: 40px;
+}
+
+.campaign-form-main-div > div > nav > a {
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .secondary-nav a, .secondary-nav div {
   font-family: inherit;
-
   margin: 0;
-  padding-top: 24px;
+  padding-top: 22px;
   text-align: center;
 }
 
@@ -187,10 +219,10 @@ nav a:hover, nav a:focus {
   flex: .25;
   text-transform: uppercase;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 600;
   color: #7A69B3;
-  margin: 15px 10px 20px 10px;
-  padding: 15px 10px 0 10px;
+  margin: 20px 10px 20px 10px;
+  padding: 11px 10px 11px 10px;
   text-align: center;
   cursor: pointer;
 }
@@ -204,18 +236,17 @@ nav a:hover, nav a:focus {
   text-align: left;
   flex: 1;
   font-size: 22px;
-  padding-left: 40px;
 }
 
 .purple-button {
-  color: #ffffff;
   background-color: #7A69B3;
   flex: .25;
+  color: white;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: bold;
-  margin: 15px 10px 20px 10px;
-  padding: 15px 10px 0 10px;
+  margin: 20px 10px 20px 10px;
+  padding: 11px 10px 11px 10px;
   text-align: center;
   cursor: pointer;
 }
@@ -225,6 +256,8 @@ nav a:hover, nav a:focus {
 }
 
 .purple-text {
+  font-size: inherit;
+  font-weight: inherit;
   color: #7A69B3;
 }
 

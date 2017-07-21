@@ -16,15 +16,13 @@ class AuthedNavBar extends React.Component {
 
   render() {
     return (
-      <header>
-        <nav>
-          <Link to="/"><img alt="An homage to IndieGogo" src={window.logoURL} /></Link>
-          <a>Explore</a>
-          <a>Search</a>
-          <a onClick={this.startCampaign}>Start A Campaign</a>
-          <NavUserDropdownContainer />
-        </nav>
-      </header>
+      <nav>
+        <Link to="/"><img alt="An homage to IndieGogo" src={window.logoURL} /></Link>
+        <a>Explore</a>
+        <a>Search</a>
+        <a onClick={this.startCampaign} className="start-campaign-nav-button">Start A Campaign</a>
+        <NavUserDropdownContainer />
+      </nav>
     );
   }
 }

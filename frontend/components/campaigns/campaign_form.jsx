@@ -34,7 +34,7 @@ class CampaignForm extends React.Component {
           <div className="annotation-pill-yellow">DRAFT CAMPAIGN</div>
           <p>{this.state.title}</p>
         </aside>
-        <div className="col col-3-4">
+        <div className="col camp-form-content">
           {this.NavBar(this.props)}
           <nav className="secondary-nav">
             <div>Campaign / <a className="purple-text">{this.state.section}</a></div>
