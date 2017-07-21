@@ -1,5 +1,5 @@
 class Campaign < ApplicationRecord
-  validates :title, :goal, :creator_id, :category_id, :archived
+  validates :title, :goal, :creator_id, :category_id, :archived, presence: true
 
   belongs_to :creator,
     primary_key: :id,
