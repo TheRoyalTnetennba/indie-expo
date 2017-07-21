@@ -6,12 +6,13 @@ import { withRouter } from 'react-router';
 
 import CampaignFormContainer from './campaigns/campaign_form_container';
 import CampaignIndexContainer from './campaigns/campaign_index_container';
+import AuthModalContainer from './user/auth_modal_container';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
   }
-  
+
   render() {
     return (
       <Switch>

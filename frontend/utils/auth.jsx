@@ -19,3 +19,4 @@ const mapStateToProps = state => (
 );
 
 export const ProtectedRoute = withRouter(connect(mapStateToProps, null)(Protected));
+// <Redirect to="/signup" />

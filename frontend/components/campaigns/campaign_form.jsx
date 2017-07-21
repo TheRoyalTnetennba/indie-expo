@@ -41,7 +41,19 @@ class CampaignForm extends React.Component {
             <a>Preview</a>
             <a>Save Campaign</a>
             <span className="purple-button">Review & Launch</span>
+            <ul>
+              <li href="#basics"></li>
+            </ul>
           </nav>
+          <div>
+            <h1 id="basics">Basics</h1>
+            <p>Make a good first impression: introduce your campaign objectives and entice
+            people to learn more. This basic information will represent your campaign on your
+            campaign page, on your campaign card, and in searches.</p>
+          <div className="campaign-form-field">
+            <label for="campaign-title">Campaign Title<span className="required"></span></label>
+          </div>
+          </div>
         </div>
       </div>
     );

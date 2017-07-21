@@ -181,8 +181,54 @@ nav a:hover, nav a:focus {
 
 .camp-form-content {
   margin-left: 230px;
-  width: calc(100% - 230px)
+  width: calc(100% - 230px);
+  margin: 0 0 0 230px;
+  padding: 0;
 }
+
+
+.camp-form-content > div > * {
+  padding-left: 50px;
+  margin: 0;
+}
+
+.camp-form-content > div > h1 {
+  padding: 30px 50px 5px 50px;
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 34px;
+}
+
+.camp-form-content > div > p {
+  padding-top: 0px;
+  font-size: 16px;
+  font-weight: normal;
+  max-width: 620px;
+  line-height: 24px;
+}
+
+.campaign-form-field {
+  position: relative;
+  margin: 60px 0 60px 0;
+  display: flex;
+  flex-direction: row;
+  /*align-items: center;*/
+  /*align-content: center;*/
+  justify-content: center;
+}
+
+.campaign-form-field {
+
+}
+
+.required:after {
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  content:" *";
+  color: #FF324B;
+}
+
 
 .campaign-form-main-div > div > nav {
   background-color: #f5f5f5;
