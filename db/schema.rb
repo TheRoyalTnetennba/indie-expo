@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719191347) do
+ActiveRecord::Schema.define(version: 20170721203401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,12 @@ ActiveRecord::Schema.define(version: 20170719191347) do
     t.boolean "archived", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "tagline"
+    t.string "city"
+    t.string "country"
+    t.integer "duration"
+    t.text "overview"
+    t.text "pitch"
     t.index ["creator_id", "category_id"], name: "index_campaigns_on_creator_id_and_category_id"
   end
 

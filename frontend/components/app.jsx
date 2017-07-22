@@ -17,6 +17,7 @@ class App extends React.Component {
     return (
       <Switch>
         <ProtectedRoute path="/campaigns/new" component={CampaignFormContainer} />
+        <ProtectedRoute path="/campaigns/:campaignID" component={CampaignFormContainer} />
         <Route path="/" exact component={CampaignIndexContainer} />
       </Switch>
     );

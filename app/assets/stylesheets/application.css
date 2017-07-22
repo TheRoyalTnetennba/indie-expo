@@ -388,6 +388,16 @@ nav a:hover, nav a:focus {
   width: 100%;
 }
 
+.index-main-section {
+  padding-top: 80px;
+  display: flex;
+}
+
+.campaign-index-item {
+  height: 500px;
+  width: 500px;
+  flex: 1;
+}
 .annotation-pill-yellow {
   padding: 5px 5px 5px 5px;
   font-family: inherit;

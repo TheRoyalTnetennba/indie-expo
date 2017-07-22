@@ -27,3 +27,17 @@ export const guestLogin = () => (
     method: 'GET',
   })
 );
+
+export const fetchAllCampaigns = () => (
+  $.ajax({
+    url: '/api/campaigns',
+    method: 'GET',
+  })
+);
+
+export const fetchCampaign = id => (
+  $.ajax({
+    url: `/api/campaigns/${id}`,
+    method: 'GET',
+  })
+)

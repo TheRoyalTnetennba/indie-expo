@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { login, guestLogin } from '../../actions/session_actions';
+import { requestCampaigns } from '../../actions/campaign_actions';
 import CampaignIndex from './campaign_index';
 
 const mapStateToProps = state => ({
@@ -7,8 +7,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  login: user => dispatch(login(user)),
-  guestLogin: () => dispatch(guestLogin()),
+  requestCampaigns: () => dispatch(requestCampaigns()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CampaignIndex);

@@ -1,38 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { NavBar } from '../common/component_helper';
+import CampaignIndexItem from './campaign_index_item';
 
 class CampaignIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: '',
-      goal: '',
-      image_url: '',
-    };
     this.NavBar = NavBar.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.update = this.update.bind(this);
+    this.campaigns = [];
   }
 
-  update(property) {
-    return e => this.setState({ [property]: e.currentTarget.value });
+  componentWillMount() {
+    this.props.requestCampaigns();
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    const newState = Object.assign({}, this.state);
-    this.props.signup(newState);
+  componentWillReceiveProps(nextProps) {
+    this.campaigns = Object.keys(nextProps.state.campaigns).map(idx => nextProps.state.campaigns[idx]);
   }
 
   render() {
+    const campArray = this.campaigns.map(camp => <CampaignIndexItem campaign={camp} />);
     return (
       <div className="index-main-div">
         <header>
           {this.NavBar(this.props)}
         </header>
-        <section>
-          <h1>Index</h1>
+        <section className="index-main-section">
+          {campArray}
         </section>
       </div>
     );

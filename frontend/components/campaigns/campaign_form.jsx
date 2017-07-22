@@ -45,9 +45,7 @@ class CampaignForm extends React.Component {
             <a>Preview</a>
             <a>Save Campaign</a>
             <span className="purple-button">Review & Launch</span>
-            <ul>
-              <li href="#basics">BASICS</li>
-            </ul>
+
           </nav>
           <div>
             <h1 id="basics">Basics</h1>
@@ -109,7 +107,9 @@ class CampaignForm extends React.Component {
 }
 
 export default CampaignForm;
-
+// <ul>
+//   <li href="#basics"></li>
+// </ul>
 // import React from 'react';
 // import Modal from 'react-modal';
 //

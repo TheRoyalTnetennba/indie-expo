@@ -31,7 +31,6 @@ class NavUserDropdown extends React.Component {
     let name = this.props.state.session.currentUser.first_name;
     name = `${name} ${this.props.state.session.currentUser.last_name} `;
     const icon = this.state.modalOpen ? 'fa fa-angle-up' : 'fa fa-angle-down';
-    console.log(this.props);
     return (
       <a onClick={this.openModal}>{name}<i className={icon} aria-hidden="true"></i>
         <Modal

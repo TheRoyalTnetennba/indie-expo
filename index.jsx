@@ -4,7 +4,6 @@ import Root from './frontend/root';
 import configureStore from './frontend/store/store';
 import Modal from 'react-modal';
 
-
 document.addEventListener('DOMContentLoaded', () => {
   let store;
   if (window.currentUser) {

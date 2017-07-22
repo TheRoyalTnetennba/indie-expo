@@ -4,4 +4,8 @@ class Api::CampaignsController < ApplicationController
     @campaign ||= Campaign.find(params[:id])
   end
 
+  def index
+    @campaigns = Campaign.all.select { |m| m.archived == false }
+  end
+
 end
