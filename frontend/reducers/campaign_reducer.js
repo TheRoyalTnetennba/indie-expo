@@ -11,10 +11,9 @@ const CampaignReducer = (state = {}, action) => {
         showCampaign,
       });
     case RECEIVE_CAMPAIGNS:
-      const campaigns = action.campaigns;
-      return merge({}, state, {
-        campaigns,
-      });
+      const campaigns = {};
+      action.campaigns.forEach(campaign => campaigns[campaign.id] = campaign);
+      return merge({}, state, campaigns);
     default:
       return state;
   }

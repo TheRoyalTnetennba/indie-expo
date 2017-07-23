@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { NavBar } from '../common/component_helper';
 import CampaignIndexItem from './campaign_index_item';
+import SplashSlider from './splash_slider';
 
 class CampaignIndex extends React.Component {
   constructor(props) {
@@ -19,12 +20,13 @@ class CampaignIndex extends React.Component {
   }
 
   render() {
-    const campArray = this.campaigns.map(camp => <CampaignIndexItem campaign={camp} />);
+    const campArray = this.campaigns.map(camp => <CampaignIndexItem key={camp.id} campaign={camp} />);
     return (
       <div className="index-main-div">
         <header>
           {this.NavBar(this.props)}
         </header>
+        <SplashSlider />
         <section className="index-main-section">
           {campArray}
         </section>
