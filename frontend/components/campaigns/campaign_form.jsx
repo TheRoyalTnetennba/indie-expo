@@ -1,7 +1,6 @@
-
-
-
 import React from 'react';
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
 import { Link } from 'react-router-dom';
 
 import { NavBar } from '../common/component_helper';
@@ -13,13 +12,37 @@ class CampaignForm extends React.Component {
       title: '',
       tagline: '',
       goal: '',
-      image_url: '',
       section: 'Basics',
+      uploadedFileCloudinaryUrl: ''
     };
     this.NavBar = NavBar.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
   }
+
+  onImageDrop(files) {
+    this.setState({
+      uploadedFile: files[0]
+    });
+    this.handleImageUpload(files[0]);
+  }
+
+  handleImageUpload(file) {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                        .field('file', file);
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
+      }
+      if (response.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url
+        });
+      }
+    });
+  }
+
 
   update(property) {
     return e => this.setState({ [property]: e.currentTarget.value });
@@ -32,6 +55,8 @@ class CampaignForm extends React.Component {
   }
 
   render() {
+    const CLOUDINARY_UPLOAD_PRESET = 'indieexpo';
+    const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dy4gcvjff/image/upload';
     return (
       <div className="cf campaign-form-main-div">
         <aside className="col col-1-4">
@@ -80,24 +105,16 @@ class CampaignForm extends React.Component {
               <legend className="session-errors">
                 640 x 640 recommended resolution, 220 x 220 minimum resolution.
               </legend>
-              <div className="campaign-form-field-image">
+              <Dropzone
+                multiple={false}
+                accept="image/*"
+                onDrop={this.onImageDrop.bind(this)}
+                className="campaign-form-field-image">
                 <div className="campaign-form-field-image-label">
                   <i className="fa fa-camera camera-circle" aria-hidden="true" />
                   <a>UPLOAD IMAGE</a>
                 </div>
-              </div>
-            </div>
-            <div className="campaign-form-field">
-              <label htmlFor="campaign-card-location">
-                Campaign Card Image<span className="required" />
-              </label>
-              <legend className="session-errors">
-                Upload a square image that represents your campaign.
-              </legend>
-              <legend className="session-errors">
-                640 x 640 recommended resolution, 220 x 220 minimum resolution.
-              </legend>
-              <input id="campaign-card-location" type="text" value={this.image_url} />
+              </Dropzone>
             </div>
           </div>
         </div>
