@@ -1,8 +1,44 @@
 import React from 'react';
+import SplashItem from './splash_item';
 
-const SplashSlider = () => (
-  <div className="splash-slider">asd</div>
-);
+class SplashSlider extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+    this.campaigns = [];
+  }
+
+  update(property) {
+    return e => this.setState({ [property]: e.currentTarget.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const newState = Object.assign({}, this.state);
+    this.props.signup(newState);
+  }
+
+  componentWillMount() {
+    this.props.requestCampaigns();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.campaigns = Object.keys(nextProps.state.campaigns).map(idx => nextProps.state.campaigns[idx]).slice(0,6);
+  }
+
+  render() {
+    const campArray = this.campaigns.map(camp => <SplashItem key={camp.id} campaign={camp} />);
+
+    return (
+      <div className="splash-carousel">
+        <div className="side-splash-image">{campArray[0]}</div>
+        <div className="center-splash-image">{campArray[1]}</div>
+        <div className="side-splash-image">{campArray[2]}</div>
+      </div>
+    );
+  }
+}
 
 export default SplashSlider;
 

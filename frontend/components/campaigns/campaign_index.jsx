@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { NavBar } from '../common/component_helper';
 import CampaignIndexItem from './campaign_index_item';
-import SplashSlider from './splash_slider';
+import SplashSliderContainer from './splash_slider_container';
 
 class CampaignIndex extends React.Component {
   constructor(props) {
@@ -26,8 +26,8 @@ class CampaignIndex extends React.Component {
         <header>
           {this.NavBar(this.props)}
         </header>
-        <SplashSlider />
         <section className="index-main-section">
+          <SplashSliderContainer />
           {campArray}
         </section>
       </div>

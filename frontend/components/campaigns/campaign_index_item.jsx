@@ -1,7 +1,6 @@
 import React from 'react';
 
 const CampaignIndexItem = (props) => {
-  // console.log(props.campaign);
   return (
     <div className="campaign-index-item">
       <img src={props.campaign.image_url} alt={props.campaign.tagline} />
@@ -12,5 +11,5 @@ const CampaignIndexItem = (props) => {
       </div>
     </div>
   );
-}
+};
 export default CampaignIndexItem;

@@ -10,7 +10,7 @@ guest = User.create(password: "asdfoa2345ijdsofijaoesif1234jaowiejfo", email: "g
 # guest = User.all.first
 
 Category.destroy_all
-inappropes = Category.create(title: "MotherFuckingGadgetsYall!!!!")
+inappropes = Category.create(title: "Gadgets!!!!")
 wearable = Category.create(title: "Fashion & Wearables")
 smarthome = Category.create(title: "Home")
 pets = Category.create(title: "Pets")
@@ -24,7 +24,9 @@ item2 = { title: "Levitating Footwear", goal: 350000, creator_id: guest.id, cate
 item3 = { title: "Bee Secure Home Defense", goal: 7050000, creator_id: guest.id, category_id: smarthome.id, tagline: "According to all known laws of aviation...", city: "Detroit", country: "USA", duration: 24, overview: lorem, pitch: "Cover your front porch with those angry GMO bees. These are the kind of bees that will attack for no reason and can sting over and over without dying. Protect your hive. Protect your honey. Get bees.", archived: "false", body: lorem }
 item4 = { title: "Bow Wow Biotics", goal: 473652200, creator_id: guest.id, category_id: pets.id, tagline: "Man's best friend. Made to order.", city: "Detroit", country: "USA", duration: 24, overview: lorem, pitch: "Build your own, unique designer dog breed in four easy steps. 1) Select your base breed. 2) Select a hybrid breed. 3) Love and cherish your beautiful and unique creation.", archived: "false", body: lorem }
 
-
+Campaign.create(item2)
+Campaign.create(item3)
+Campaign.create(item4)
 
 camp1 = Campaign.create!(item1)
 12.times { Campaign.create!(item1) }
