@@ -18,7 +18,7 @@ class UnauthedNavBar extends React.Component {
   render() {
     return (
       <nav>
-        <Link to="/"><img alt="An homage to IndieGogo" src={window.logoURL} /></Link>
+        <Link to="/"><img alt="An homage to IndieGogo" src="https://res.cloudinary.com/dy4gcvjff/image/upload/v1500915047/IndieLogo_i2eyvn.png" /></Link>
         <a>Explore</a>
         <a>Search</a>
         <Link to="/campaigns/new" className="start-campaign-nav-button">Start A Campaign</Link>

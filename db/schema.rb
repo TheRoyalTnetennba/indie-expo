@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723021718) do
+ActiveRecord::Schema.define(version: 20170724165942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20170723021718) do
     t.string "title", null: false
     t.integer "goal", null: false
     t.text "body"
-    t.string "image_urls", default: ["/assets/defaults/campaign_profile.png"], array: true
+    t.string "image_urls", default: ["https://res.cloudinary.com/dy4gcvjff/image/upload/v1500915373/campaign_profile_q4poik.png"], array: true
     t.integer "creator_id", null: false
     t.integer "category_id", null: false
     t.boolean "archived", default: false, null: false
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20170723021718) do
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_url"
     t.index ["id"], name: "index_categories_on_id"
   end
 
@@ -63,7 +64,7 @@ ActiveRecord::Schema.define(version: 20170723021718) do
 
   create_table "users", force: :cascade do |t|
     t.string "password_digest", null: false
-    t.string "image_url", default: "/assets/defaults/user_profile_thumbnail.png", null: false
+    t.string "image_url", default: "https://res.cloudinary.com/dy4gcvjff/image/upload/v1500916260/if_profle_1055000_wvckm2.png", null: false
     t.text "bio"
     t.string "email", null: false
     t.string "session_token"
