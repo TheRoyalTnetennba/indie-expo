@@ -13,7 +13,7 @@ class CampaignForm extends React.Component {
       tagline: '',
       goal: '',
       section: 'Basics',
-      uploadedFileCloudinaryUrl: ''
+      image_url: ''
     };
     this.NavBar = NavBar.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,7 +37,7 @@ class CampaignForm extends React.Component {
       }
       if (response.body.secure_url !== '') {
         this.setState({
-          uploadedFileCloudinaryUrl: response.body.secure_url
+          image_url: response.body.secure_url
         });
       }
     });
