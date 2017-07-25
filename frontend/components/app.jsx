@@ -1,8 +1,7 @@
 import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Link, withRouter } from 'react-router-dom';
 
-import { ProtectedRoute } from '../utils/auth';
-import { withRouter } from 'react-router';
+import { ProtectedRoute, AuthRoute } from '../utils/auth';
 
 import CampaignFormContainer from './campaigns/campaign_form_container';
 import CampaignIndexContainer from './campaigns/campaign_index_container';
@@ -17,14 +16,14 @@ class App extends React.Component {
   render() {
     return (
       <Switch>
+        <Route path="/" exact component={CampaignIndexContainer} />
         <ProtectedRoute path="/campaigns/new" component={CampaignFormContainer} />
         <ProtectedRoute path="/campaigns/:campaignID" component={CampaignShowContainer} />
         <Route path="/session" component={AuthModalContainer} />
-        <Route path="/" exact component={CampaignIndexContainer} />
       </Switch>
     );
   }
-};
+}
 
 
 export default App;

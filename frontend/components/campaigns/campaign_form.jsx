@@ -13,7 +13,10 @@ class CampaignForm extends React.Component {
       tagline: '',
       goal: '',
       section: 'Basics',
-      image_url: ''
+      image_url: '',
+      city: '',
+      country: '',
+      category: '',
     };
     this.NavBar = NavBar.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -61,7 +64,7 @@ class CampaignForm extends React.Component {
       <div className="cf campaign-form-main-div">
         <aside className="col col-1-4">
           <div className="annotation-pill-yellow">DRAFT CAMPAIGN</div>
-          <p>{this.state.title}</p>
+          <p style={{textTransform: 'uppercase', color: '#C8C8C8'}}>{this.state.title}</p>
         </aside>
         <div className="col camp-form-content">
           {this.NavBar(this.props)}
@@ -84,7 +87,7 @@ class CampaignForm extends React.Component {
               <legend className="session-errors">
                 What is the title of your campaign?
               </legend>
-              <input id="campaign-title" type="text" value={this.title}></input>
+              <input onChange={this.update('title')} id="campaign-title" type="text" value={this.title}></input>
             </div>
             <div className="campaign-form-field">
               <label htmlFor="campaign-tagline">
@@ -93,7 +96,7 @@ class CampaignForm extends React.Component {
               <legend className="session-errors">
                 Provide a short description that best describes your campaign to your audience.
               </legend>
-              <input id="campaign-tagline" type="text" value={this.tagline}></input>
+              <input onChange={this.update('tagline')} id="campaign-tagline" type="text" value={this.tagline}></input>
             </div>
             <div className="campaign-form-field">
               <label htmlFor="campaign-card-image">
@@ -115,6 +118,27 @@ class CampaignForm extends React.Component {
                   <a>UPLOAD IMAGE</a>
                 </div>
               </Dropzone>
+            </div>
+            <div className="campaign-form-field">
+              <label htmlFor="campaign-location-city">
+                Location<span className="required" />
+              </label>
+              <legend className="session-errors">
+                Choose the location where you are running the campaign. This location will be visible on your campaign page for your audience to see.
+              </legend>
+              <div style={{flex: 1, width: '100%'}}>
+                <input style={{display: 'inline-block', width: '33%', marginRight: '15px'}} onChange={this.update('city')} placeholder="City" id="campaign-location-city" type="text" value={this.city}></input>
+                <input style={{display: 'inline-block', width: '55%'}} onChange={this.update('country')} placeholder="Country" id="campaign-tagline" type="text" value={this.country}></input>
+              </div>
+            </div>
+            <div className="campaign-form-field">
+              <label htmlFor="campaign-category">
+                Category<span className="required" />
+              </label>
+              <legend className="session-errors">
+                To help backers find your campaign, select a category that best represents your project.
+              </legend>
+              <input onChange={this.update('category')} id="campaign-category" type="text" value={this.category}></input>
             </div>
           </div>
         </div>

@@ -403,7 +403,7 @@ nav a:hover, nav a:focus {
   margin-bottom: 5px;
 }
 
-.campaign-form-field > input[type=text] {
+.campaign-form-field > input[type=text], .campaign-form-field > div > input {
   width: 100%;
   border: 1px solid #C8C8C8;
   line-height: 20px;
@@ -419,7 +419,7 @@ nav a:hover, nav a:focus {
 }
 
 
-.campaign-form-field > input[type=text]:focus {
+.campaign-form-field > input[type=text]:focus, .campaign-form-field > div > input:focus {
   border: 1px solid #2a2a2a;
   box-shadow: none;
   -webkit-box-shadow: none;
@@ -593,6 +593,7 @@ nav a:hover, nav a:focus {
   flex: 1;
   padding: 0;
   margin: 0;
+  cursor: pointer;
 }
 
 .campaign-index-photo {

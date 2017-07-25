@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const CampaignIndexItem = (props) => {
   const photo = { backgroundImage: `url(${props.campaign.image_url})` };
   return (

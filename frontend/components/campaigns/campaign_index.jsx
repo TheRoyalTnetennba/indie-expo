@@ -16,6 +16,7 @@ class CampaignIndex extends React.Component {
     this.settings = {
       dots: false,
       infinite: false,
+      lazyLoad: true,
       speed: 500,
       autoplaySpeed: 2,
       autoplay: false,
@@ -25,7 +26,7 @@ class CampaignIndex extends React.Component {
       className: 'campaign-index-item',
       flex: 1,
     };
-
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentWillMount() {
@@ -34,6 +35,15 @@ class CampaignIndex extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.campaigns = Object.keys(nextProps.state.campaigns).map(idx => nextProps.state.campaigns[idx]);
+  }
+
+  view(property) {
+    return e => this.setState({ [property]: e.currentTarget.value });
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    console.log(e.currentTarget);
   }
 
   render() {
