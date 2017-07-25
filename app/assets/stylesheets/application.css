@@ -552,7 +552,6 @@ nav a:hover, nav a:focus {
 
 .index-card {
   height: 500px;
-  max-width: 222px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   flex: 1;
   margin: auto;
