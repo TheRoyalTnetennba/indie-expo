@@ -8,11 +8,18 @@ class AuthedNavBar extends React.Component {
   constructor(props) {
     super(props);
     this.startCampaign = this.startCampaign.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   startCampaign(e) {
     e.preventDefault();
     this.props.history.push('/campaigns/new');
+  }
+
+  handleKeyPress(target) {
+    if (target.charCode === 13) {
+
+    }
   }
 
   render() {

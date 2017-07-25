@@ -5,6 +5,7 @@ import CampaignIndexItem from './campaign_index_item';
 import SplashSliderContainer from './splash_slider_container';
 import Footer from '../common/footer';
 import Slider from 'react-slick';
+import { LeftNavButton, RightNavButton } from '../common/slider_arrows';
 
 class CampaignIndex extends React.Component {
   constructor(props) {
@@ -18,12 +19,14 @@ class CampaignIndex extends React.Component {
       infinite: false,
       lazyLoad: true,
       speed: 500,
-      autoplaySpeed: 2,
+      arrows: true,
       autoplay: false,
+      nextArrow: <RightNavButton />,
+      prevArrow: <LeftNavButton />,
       slidesToShow: 4,
-      slidesToScroll: 1,
+      slidesToScroll: 4,
       adaptiveHeight: false,
-      className: 'campaign-index-item',
+      className: 'campaign-index-item-div',
       flex: 1,
     };
     this.handleClick = this.handleClick.bind(this);
@@ -54,15 +57,17 @@ class CampaignIndex extends React.Component {
           {this.NavBar(this.props)}
         </header>
         <SplashSliderContainer />
-        <Slider {...this.settings}>
-          <div className="index-card">{campArray[0]}</div>
-          <div className="index-card">{campArray[1]}</div>
-          <div className="index-card">{campArray[2]}</div>
-          <div className="index-card">{campArray[3]}</div>
-          <div className="index-card">{campArray[4]}</div>
-          <div className="index-card">{campArray[5]}</div>
-          <div className="index-card">{campArray[6]}</div>
-        </Slider>
+        <div className="index-carousel">
+          <Slider {...this.settings}>
+            <div>{campArray[0]}</div>
+            <div>{campArray[1]}</div>
+            <div>{campArray[2]}</div>
+            <div>{campArray[3]}</div>
+            <div>{campArray[4]}</div>
+            <div>{campArray[5]}</div>
+            <div>{campArray[6]}</div>
+          </Slider>
+        </div>
         <Footer />
       </div>
     );

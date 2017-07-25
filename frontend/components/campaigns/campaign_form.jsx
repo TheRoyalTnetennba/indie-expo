@@ -85,7 +85,6 @@ class CampaignForm extends React.Component {
             <a>Preview</a>
             <a>Save Campaign</a>
             <span className="purple-button">Review & Launch</span>
-
           </nav>
           <div>
             <h1 id="basics">Basics</h1>

@@ -12,4 +12,8 @@ class Campaign < ApplicationRecord
   has_many :perks
 
   has_many :contributions
+
+  def self.search(search)
+    find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
+  end
 end

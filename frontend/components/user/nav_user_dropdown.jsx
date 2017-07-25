@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 
 class NavUserDropdown extends React.Component {
   constructor(props) {
@@ -23,8 +23,7 @@ class NavUserDropdown extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.logout();
-
+    this.props.logout().then(this.props.history.push("/"));
   }
 
   render() {
@@ -51,7 +50,7 @@ class NavUserDropdown extends React.Component {
   }
 }
 
-export default NavUserDropdown;
+export default withRouter(NavUserDropdown);
 
 
 // <script>

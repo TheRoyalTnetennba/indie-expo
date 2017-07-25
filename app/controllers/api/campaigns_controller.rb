@@ -8,4 +8,9 @@ class Api::CampaignsController < ApplicationController
     @campaigns = Campaign.all.select { |m| m.archived == false }
   end
 
+  def search
+    debugger
+    @campaigns = Campaign.search(params[:search])
+  end
+
 end
