@@ -13,10 +13,7 @@
  *= require_tree .
  *= require_self
  */
- * {
-   min-height: 0;
-   min-width: 0;
- }
+
 
  body {
    padding: 0;
@@ -65,20 +62,23 @@ nav a {
 footer {
   display: inline-flex;
   width: 100%;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
-  align-content: center;
+  align-content: space-around;
   background: black;
+  flex-wrap: wrap;
   margin: 0;
+  padding-top: 15px;
 }
 
 .footer-section {
-  width: 100%;
 }
 
 .footer-subsection {
   flex: 1;
-  margin: 20px;
+  margin: 5px;
+  min-width: 25%;
+  padding-bottom: 15px;
 }
 
 .footer-subsection > h1 {
@@ -100,6 +100,17 @@ footer {
 
 .footer-subsection > a:hover, .footer-subsection > a:focus {
   text-decoration: underline;
+}
+
+.footer-subsection > input[type=email] {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: normal;
+  width: 50%;
+  height: 30px;
+  padding: 5px 15px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
 }
 
 .search {
@@ -135,10 +146,29 @@ nav a:hover, nav a:focus {
   text-transform: uppercase;
   font-size: 14px;
   font-weight: bold;
-  margin: 20px 10px 20px 10px;
+  margin: 20px 10px 19px 10px;
   padding: 11px 5px 11px 5px;
   text-align: center;
   cursor: pointer;
+}
+
+.newsletter-signup-button {
+  background-color: #eb1478;
+  display: inline-block;
+  color: white;
+  text-transform: uppercase;
+  max-width: 35%;
+  margin-left: 5px;
+  margin-top: 2px;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+  letter-spacing: 1px;
+  border: 2px solid #eb1478;
+  padding: 11px 18px;
+  border-radius: 2px;
 }
 
 .splash-carousel {
@@ -472,7 +502,10 @@ nav a:hover, nav a:focus {
 }
 
 .campaign-index-item {
-  flex: 1;
+  display: inline-flex;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
   height: 500px;
 }
 
@@ -548,24 +581,24 @@ nav a:hover, nav a:focus {
   margin: 0;
   padding: 0;
   width: 100%;
+  display: block;
 }
 
 .index-card {
   height: 500px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   flex: 1;
-  margin: auto;
-  padding: 1px;
+  padding: 0;
+  margin: 0;
 }
 
 .campaign-index-photo {
-  padding: 5px;
   height: 222px;
   width: 222px;
   display: block;
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: 222px 222px;
+  background-size: 100% auto;
 }
 
 .annotation-pill-yellow {

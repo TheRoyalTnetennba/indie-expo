@@ -15,16 +15,15 @@ class CampaignIndex extends React.Component {
     };
     this.settings = {
       dots: false,
-      infinite: true,
+      infinite: false,
       speed: 500,
       autoplaySpeed: 2,
       autoplay: false,
       slidesToShow: 4,
       slidesToScroll: 1,
-      adaptiveHeight: true,
-      nextArrow: <i className="fa fa-angle-right index-card-arrows" aria-hidden="true" />,
-      prevArrow: <i className="fa fa-angle-left index-card-arrows" aria-hidden="true" />,
+      adaptiveHeight: false,
       className: 'campaign-index-item',
+      flex: 1,
     };
 
   }
@@ -68,3 +67,6 @@ export default CampaignIndex;
 // className="index-main-div"
 // className="index-main-div"
 // className="index-card"
+
+// nextArrow: <i className="fa fa-angle-right index-card-arrows" aria-hidden="true" />,
+// prevArrow: <i className="fa fa-angle-left index-card-arrows" aria-hidden="true" />,
