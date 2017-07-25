@@ -1,4 +1,5 @@
 import React from 'react';
+import Slider from 'react-slick';
 import SplashItem from './splash_item';
 
 class SplashSlider extends React.Component {
@@ -7,6 +8,18 @@ class SplashSlider extends React.Component {
     this.state = {
     };
     this.campaigns = [];
+    this.settings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      autoplaySpeed: 2,
+      autoplay: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      arrows: false,
+      adaptiveHeight: true,
+      className: 'splash-carousel',
+    };
   }
 
   update(property) {
@@ -31,11 +44,11 @@ class SplashSlider extends React.Component {
     const campArray = this.campaigns.map(camp => <SplashItem key={camp.id} campaign={camp} />);
 
     return (
-      <div className="splash-carousel">
-        <div className="side-splash-image">{campArray[0]}</div>
-        <div className="center-splash-image">{campArray[1]}</div>
-        <div className="side-splash-image">{campArray[2]}</div>
-      </div>
+      <Slider {...this.settings}>
+        <div>{campArray[0]}</div>
+        <div>{campArray[1]}</div>
+        <div>{campArray[2]}</div>
+      </Slider>
     );
   }
 }

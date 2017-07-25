@@ -20,7 +20,10 @@ class UnauthedNavBar extends React.Component {
       <nav>
         <Link to="/"><img alt="An homage to IndieGogo" src="https://res.cloudinary.com/dy4gcvjff/image/upload/v1500915047/IndieLogo_i2eyvn.png" /></Link>
         <a>Explore</a>
-        <a>Search</a>
+        <div className="search">
+          <i className="fa fa-search"></i>
+          <input placeholder="Search" />
+        </div>
         <Link to="/campaigns/new" className="start-campaign-nav-button">Start A Campaign</Link>
         <SignUpModalContainer />
         <LoginModalContainer />

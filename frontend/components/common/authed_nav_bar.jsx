@@ -20,7 +20,10 @@ class AuthedNavBar extends React.Component {
       <nav>
         <Link to="/"><img alt="An homage to IndieGogo" src="https://res.cloudinary.com/dy4gcvjff/image/upload/v1500915047/IndieLogo_i2eyvn.png" /></Link>
         <a>Explore</a>
-        <a>Search</a>
+        <div className="search">
+          <i className="fa fa-search"></i>
+          <input placeholder="Search" />
+        </div>
         <a onClick={this.startCampaign} className="start-campaign-nav-button">Start A Campaign</a>
         <NavUserDropdownContainer />
       </nav>
