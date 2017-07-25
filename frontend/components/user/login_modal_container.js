@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { login, guestLogin } from '../../actions/session_actions';
 import LoginModal from './login_modal';
 import { style } from './modal_style';
@@ -17,4 +18,4 @@ const mapDispatchToProps = dispatch => ({
   guestLogin: () => dispatch(guestLogin()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginModal));

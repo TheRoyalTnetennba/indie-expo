@@ -9,4 +9,7 @@ class Campaign < ApplicationRecord
     foreign_key: :creator_id,
     class_name: :User
 
+  has_many :perks
+
+  has_many :contributions
 end

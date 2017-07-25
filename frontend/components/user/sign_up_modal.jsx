@@ -34,11 +34,13 @@ class SignUpModal extends React.Component {
     e.preventDefault();
     const newState = Object.assign({}, this.state);
     this.props.signup(newState);
+    this.props.history.push("/");
   }
 
   handleGuest(e) {
     e.preventDefault();
     this.props.guestLogin();
+    this.props.history.push("/");
   }
 
   instructions() {

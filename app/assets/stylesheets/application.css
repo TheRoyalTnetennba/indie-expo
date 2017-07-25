@@ -147,9 +147,12 @@ nav a:hover, nav a:focus {
   font-size: 14px;
   font-weight: bold;
   margin: 20px 10px 19px 10px;
-  padding: 11px 5px 11px 5px;
+  padding: 11px 18px;
   text-align: center;
   cursor: pointer;
+  border: 2px solid #eb1478;
+  padding: 11px 18px;
+  border-radius: 2px;
 }
 
 .newsletter-signup-button {
@@ -162,7 +165,6 @@ nav a:hover, nav a:focus {
   margin-top: 2px;
   font-size: 14px;
   font-weight: bold;
-  padding: 5px;
   text-align: center;
   cursor: pointer;
   letter-spacing: 1px;
@@ -242,6 +244,7 @@ nav a:hover, nav a:focus {
 .start-campaign-nav-button:hover, .start-campaign-nav-button:focus {
   background-color: #fa1681;
   color: white;
+  border: 2px solid #fa1681;
 }
 
 .SessionForm * {

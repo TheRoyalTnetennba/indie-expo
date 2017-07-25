@@ -8,7 +8,7 @@ const Protected = ({ component: Component, path, loggedIn }) => (
      loggedIn ? (
        <Component {...props} />
     ) : (
-      <AuthModalContainer />
+      <Redirect to="/session" />
     )
   )}
   />

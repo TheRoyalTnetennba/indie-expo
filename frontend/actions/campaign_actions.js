@@ -16,5 +16,11 @@ export const receiveCampaigns = campaigns => ({
 export const requestCampaigns = () => dispatch => (
   APIUtil.fetchAllCampaigns().then(campaigns => (
     dispatch(receiveCampaigns(campaigns))
-  ),
-));
+  ))
+);
+
+export const requestCampaign = id => dispatch => (
+  APIUtil.fetchCampaign(id).then(campaign => (
+    dispatch(receiveCampaign(campaign))
+  ))
+);

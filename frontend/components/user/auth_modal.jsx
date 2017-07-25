@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { style } from './modal_style';
+import CampaignIndexContainer from '../campaigns/campaign_index_container';
 
 class AuthModal extends React.Component {
   constructor(props) {
@@ -34,11 +35,13 @@ class AuthModal extends React.Component {
     e.preventDefault();
     const newState = Object.assign({}, this.state);
     this.props.login(newState);
+    this.props.history.push("/");
   }
 
   handleGuest(e) {
     e.preventDefault();
     this.props.guestLogin();
+    this.props.history.push("/");
   }
 
   instructions() {
@@ -61,19 +64,22 @@ class AuthModal extends React.Component {
 
   render() {
     return (
-      <Modal
-        style={style}
-        contentLabel="Sign Up"
-        isOpen={this.state.modalOpen}
-        className="SessionForm"
-        onRequestClose={this.closeModal}>
-        <i className="fa fa-times close-button" aria-hidden="true" onClick={this.closeModal}></i>
-        <button onClick={this.handleGuest} className="guest-login-button">Login As Guest User</button>
-        {this.instructions()}
-        <input type="email" placeholder="Email" value={this.state.email} onChange={this.update('email')} />
-        <input type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
-        <button className='login-button' onClick={this.handleSubmit}>LOG IN</button>
-      </Modal>
+      <div>
+        <CampaignIndexContainer />
+        <Modal
+          style={style}
+          contentLabel="Sign Up"
+          isOpen={this.state.modalOpen}
+          className="SessionForm"
+          onRequestClose={this.closeModal}>
+          <i className="fa fa-times close-button" aria-hidden="true" onClick={this.closeModal}></i>
+          <button onClick={this.handleGuest} className="guest-login-button">Login As Guest User</button>
+          {this.instructions()}
+          <input type="email" placeholder="Email" value={this.state.email} onChange={this.update('email')} />
+          <input type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
+          <button className='login-button' onClick={this.handleSubmit}>LOG IN</button>
+        </Modal>
+      </div>
     );
   }
 }

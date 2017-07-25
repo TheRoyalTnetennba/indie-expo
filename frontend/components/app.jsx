@@ -7,6 +7,7 @@ import { withRouter } from 'react-router';
 import CampaignFormContainer from './campaigns/campaign_form_container';
 import CampaignIndexContainer from './campaigns/campaign_index_container';
 import AuthModalContainer from './user/auth_modal_container';
+import CampaignShowContainer from './campaigns/campaign_show_container';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,7 +18,8 @@ class App extends React.Component {
     return (
       <Switch>
         <ProtectedRoute path="/campaigns/new" component={CampaignFormContainer} />
-        <ProtectedRoute path="/campaigns/:campaignID" component={CampaignFormContainer} />
+        <ProtectedRoute path="/campaigns/:campaignID" component={CampaignShowContainer} />
+        <Route path="/session" component={AuthModalContainer} />
         <Route path="/" exact component={CampaignIndexContainer} />
       </Switch>
     );

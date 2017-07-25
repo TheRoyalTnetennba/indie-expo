@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { signup, guestLogin } from '../../actions/session_actions';
-import SignUpModal from './sign_up_modal';
+import AuthModal from './auth_modal';
 import { style } from './modal_style';
 
 const contentLabel = 'Log In';
@@ -17,4 +17,4 @@ const mapDispatchToProps = dispatch => ({
   guestLogin: () => dispatch(guestLogin()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpModal);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthModal);
