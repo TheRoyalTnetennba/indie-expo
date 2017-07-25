@@ -425,12 +425,64 @@ nav a:hover, nav a:focus {
   -webkit-box-shadow: none;
 }
 
+.campaign-form-field > input[type=number] {
+  width: 33%;
+  border: 1px solid #C8C8C8;
+  line-height: 20px;
+  padding-top: 5px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  background-color: #ffffff;
+  height: 38px;
+  border-radius: 2px;
+  margin: 0;
+  font-size: 14px;
+}
+
+
+.campaign-form-field > input[type=number] {
+  border: 1px solid #2a2a2a;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
 .campaign-form-field > legend {
   font-size: 14px;
   font-weight: normal;
   line-height: 20px;
   color: #a8a8a8;
   margin: 0 0 10px;
+}
+
+.campaign-form-field > select {
+  width: 50%;
+  border: 1px solid #C8C8C8;
+  line-height: 20px;
+  padding-top: 5px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  background-color: #ffffff;
+  height: 38px;
+  border-radius: 2px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.campaign-form-field > select > option {
+  width: 50%;
+  border: 1px solid #C8C8C8;
+  line-height: 20px;
+  padding-top: 5px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  background-color: #ffffff;
+  height: 38px;
+  border-radius: 2px;
+  margin: 0;
+  font-size: 14px;
 }
 
 .required:after {
@@ -565,6 +617,24 @@ nav a:hover, nav a:focus {
 }
 
 .purple-button:hover, .purple-button:focus {
+  background-color: #6653a5;
+}
+
+.purple-next-button {
+  background-color: #7A69B3;
+  flex: 1;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  align-self: flex-end;
+  margin: 20px 0 20px 10px;
+  padding: 11px 10px 11px 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.purple-next-button:hover, .purple-button:focus {
   background-color: #6653a5;
 }
 

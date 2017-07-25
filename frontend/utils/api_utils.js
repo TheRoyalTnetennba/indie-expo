@@ -40,4 +40,11 @@ export const fetchCampaign = id => (
     url: `/api/campaigns/${id}`,
     method: 'GET',
   })
-)
+);
+
+export const fetchAllCategories = () => (
+  $.ajax({
+    url: '/api/categories',
+    method: 'GET',
+  })
+);

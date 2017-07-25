@@ -17,10 +17,13 @@ class CampaignForm extends React.Component {
       city: '',
       country: '',
       category: '',
+      duration: '',
     };
+    this.categories = [];
     this.NavBar = NavBar.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
+    this.requestCategories = this.props.requestCategories.bind(this);
   }
 
   onImageDrop(files) {
@@ -46,6 +49,14 @@ class CampaignForm extends React.Component {
     });
   }
 
+  componentWillMount() {
+    this.props.requestCategories();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.categories = Object.keys(nextProps.state.categories).map(idx => nextProps.state.categories[idx]);
+  }
+
 
   update(property) {
     return e => this.setState({ [property]: e.currentTarget.value });
@@ -60,6 +71,7 @@ class CampaignForm extends React.Component {
   render() {
     const CLOUDINARY_UPLOAD_PRESET = 'indieexpo';
     const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dy4gcvjff/image/upload';
+    const categories = this.categories.map(cat => <option key={cat.id} value={cat.title}>{cat.title}</option>);
     return (
       <div className="cf campaign-form-main-div">
         <aside className="col col-1-4">
@@ -138,7 +150,19 @@ class CampaignForm extends React.Component {
               <legend className="session-errors">
                 To help backers find your campaign, select a category that best represents your project.
               </legend>
-              <input onChange={this.update('category')} id="campaign-category" type="text" value={this.category}></input>
+              <select defaultValue="select-category" onChange={this.update('category')}>
+                {categories}
+              </select>
+            </div>
+            <div className="campaign-form-field">
+              <label htmlFor="campaign-duration">
+                Campaign Duration<span className="required" />
+              </label>
+              <legend className="session-errors">
+                How many days will you be running your campaign for? You can run a campaign for any number of days, with a 60 day duration maximum.
+              </legend>
+              <input onChange={this.update('duration')} id="campaign-duration" type="number" value={this.duration}></input>
+              <div className="purple-next-button">Next</div>
             </div>
           </div>
         </div>
@@ -148,100 +172,3 @@ class CampaignForm extends React.Component {
 }
 
 export default CampaignForm;
-// <ul>
-//   <li href="#basics"></li>
-// </ul>
-// import React from 'react';
-// import Modal from 'react-modal';
-//
-// class SignUpModal extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       modalOpen: false,
-//       email: '',
-//       password: '',
-//       first_name: '',
-//       last_name: '',
-//     };
-//     this.handleSubmit = this.handleSubmit.bind(this);
-//     this.update = this.update.bind(this);
-//     this.closeModal = this.closeModal.bind(this);
-//     this.openModal = this.openModal.bind(this);
-//     this.handleGuest = this.handleGuest.bind(this);
-//   }
-//
-//   closeModal() {
-//     this.setState({ modalOpen: false });
-//   }
-//
-//   openModal() {
-//     this.setState({ modalOpen: true });
-//   }
-//
-//   update(property) {
-//     return e => this.setState({ [property]: e.currentTarget.value });
-//   }
-//
-//   handleSubmit(e) {
-//     e.preventDefault();
-//     const newState = Object.assign({}, this.state);
-//     this.props.signup(newState);
-//   }
-//
-//   handleGuest(e) {
-//     e.preventDefault();
-//     this.props.guestLogin();
-//   }
-//
-//   instructions() {
-//     if (this.props.state.session.errors && this.props.state.session.errors.length > 0) {
-//       return (
-//         <ul className="session-errors">
-//           {this.props.state.session.errors.map((error, idx) => (
-//             <li key={`sessionerror${idx}`}>{error.split(' #')[0]}</li>
-//           ))}
-//           <p className="session-instructions">Or log in with email</p>
-//         </ul>
-//       );
-//     }
-//     return (
-//       <p className="session-instructions">Or log in with email</p>
-//     );
-//   }
-//
-//   render() {
-//     return (
-//       <h2 onClick={this.openModal}>Sign Up
-//         <Modal
-//           style={this.props.style}
-//           contentLabel={this.props.contentLabel}
-//           isOpen={this.state.modalOpen}
-//           className="SessionForm"
-//           onRequestClose={this.closeModal}>
-//           <i className="fa fa-times close-button" aria-hidden="true" onClick={this.closeModal}></i>
-//           <button onClick={this.handleGuest} className="guest-login-button">Login As Guest User</button>
-//           {this.instructions()}
-//           <input type="text" placeholder="First Name" value={this.state.first_name} onChange={this.update('first_name')} />
-//           <input type="text" placeholder="Last Name" value={this.state.last_name} onChange={this.update('last_name')} />
-//           <input type="email" placeholder="Email" value={this.state.email} onChange={this.update('email')} />
-//           <input type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
-//           <button className="signup-button" onClick={this.handleSubmit}>CREATE AN ACCOUNT</button>
-//         </Modal>
-//       </h2>
-//     );
-//   }
-// }
-//
-// export default SignUpModal;
-
-// if (this.props.state.session.currentUser && Object.keys(this.props.state.session.currentUser).length) {
-//   return (
-//     <NavUserDropdownContainer />
-//   );
-// }
-// return (
-//   <div className="nav-session-links">
-//     <SignUpModalContainer /><LoginModalContainer />
-//   </div>
-// );
