@@ -9,8 +9,8 @@ class Api::CampaignsController < ApplicationController
   end
 
   def search
-    debugger
-    @campaigns = Campaign.search(params[:search])
+    index(Campaign.search(params[:search]))
+    render :index
   end
 
 end

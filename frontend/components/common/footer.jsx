@@ -90,7 +90,7 @@ class Footer extends React.Component {
           className="SessionForm"
           onRequestClose={this.closeModal}>
           <i className="fa fa-times close-button" aria-hidden="true" onClick={this.closeModal}></i>
-          <button onClick={console.log('hello')} className="guest-login-button">Schedule Interview</button>
+          <button className="guest-login-button">Schedule Interview</button>
           <p>Please Hire me i am desperate and soon-to-be homeless</p>
         </Modal>
       </footer>

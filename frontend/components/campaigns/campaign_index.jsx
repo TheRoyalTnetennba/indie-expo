@@ -39,12 +39,11 @@ class CampaignIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     this.campaigns = Object.keys(nextProps.state.campaigns).map(idx => nextProps.state.campaigns[idx]);
   }
 
   handler (e) {
-    console.log('Hello ' + e.target.dataset.message); // Hello world
+    // console.log('Hello ' + e.target.dataset.message); // Hello world
   }
 
   handleClick(id, e) {
@@ -55,7 +54,6 @@ class CampaignIndex extends React.Component {
   render() {
     const campArray = this.campaigns.map(camp => <CampaignIndexItem key={camp.id} campaign={camp} />);
     const keyArray = this.campaigns.map(camp => camp.id);
-    console.log(keyArray)
     return (
       <div className="index-main-div">
         <header>

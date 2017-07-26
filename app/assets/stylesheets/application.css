@@ -192,17 +192,11 @@ nav a:hover, nav a:focus {
 .splash-title {
   color: white;
   font-weight: bold;
-  position: absolute;
-  bottom: 11.5%;
-  left: 5%;
   z-index: 55;
 }
 
 .splash-tagline {
   color: white;
-  position: absolute;
-  bottom: 5%;
-  left: 5%;
   z-index: 55;
 }
 
@@ -214,11 +208,11 @@ nav a:hover, nav a:focus {
   border-radius: 2px;
   font-weight: 400;
   text-transform: uppercase;
+  align-self: flex-end;
   padding: 10px;
   cursor: pointer;
-  position: absolute;
-  bottom: 5%;
-  left: 75%;
+  height: auto;
+  margin-right: 15px;
   text-decoration: none;
   z-index: 55;
 }
@@ -226,6 +220,23 @@ nav a:hover, nav a:focus {
 .splash-action:hover, .splash-action:focus {
   background-color: white;
   color: black;
+}
+
+.splash-content-container {
+  display: flex;
+  position: absolute;
+  bottom: 3%;
+  justify-content: space-between;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.splash-content-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-content: flex-end;
 }
 
 .campaign-splash-item {
@@ -571,7 +582,14 @@ nav a:hover, nav a:focus {
 
 .index-carousel {
   display: flex;
+}
 
+.campaign-list-div {
+  display: flex;
+  max-width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .campaign-index-item-div {

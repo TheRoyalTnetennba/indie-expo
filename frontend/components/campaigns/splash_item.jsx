@@ -5,9 +5,13 @@ const SplashItem = (props) => {
   const photo = { backgroundImage: `url(${props.campaign.image_url})` };
   return (
     <div className="campaign-splash-item" style={photo}>
-      <legend className="splash-title">{props.campaign.title}</legend>
-      <legend className="splash-tagline">{props.campaign.tagline}</legend>
-      <Link className="splash-action" to={`/campaigns/${props.campaign.id}`}>Learn More</Link>
+      <div className="splash-content-container">
+        <div className="splash-content-text-container">
+          <legend className="splash-title">{props.campaign.title}</legend>
+          <legend className="splash-tagline">{props.campaign.tagline}</legend>
+        </div>
+        <Link className="splash-action" to={`/campaigns/${props.campaign.id}`}>Learn More</Link>
+      </div>
     </div>
   );
 };

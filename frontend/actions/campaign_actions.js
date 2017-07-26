@@ -24,3 +24,9 @@ export const requestCampaign = id => dispatch => (
     dispatch(receiveCampaign(campaign))
   ))
 );
+
+export const searchCampaigns = string => dispatch => (
+  APIUtil.searchCampaigns(string).then(campaigns => (
+    dispatch(receiveCampaigns(campaigns))
+  ))
+);

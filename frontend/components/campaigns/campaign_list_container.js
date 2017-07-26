@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { requestCampaigns } from '../../actions/campaign_actions';
+import { requestCampaigns, searchCampaigns } from '../../actions/campaign_actions';
 import CampaignList from './campaign_list';
 
 const mapStateToProps = state => ({
@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   requestCampaigns: () => dispatch(requestCampaigns()),
+  searchCampaigns: string => dispatch(searchCampaigns(string)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CampaignList);

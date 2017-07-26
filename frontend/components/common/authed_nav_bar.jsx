@@ -9,6 +9,11 @@ class AuthedNavBar extends React.Component {
     super(props);
     this.startCampaign = this.startCampaign.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.state = {
+      search: '',
+    }
+    this.update = this.update.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   startCampaign(e) {
@@ -16,20 +21,24 @@ class AuthedNavBar extends React.Component {
     this.props.history.push('/campaigns/new');
   }
 
-  handleKeyPress(target) {
-    if (target.charCode === 13) {
-
+  handleKeyPress(event) {
+    if (event.key == 'Enter') {
+      this.props.history.push(`/search/${this.state.search}`);
     }
+  }
+
+  update(property) {
+    return e => this.setState({ [property]: e.currentTarget.value });
   }
 
   render() {
     return (
       <nav>
         <Link to="/"><img alt="An homage to IndieGogo" src="https://res.cloudinary.com/dy4gcvjff/image/upload/v1500915047/IndieLogo_i2eyvn.png" /></Link>
-        <a>Explore</a>
+        <Link to="/campaigns">Explore</Link>
         <div className="search">
           <i className="fa fa-search"></i>
-          <input placeholder="Search" />
+          <input onChange={this.update('search')}  onKeyPress={this.handleKeyPress} value={this.state.search} placeholder="Search" />
         </div>
         <a onClick={this.startCampaign} className="start-campaign-nav-button">Start A Campaign</a>
         <NavUserDropdownContainer />

@@ -48,3 +48,10 @@ export const fetchAllCategories = () => (
     method: 'GET',
   })
 );
+
+export const searchCampaigns = string => (
+  $.ajax({
+    url: `/api/campaigns/search/${string}`,
+    method: 'GET',
+  })
+);
