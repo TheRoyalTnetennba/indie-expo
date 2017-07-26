@@ -4,7 +4,7 @@ import React from 'react';
 const CampaignListItem = (props) => {
   const photo = { backgroundImage: `url(${props.campaign.image_url})` };
   return (
-    <div className="campaign-index-item" style={{margin: '2px', width: '100%'}} value={props.campaign.id}>
+    <div className="campaign-index-item" style={{margin: '2px'}} value={props.campaign.id}>
       <div className="campaign-index-photo" style={photo} />
       <legend className="index-category">{props.campaign.category}</legend>
       <p style={{fontWeight: 'bold', marginBottom: '0'}}>{props.campaign.title}</p>

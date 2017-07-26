@@ -578,6 +578,7 @@ nav a:hover, nav a:focus {
 .index-card-arrows {
   font-size: 175px;
   color: #a8a8a8;
+  background: transparent;
 }
 
 .index-carousel {
@@ -585,11 +586,12 @@ nav a:hover, nav a:focus {
 }
 
 .campaign-list-div {
+  flex: 1;
   display: flex;
-  max-width: 100%;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin: 50px;
 }
 
 .campaign-index-item-div {
@@ -597,6 +599,8 @@ nav a:hover, nav a:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .campaign-index-item-div .slick-list {
@@ -614,10 +618,10 @@ nav a:hover, nav a:focus {
 .campaign-index-item {
   flex: 1;
   padding: 0;
-  margin-top: 50px;
-  margin-bottom: 50px;
+
   margin-left: 10%;
-  width: 252px;
+  min-width: 252px;
+  max-width: 252px;
   height: 500px;
   position: relative;
   box-sizing: border-box;

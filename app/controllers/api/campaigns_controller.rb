@@ -9,8 +9,8 @@ class Api::CampaignsController < ApplicationController
   end
 
   def search
-    index(Campaign.search(params[:search]))
-    render :index
+    @campaigns = Campaign.search(params[:search])
+    render template: "api/campaigns/index"
   end
 
 end

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+
 import NavUserDropdownContainer from '../user/nav_user_dropdown_container';
-import { withRouter } from 'react-router';
 import CampaignIndexContainer from '../campaigns/campaign_index_container';
 
 class AuthedNavBar extends React.Component {

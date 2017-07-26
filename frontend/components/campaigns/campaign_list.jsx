@@ -11,15 +11,26 @@ class CampaignList extends React.Component {
     this.NavBar = NavBar.bind(this);
   }
 
-  componentWillMount() {
+  isSearch() {
     if (this.props.match.params && this.props.match.params.search && this.props.match.params.search.length) {
-      this.props.searchCampaigns();
+      return true;
+    }
+    return false;
+  }
+
+  componentWillMount() {
+    if (this.isSearch()) {
+      this.props.searchCampaigns(this.props.match.params.search);
     }
     this.props.requestCampaigns();
   }
 
   componentWillReceiveProps(nextProps) {
-    this.campaigns = Object.keys(nextProps.state.campaigns).map(idx => nextProps.state.campaigns[idx]);
+    if (this.isSearch()) {
+      this.campaigns = Object.keys(nextProps.state.searchResults).map(idx => nextProps.state.searchResults[idx]);
+    } else {
+      this.campaigns = Object.keys(nextProps.state.campaigns).map(idx => nextProps.state.campaigns[idx]);
+    }
   }
 
   render() {

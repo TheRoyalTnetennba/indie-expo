@@ -14,7 +14,7 @@ class Campaign < ApplicationRecord
   has_many :contributions
 
   def self.search(search)
-    where('title LIKE ?', "%#{search}%").order('id DESC')
+    where('lower(title) LIKE ?', "%#{search.downcase}%")
   end
 
   def progress
