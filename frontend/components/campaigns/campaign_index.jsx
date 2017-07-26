@@ -16,7 +16,7 @@ class CampaignIndex extends React.Component {
     };
     this.settings = {
       dots: false,
-      infinite: false,
+      infinite: true,
       lazyLoad: true,
       speed: 500,
       arrows: true,
@@ -26,6 +26,8 @@ class CampaignIndex extends React.Component {
       slidesToShow: 4,
       slidesToScroll: 4,
       adaptiveHeight: false,
+      draggable: false,
+      responsive: [ { breakpoint: 768, settings: { slidesToShow: 2 } }, { breakpoint: 1024, settings: { slidesToShow: 3 } } ],
       className: 'campaign-index-item-div',
       flex: 1,
     };
@@ -37,6 +39,7 @@ class CampaignIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     this.campaigns = Object.keys(nextProps.state.campaigns).map(idx => nextProps.state.campaigns[idx]);
   }
 
@@ -57,17 +60,15 @@ class CampaignIndex extends React.Component {
           {this.NavBar(this.props)}
         </header>
         <SplashSliderContainer />
-        <div className="index-carousel">
-          <Slider {...this.settings}>
-            <div>{campArray[0]}</div>
-            <div>{campArray[1]}</div>
-            <div>{campArray[2]}</div>
-            <div>{campArray[3]}</div>
-            <div>{campArray[4]}</div>
-            <div>{campArray[5]}</div>
-            <div>{campArray[6]}</div>
-          </Slider>
-        </div>
+        <Slider {...this.settings}>
+          <div>{campArray[0]}</div>
+          <div>{campArray[1]}</div>
+          <div>{campArray[2]}</div>
+          <div>{campArray[3]}</div>
+          <div>{campArray[4]}</div>
+          <div>{campArray[5]}</div>
+          <div>{campArray[6]}</div>
+        </Slider>
         <Footer />
       </div>
     );

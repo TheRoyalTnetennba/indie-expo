@@ -8,8 +8,9 @@ const CampaignIndexItem = (props) => {
       <div className="campaign-index-photo" style={photo} />
       <legend className="index-category">{props.campaign.category}</legend>
       <p>{props.campaign.title}</p>
+      <p>{props.campaign.tagline}</p>
       <div className="progress-bar-outer">
-        <div className="progress-bar-inner"> </div>
+        <div className="progress-bar-inner" style={{width: `${props.campaign.progress}%`}}></div>
       </div>
     </div>
   );

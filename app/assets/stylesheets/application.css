@@ -567,8 +567,6 @@ nav a:hover, nav a:focus {
 .index-card-arrows {
   font-size: 175px;
   color: #a8a8a8;
-  display: inline-block;
-  flex: 1;
 }
 
 .index-carousel {
@@ -577,22 +575,66 @@ nav a:hover, nav a:focus {
 }
 
 .campaign-index-item-div {
+  flex: 1;
   display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  /*max-width: 100%;*/
-  max-width: 75%;
-  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 }
+
+.campaign-index-item-div .slick-list {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+}
+
+/*.campaign-index-item-div .slick-list .slick-track .slick-slide {
+  margin-left: 70px;
+  margin-right: 0;
+  padding: 0;
+}*/
 
 .campaign-index-item {
   flex: 1;
   padding: 0;
-  margin: 0;
-  max-width: 100%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 10%;
+  width: 252px;
   height: 500px;
+  position: relative;
   box-sizing: border-box;
+  border: 1px solid #a8a8a8;
 }
+
+.campaign-index-item p, .campaign-index-item legend {
+  padding-left: 3%;
+  padding-top: 5px;
+}
+
+.campaign-index-photo {
+  width: 100%;
+  height: 250px;
+  display: relative;
+  top: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.progress-bar-outer {
+  position: absolute;
+  bottom: 40px;
+  left: 2.5%;
+  padding: 0;
+  width: 95%;
+  background-color: #a8a8a8;
+}
+
+.progress-bar-inner {
+  background-color: #eb1478;
+  padding-top: 10px;
+}
+
 
 .campaign-form-main-div > div > nav > div {
   padding-left: 40px;
@@ -682,15 +724,6 @@ nav a:hover, nav a:focus {
   margin: 0;
   cursor: pointer;
 }*/
-
-.campaign-index-photo {
-  height: 222px;
-  width: 222px;
-  display: relative;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-}
 
 .annotation-pill-yellow {
   padding: 5px 5px 5px 5px;

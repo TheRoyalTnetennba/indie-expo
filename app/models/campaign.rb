@@ -16,4 +16,8 @@ class Campaign < ApplicationRecord
   def self.search(search)
     find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
   end
+
+  def progress
+    (self.contributions.sum(:amount) / self.goal.to_f) * 100
+  end
 end
