@@ -6,4 +6,6 @@ json.array! @campaigns do |campaign|
   json.pitch campaign.pitch
   json.category campaign.category.title
   json.progress campaign.progress
+  json.daysRemaining campaign.days_left
+  json.prettyFunds campaign.pretty_funds
 end

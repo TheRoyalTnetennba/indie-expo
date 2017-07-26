@@ -57,7 +57,6 @@ class CampaignForm extends React.Component {
     this.categories = Object.keys(nextProps.state.categories).map(idx => nextProps.state.categories[idx]);
   }
 
-
   update(property) {
     return e => this.setState({ [property]: e.currentTarget.value });
   }

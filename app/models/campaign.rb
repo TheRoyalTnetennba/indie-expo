@@ -18,6 +18,17 @@ class Campaign < ApplicationRecord
   end
 
   def progress
-    (self.contributions.sum(:amount) / self.goal.to_f) * 100
+    ((self.contributions.sum(:amount) / self.goal.to_f) * 100).round(2)
+  end
+
+  def days_left
+    self.duration - (self.created_at.to_date - Time.current.to_date).to_i
+  end
+
+  def pretty_funds
+    bucks = self.contributions.sum(:amount).to_i
+    bucks.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
   end
 end
+
+# self.duration -

@@ -29,7 +29,7 @@ camp4 = Campaign.create(item4)
 
 camp1 = Campaign.create!(item1)
 12.times { Campaign.create!(item1) }
-Contribution.create(user_id: guest.id, amount: 50000, campaign_id: camp1.id)
+Contribution.create(user_id: guest.id, amount: 550000, campaign_id: camp1.id)
 Contribution.create(user_id: guest.id, amount: 50000, campaign_id: camp2.id)
 Contribution.create(user_id: guest.id, amount: 50000, campaign_id: camp3.id)
 Contribution.create(user_id: guest.id, amount: 50000, campaign_id: camp4.id)

@@ -43,17 +43,19 @@ class CampaignIndex extends React.Component {
     this.campaigns = Object.keys(nextProps.state.campaigns).map(idx => nextProps.state.campaigns[idx]);
   }
 
-  view(property) {
-    return e => this.setState({ [property]: e.currentTarget.value });
+  handler (e) {
+    console.log('Hello ' + e.target.dataset.message); // Hello world
   }
 
-  handleClick(e) {
+  handleClick(id, e) {
     e.preventDefault();
-    console.log(e.currentTarget);
+    this.props.history.push(`/campaigns/${id}`)
   }
 
   render() {
     const campArray = this.campaigns.map(camp => <CampaignIndexItem key={camp.id} campaign={camp} />);
+    const keyArray = this.campaigns.map(camp => camp.id);
+    console.log(keyArray)
     return (
       <div className="index-main-div">
         <header>
@@ -61,13 +63,13 @@ class CampaignIndex extends React.Component {
         </header>
         <SplashSliderContainer />
         <Slider {...this.settings}>
-          <div>{campArray[0]}</div>
-          <div>{campArray[1]}</div>
-          <div>{campArray[2]}</div>
-          <div>{campArray[3]}</div>
-          <div>{campArray[4]}</div>
-          <div>{campArray[5]}</div>
-          <div>{campArray[6]}</div>
+          <div onClick={e => this.handleClick(keyArray[0], e)}>{campArray[0]}</div>
+          <div onClick={e => this.handleClick(keyArray[1], e)}>{campArray[1]}</div>
+          <div onClick={e => this.handleClick(keyArray[2], e)}>{campArray[2]}</div>
+          <div onClick={e => this.handleClick(keyArray[3], e)}>{campArray[3]}</div>
+          <div onClick={e => this.handleClick(keyArray[4], e)}>{campArray[4]}</div>
+          <div onClick={e => this.handleClick(keyArray[5], e)}>{campArray[5]}</div>
+          <div onClick={e => this.handleClick(keyArray[6], e)}>{campArray[6]}</div>
         </Slider>
         <Footer />
       </div>
