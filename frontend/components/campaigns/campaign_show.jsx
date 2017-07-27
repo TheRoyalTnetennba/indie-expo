@@ -49,7 +49,7 @@ class CampaignShow extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.campaign = Object.assign(nextProps.state.campaigns.showCampaign);
+    this.campaign = Object.assign(nextProps.state.showCampaign.showCampaign);
   }
 
   next() {
@@ -116,9 +116,7 @@ class CampaignShow extends React.Component {
             <h1>Overview</h1>
           </div>
           <div className="campaign-main-right">
-            <div>
-              <h1>Perks</h1>
-            </div>
+            <h1>Perks</h1>
           </div>
         </section>
         <Footer />

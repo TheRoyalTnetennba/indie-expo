@@ -381,7 +381,6 @@ nav a:hover, nav a:focus {
   padding: 0;
 }
 
-
 .camp-form-content > div > * {
   padding-left: 50px;
   margin: 0;
@@ -464,13 +463,27 @@ nav a:hover, nav a:focus {
   border-radius: 2px;
   margin: 0;
   font-size: 14px;
-}
-
-
-.campaign-form-field > input[type=number] {
-  border: 1px solid #2a2a2a;
   box-shadow: none;
   -webkit-box-shadow: none;
+}
+
+.campaign-form-field > textarea {
+  width: 100%;
+  border: 1px solid #C8C8C8;
+  line-height: 20px;
+  padding-top: 5px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  background-color: #ffffff;
+  height: 38px;
+  border-radius: 2px;
+  margin: 0;
+  font-size: 14px;
+  box-shadow: none;
+  box-sizing: border-box;
+  -webkit-box-shadow: none;
+  height: 150px;
 }
 
 .campaign-form-field > legend {
@@ -1009,6 +1022,7 @@ nav a:hover, nav a:focus {
   background-color: #7A69B3;
   flex: .25;
   color: white;
+  display: inline-block;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: bold;
@@ -1022,16 +1036,36 @@ nav a:hover, nav a:focus {
   background-color: #6653a5;
 }
 
+.pink-button {
+  background-color: #eb1478;
+  flex: .25;
+  color: white;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 20px 10px 20px 10px;
+  padding: 11px 10px 11px 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pink-button:hover, .pink-button:focus {
+  background-color: #fa1681;
+}
+
 .purple-next-button {
   background-color: #7A69B3;
-  flex: 1;
+  display: block;
   color: white;
+  flex: 1;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: bold;
   align-self: flex-end;
-  margin: 20px 0 20px 10px;
-  padding: 11px 10px 11px 10px;
+  align-content: center;
+  margin: 40px 0 20px 50px !important;
+  padding: 11px 10px 11px 10px !important;
   text-align: center;
   cursor: pointer;
 }

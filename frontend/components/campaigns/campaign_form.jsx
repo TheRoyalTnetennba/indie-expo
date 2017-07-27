@@ -4,6 +4,7 @@ import request from 'superagent';
 import Scroll from 'react-scroll';
 
 import { NavBar } from '../common/component_helper';
+import PerkForm from './campaign_perk_form';
 
 var Link = Scroll.Link;
 var Element = Scroll.Element;
@@ -26,6 +27,18 @@ class CampaignForm extends React.Component {
       category: '',
       duration: '',
       menuOpen: true,
+      overview: '',
+      pitch: '',
+      perks: {
+        0: {
+          title: '',
+          image_url: '',
+          description: '',
+          price: '',
+        },
+      },
+      numPerks: 1,
+      uploadedFile: [],
     };
     this.categories = [];
     this.NavBar = NavBar.bind(this);
@@ -35,7 +48,12 @@ class CampaignForm extends React.Component {
     this.cloudinaryPreset = 'indieexpo';
     this.cloudinaryURL = 'https://api.cloudinary.com/v1_1/dy4gcvjff/image/upload';
     this.toggleMenu = this.toggleMenu.bind(this);
-    this.handleSetActive = this.handleSetActive.bind(this);
+    this.perkFormGen = this.perkFormGen.bind(this);
+    this.handlePerk = this.handlePerk.bind(this);
+    this.updatePerkNum = this.updatePerkNum.bind(this);
+    this.onImageDrop = this.onImageDrop.bind(this);
+    this.incrementPerks = this.incrementPerks.bind(this);
+    this.updatePerkNum = this.updatePerkNum.bind(this);
   }
 
   onImageDrop(files) {
@@ -46,7 +64,7 @@ class CampaignForm extends React.Component {
   }
 
   handleImageUpload(file) {
-    let upload = request.post(this.cloudinaryURL)
+    const upload = request.post(this.cloudinaryURL)
                         .field('upload_preset', this.cloudinaryPreset)
                         .field('file', file);
     upload.end((err, response) => {
@@ -71,23 +89,7 @@ class CampaignForm extends React.Component {
 
   componentWillMount() {
     this.props.requestCategories();
-  }
-
-  componentDidMount() {
-    Events.scrollEvent.register('begin', function() {
-      console.log("begin", arguments);
-    });
-
-    Events.scrollEvent.register('end', function() {
-      console.log("end", arguments);
-    });
-
-    scrollSpy.update();
-  }
-
-  componentWillUnmount() {
-    Events.scrollEvent.remove('begin');
-    Events.scrollEvent.remove('end');
+    this.perkFormGen(this.state.numPerks);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -98,19 +100,38 @@ class CampaignForm extends React.Component {
     return e => this.setState({ [property]: e.currentTarget.value });
   }
 
+  handlePerk(idx, newPerkSlice) {
+    const newPerks = Object.assign(this.state.perks);
+    newPerks[idx] = Object.assign(newPerkSlice);
+    this.setState({ perks: newPerks });
+    console.log(this.state);
+  }
+
+  updatePerkNum(numPerks) {
+    this.setState({ numPerks });
+    console.log(this.state.numPerks);
+    return e => this.perkFormGen(numPerks);
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const newState = Object.assign({}, this.state);
     this.props.signup(newState);
   }
 
-  handleSetActive(to) {
-    scroller.scrollTo(to, {
-      duration: 1500,
-      delay: 100,
-      smooth: true,
-      // containerId: 'ContainerElementID',
-    })
+  perkFormGen(numPerks) {
+    const perkForms = [];
+    for (let i = 0; i < numPerks; i++) {
+      let j = (
+        <PerkForm key={`perk-form-number-${i}`} perkNum={i} updateParent={(el, slice) => this.handlePerk(el, slice)} />
+      );
+      perkForms.push(j);
+    }
+    return perkForms;
+  }
+
+  incrementPerks() {
+    this.updatePerkNum(this.state.numPerks + 1)
   }
 
   render() {
@@ -140,6 +161,15 @@ class CampaignForm extends React.Component {
     }
     const icon = this.state.menuOpen ? 'fa fa-angle-up' : 'fa fa-angle-down';
     const asideNavLinkClass = this.state.menuOpen ? 'aside-nav-link' : 'hidden';
+    const perkOpenner = (
+      <div>
+        <h1 className="form-header">Perks</h1>
+        <p>Perks are incentives offered to backers in exchange for their support.
+          You may edit your perk details until the perk is claimed.
+        </p>
+      </div>
+    );
+    const perkForms = this.perkFormGen(this.state.numPerks);
     return (
       <div className="cf campaign-form-main-div">
         <aside className="col col-1-4">
@@ -148,24 +178,9 @@ class CampaignForm extends React.Component {
           <div className="preview-editor-links">
             <a>Preview Campaign</a>
             <a onClick={this.toggleMenu}>Campaign Editor<i className={icon} aria-hidden="true" /></a>
-            <Link className={asideNavLinkClass} activeClass="active-nav-link" to="basics" spy={true} smooth={false} offset={100} duration={50} onSetActive={this.handleSetActive}>
-              basics
-            </Link>
-            <Link className={asideNavLinkClass} activeClass="active-nav-link" to="story" spy={true} smooth={false} offset={50} duration={50} onSetActive={this.handleSetActive}>
-              story
-            </Link>
-            <Link className={asideNavLinkClass} activeClass="active-nav-link" to="perks" spy={true} smooth={false} duration={50} onSetActive={this.handleSetActive}>
-              perks
-            </Link>
-            <Link className={asideNavLinkClass} activeClass="active-nav-link" to="team" spy={true} smooth={false} duration={50} onSetActive={this.handleSetActive}>
-              team
-            </Link>
-            <Link className={asideNavLinkClass} activeClass="active-nav-link" to="funding" spy={true} smooth={false} duration={50} onSetActive={this.handleSetActive}>
-              funding
-            </Link>
-            <Link className={asideNavLinkClass} activeClass="active-nav-link" to="extra" spy={true} smooth={false} duration={50} onSetActive={this.handleSetActive}>
-              extra
-            </Link>
+            <a className={asideNavLinkClass} id="#basics-l">basics</a>
+            <a className={asideNavLinkClass} id="#story-l">story</a>
+            <a className={asideNavLinkClass} id="#perks-l">perks</a>
           </div>
         </aside>
         <div className="col camp-form-content">
@@ -176,7 +191,7 @@ class CampaignForm extends React.Component {
             <a>Save Campaign</a>
             <span className="purple-button">Review & Launch</span>
           </nav>
-          <Element name="basics">
+          <div name="basics">
             <h1 className="form-header">Basics</h1>
             <p>Make a good first impression: introduce your campaign objectives and entice
               people to learn more. This basic information will represent your campaign on your
@@ -188,7 +203,7 @@ class CampaignForm extends React.Component {
               <legend className="session-errors">
                 What is the title of your campaign?
               </legend>
-              <input onChange={this.update('title')} id="campaign-title" type="text" value={this.title}></input>
+              <input onChange={this.update('title')} id="campaign-title" type="text" value={this.state.title}></input>
             </div>
             <div className="campaign-form-field">
               <label htmlFor="campaign-tagline">
@@ -197,7 +212,7 @@ class CampaignForm extends React.Component {
               <legend className="session-errors">
                 Provide a short description that best describes your campaign to your audience.
               </legend>
-              <input onChange={this.update('tagline')} id="campaign-tagline" type="text" value={this.tagline}></input>
+              <input onChange={this.update('tagline')} id="campaign-tagline" type="text" value={this.state.tagline}></input>
             </div>
             <div className="campaign-form-field">
               <label htmlFor="campaign-card-image">
@@ -212,7 +227,7 @@ class CampaignForm extends React.Component {
               <Dropzone
                 multiple={false}
                 accept="image/*"
-                onDrop={this.onImageDrop.bind(this)}
+                onDrop={this.onImageDrop}
                 className="campaign-form-field-image">
                 {imageBox}
               </Dropzone>
@@ -225,8 +240,8 @@ class CampaignForm extends React.Component {
                 Choose the location where you are running the campaign. This location will be visible on your campaign page for your audience to see.
               </legend>
               <div style={{flex: 1, width: '100%'}}>
-                <input style={{display: 'inline-block', width: '33%', marginRight: '15px'}} onChange={this.update('city')} placeholder="City" id="campaign-location-city" type="text" value={this.city}></input>
-                <input style={{display: 'inline-block', width: '55%'}} onChange={this.update('country')} placeholder="Country" id="campaign-tagline" type="text" value={this.country}></input>
+                <input style={{display: 'inline-block', width: '33%', marginRight: '15px'}} onChange={this.update('city')} placeholder="City" id="campaign-location-city" type="text" value={this.state.city}></input>
+                <input style={{display: 'inline-block', width: '55%'}} onChange={this.update('country')} placeholder="Country" id="campaign-tagline" type="text" value={this.state.country}></input>
               </div>
             </div>
             <div className="campaign-form-field">
@@ -247,46 +262,73 @@ class CampaignForm extends React.Component {
               <legend className="session-errors">
                 How many days will you be running your campaign for? You can run a campaign for any number of days, with a 60 day duration maximum.
               </legend>
-              <input onChange={this.update('duration')} id="campaign-duration" type="number" value={this.duration} />
+              <input onChange={this.update('duration')} id="campaign-duration" type="number" value={this.state.duration} />
             </div>
-          </Element>
-        </div>
-        <Element name="story" className="col camp-form-content">
-          <div>
-            <h1 className="form-header">Story</h1>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
           </div>
-        </Element>
+        </div>
+        <div className="col camp-form-content">
+          <div name="story">
+            <h1 className="form-header">Story</h1>
+            <p>Introduce yourself, your background, your campaign and why it’s important to you.
+              Express the magnitude of what contributors will help you achieve.
+            </p>
+            <div className="campaign-form-field">
+              <label htmlFor="campaign-overview">
+                Campaign Overview<span className="required" />
+              </label>
+              <legend className="session-errors">
+                Lead with a compelling statement that describes your campaign and why it’s important to you, highlight key campaign features, and remember - keep it short!
+              </legend>
+              <textarea onChange={this.update('overview')} id="campaign-overview" type="text" value={this.state.overview} rows="4" cols="50"></textarea>
+            </div>
+            <div className="campaign-form-field">
+              <label htmlFor="campaign-pitch">
+                Campaign Pitch<span className="required" />
+              </label>
+              <legend className="session-errors">
+                Tell potential contributors more about your campaign. Provide details that will motivate people to contribute. A good pitch is compelling, informative, and easy to digest.
+              </legend>
+              <textarea onChange={this.update('pitch')} id="campaign-pitch" type="text" value={this.state.pitch} rows="4" cols="50"></textarea>
+            </div>
+          </div>
+        </div>
+        <div className="col camp-form-content" name="perks">
+          {perkOpenner}
+          {perkForms}
+          <div className="campaign-form-field">
+            <div style={{display: 'flex', justifyContent: 'flex-end', width: '100%'}}>
+              <a onClick={this.incrementPerks} className="purple-button">Add More Perks</a>
+              <a onClick={this.handleSubmit} className="pink-button">Launch Campaign</a>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
 export default CampaignForm;
+
+// <Link className={asideNavLinkClass} activeClass="active-nav-link" to="basics" spy={true} smooth={false} offset={100} duration={50} onSetActive={this.handleSetActive}>
+//   basics
+// </Link>
+// <Link className={asideNavLinkClass} activeClass="active-nav-link" to="story" spy={true} smooth={false} offset={50} duration={50} onSetActive={this.handleSetActive}>
+//   story
+// </Link>
+// <Link className={asideNavLinkClass} activeClass="active-nav-link" to="perks" spy={true} smooth={false} duration={50} onSetActive={this.handleSetActive}>
+//   perks
+// </Link>
+// <Link className={asideNavLinkClass} activeClass="active-nav-link" to="team" spy={true} smooth={false} duration={50} onSetActive={this.handleSetActive}>
+//   team
+// </Link>
+// <Link className={asideNavLinkClass} activeClass="active-nav-link" to="funding" spy={true} smooth={false} duration={50} onSetActive={this.handleSetActive}>
+//   funding
+// </Link>
+// <Link className={asideNavLinkClass} activeClass="active-nav-link" to="extra" spy={true} smooth={false} duration={50} onSetActive={this.handleSetActive}>
+//   extra
+// </Link>
+
+
+// <a className={asideNavLinkClass} id="#team-l">team</a>
+// <a className={asideNavLinkClass} id="#funding-l">funding</a>
+// <a className={asideNavLinkClass} id="#-l">extra</a>
