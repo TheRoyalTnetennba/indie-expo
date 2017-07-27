@@ -9,6 +9,7 @@ class CampaignList extends React.Component {
     super(props);
     this.campaigns = [];
     this.NavBar = NavBar.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   isSearch() {
@@ -16,6 +17,11 @@ class CampaignList extends React.Component {
       return true;
     }
     return false;
+  }
+
+  handleClick(id, e) {
+    e.preventDefault();
+    this.props.history.push(`/campaigns/${id}`)
   }
 
   componentWillMount() {
@@ -27,20 +33,29 @@ class CampaignList extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.isSearch()) {
-      this.campaigns = Object.keys(nextProps.state.searchResults).map(idx => nextProps.state.searchResults[idx]);
+      if (this.props.match.params.search !== nextProps.match.params.search) {
+        this.props.searchCampaigns(nextProps.match.params.search);
+      }
     } else {
-      this.campaigns = Object.keys(nextProps.state.campaigns).map(idx => nextProps.state.campaigns[idx]);
+      this.props.requestCampaigns();
     }
   }
 
   render() {
-    const campArray = this.campaigns.map(camp => <CampaignListItem key={camp.id} campaign={camp} />);
+    let campArray;
+    let campaigns;
+    if (this.isSearch()) {
+      campaigns = Object.keys(this.props.searchResults).map(idx => this.props.searchResults[idx]);
+    } else {
+      campaigns = Object.keys(this.props.campaigns).map(idx => this.props.campaigns[idx]);
+    }
+    campArray = campaigns.map(camp => <div onClick={e => this.handleClick(camp.id, e)} key={camp.id}><CampaignListItem campaign={camp} /></div>);
     return (
       <div className="index-main-div">
         <header>
           {this.NavBar(this.props)}
         </header>
-        <div className="campaign-list-div">
+        <div className="campaign-list-div" data={this.props.state}>
           {campArray}
         </div>
         <Footer />

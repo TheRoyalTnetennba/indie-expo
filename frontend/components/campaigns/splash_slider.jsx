@@ -12,14 +12,15 @@ class SplashSlider extends React.Component {
       dots: false,
       infinite: true,
       speed: 500,
-      autoplaySpeed: 2,
-      autoplay: true,
+      autoplay: false,
       slidesToShow: 3,
       slidesToScroll: 1,
       arrows: false,
       adaptiveHeight: true,
       className: 'splash-carousel',
     };
+    this.next = this.next.bind(this);
+    setInterval(() => this.next(), 10000);
   }
 
   update(property) {
@@ -40,11 +41,16 @@ class SplashSlider extends React.Component {
     this.campaigns = Object.keys(nextProps.state.campaigns).map(idx => nextProps.state.campaigns[idx]).slice(0,6);
   }
 
+  next() {
+    const that = this;
+    that.slider.slickNext();
+  }
+
   render() {
     const campArray = this.campaigns.map(camp => <SplashItem key={camp.id} campaign={camp} />);
 
     return (
-      <Slider {...this.settings}>
+      <Slider ref={c => this.slider = c} {...this.settings}>
         <div>{campArray[0]}</div>
         <div>{campArray[1]}</div>
         <div>{campArray[2]}</div>

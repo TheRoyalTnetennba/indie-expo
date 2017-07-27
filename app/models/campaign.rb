@@ -29,6 +29,11 @@ class Campaign < ApplicationRecord
     bucks = self.contributions.sum(:amount).to_i
     bucks.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
   end
+
+  def pretty_goal
+    bucks = self.contributions.sum(:amount).to_i
+    bucks.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+  end
 end
 
 # self.duration -

@@ -17,12 +17,12 @@ class App extends React.Component {
   render() {
     return (
       <Switch>
-        <Route path="/" exact component={CampaignIndexContainer} />
-        <ProtectedRoute path="/campaigns/new" component={CampaignFormContainer} />
+        <ProtectedRoute exact path="/campaigns/new" component={CampaignFormContainer} />
         <ProtectedRoute path="/campaigns/:campaignID" component={CampaignShowContainer} />
+        <ProtectedRoute exact path="/campaigns" component={CampaignListContainer} />
         <ProtectedRoute path="/search/:search" component={CampaignListContainer} />
-        <ProtectedRoute path="/campaigns" component={CampaignListContainer} />
         <Route path="/session" component={AuthModalContainer} />
+        <Route path="/" exact component={CampaignIndexContainer} />
       </Switch>
     );
   }

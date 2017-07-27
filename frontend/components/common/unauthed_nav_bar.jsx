@@ -23,6 +23,7 @@ class UnauthedNavBar extends React.Component {
   handleKeyPress(event) {
     if (event.key == 'Enter') {
       this.props.history.push(`/search/${this.state.search}`);
+      this.forceUpdate();
     }
   }
 

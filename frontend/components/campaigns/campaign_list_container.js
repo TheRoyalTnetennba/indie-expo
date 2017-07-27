@@ -7,6 +7,8 @@ import CampaignList from './campaign_list';
 
 const mapStateToProps = state => ({
   state,
+  campaigns: state.campaigns || [],
+  searchResults: state.searchResults,
 });
 
 const mapDispatchToProps = dispatch => ({

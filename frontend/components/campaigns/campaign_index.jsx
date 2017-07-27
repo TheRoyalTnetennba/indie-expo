@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { NavBar } from '../common/component_helper';
 import CampaignIndexItem from './campaign_index_item';
 import SplashSliderContainer from './splash_slider_container';
@@ -61,13 +61,13 @@ class CampaignIndex extends React.Component {
         </header>
         <SplashSliderContainer />
         <Slider {...this.settings}>
-          <div onClick={e => this.handleClick(keyArray[0], e)}>{campArray[0]}</div>
-          <div onClick={e => this.handleClick(keyArray[1], e)}>{campArray[1]}</div>
-          <div onClick={e => this.handleClick(keyArray[2], e)}>{campArray[2]}</div>
-          <div onClick={e => this.handleClick(keyArray[3], e)}>{campArray[3]}</div>
-          <div onClick={e => this.handleClick(keyArray[4], e)}>{campArray[4]}</div>
-          <div onClick={e => this.handleClick(keyArray[5], e)}>{campArray[5]}</div>
-          <div onClick={e => this.handleClick(keyArray[6], e)}>{campArray[6]}</div>
+          <div className="campaign-index-hack" onClick={e => this.handleClick(keyArray[0], e)}>{campArray[0]}</div>
+          <div className="campaign-index-hack" onClick={e => this.handleClick(keyArray[1], e)}>{campArray[1]}</div>
+          <div className="campaign-index-hack" onClick={e => this.handleClick(keyArray[2], e)}>{campArray[2]}</div>
+          <div className="campaign-index-hack" onClick={e => this.handleClick(keyArray[3], e)}>{campArray[3]}</div>
+          <div className="campaign-index-hack" onClick={e => this.handleClick(keyArray[4], e)}>{campArray[4]}</div>
+          <div className="campaign-index-hack" onClick={e => this.handleClick(keyArray[5], e)}>{campArray[5]}</div>
+          <div className="campaign-index-hack" onClick={e => this.handleClick(keyArray[6], e)}>{campArray[6]}</div>
         </Slider>
         <Footer />
       </div>
