@@ -37,13 +37,15 @@ class CampaignShow extends React.Component {
       pretty_goal: '',
       days_left: '',
     };
-    this.next = this.next.bind(this);
-    setInterval(() => this.next(), 10000);
   }
 
   componentWillMount() {
     this.props.requestCampaign(this.props.match.params.campaignID);
+    this.intervalId = setInterval(this.next.bind(this), 10000);
+  }
 
+  componentWillUnmount(){
+    clearInterval(this.intervalId);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -63,7 +65,7 @@ class CampaignShow extends React.Component {
         <header>
           {this.NavBar(this.props)}
         </header>
-        <section className="campaign-show-main">
+        <section className="campaign-show-hero">
           <div className="campaign-show-left">
             <Slider ref={c => this.slider = c} {...this.settings}>
               <div>{photoArray[0]}</div>
@@ -100,12 +102,22 @@ class CampaignShow extends React.Component {
             <div className="back-it-bar">
               <a>Back It</a>
               <div>
-                <i className="fa fa-envelope" aria-hidden="true" />
-                <i className="fa fa-facebook-square" aria-hidden="true" />
-                <i className="fa fa-twitter-square" aria-hidden="true" />
-                <i className="fa fa-link" aria-hidden="true" />
-                <i className="fa fa-reddit" aria-hidden="true" />
+                <a href="mailto:person@example.com" className="fa fa-envelope" aria-hidden="true" />
+                <a className="fa fa-facebook-square" aria-hidden="true" />
+                <a className="fa fa-twitter-square" aria-hidden="true" />
+                <a className="fa fa-link" aria-hidden="true" />
+                <a className="fa fa-reddit" aria-hidden="true" />
               </div>
+            </div>
+          </div>
+        </section>
+        <section className="campaign-show-main">
+          <div className="campaign-main-left">
+            <h1>Overview</h1>
+          </div>
+          <div className="campaign-main-right">
+            <div>
+              <h1>Perks</h1>
             </div>
           </div>
         </section>

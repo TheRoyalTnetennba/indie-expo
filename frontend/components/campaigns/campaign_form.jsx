@@ -24,9 +24,12 @@ class CampaignForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.requestCategories = this.props.requestCategories.bind(this);
+    this.cloudinaryPreset = 'indieexpo';
+    this.cloudinaryURL = 'https://api.cloudinary.com/v1_1/dy4gcvjff/image/upload';
   }
 
   onImageDrop(files) {
+    console.log('images dropped');
     this.setState({
       uploadedFile: files[0]
     });
@@ -34,8 +37,9 @@ class CampaignForm extends React.Component {
   }
 
   handleImageUpload(file) {
-    let upload = request.post(CLOUDINARY_UPLOAD_URL)
-                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+    console.log('images handled');
+    let upload = request.post(this.cloudinaryURL)
+                        .field('upload_preset', this.cloudinaryPreset)
                         .field('file', file);
     upload.end((err, response) => {
       if (err) {
@@ -45,6 +49,8 @@ class CampaignForm extends React.Component {
         this.setState({
           image_url: response.body.secure_url
         });
+        console.log('uploaded');
+        console.log(this.props);
       }
     });
   }
@@ -68,9 +74,30 @@ class CampaignForm extends React.Component {
   }
 
   render() {
-    const CLOUDINARY_UPLOAD_PRESET = 'indieexpo';
-    const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dy4gcvjff/image/upload';
     const categories = this.categories.map(cat => <option key={cat.id} value={cat.title}>{cat.title}</option>);
+    const photoStyles = {
+      display: 'relative',
+      top: '0',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center center',
+      backgroundRepeat: 'no-repeat',
+      backgroundImage: `url(${this.state.image_url})`,
+      overflow: 'hidden',
+    };
+    let imageBox;
+    if (this.state.image_url.length) {
+      imageBox = (
+        <div className="campaign-form-field-image-label" style={photoStyles}>
+        </div>
+      );
+    } else {
+      imageBox = (
+        <div className="campaign-form-field-image-label">
+          <i className="fa fa-camera camera-circle" aria-hidden="true" />
+          <a>UPLOAD IMAGE</a>
+        </div>
+      );
+    }
     return (
       <div className="cf campaign-form-main-div">
         <aside className="col col-1-4">
@@ -123,10 +150,7 @@ class CampaignForm extends React.Component {
                 accept="image/*"
                 onDrop={this.onImageDrop.bind(this)}
                 className="campaign-form-field-image">
-                <div className="campaign-form-field-image-label">
-                  <i className="fa fa-camera camera-circle" aria-hidden="true" />
-                  <a>UPLOAD IMAGE</a>
-                </div>
+                {imageBox}
               </Dropzone>
             </div>
             <div className="campaign-form-field">

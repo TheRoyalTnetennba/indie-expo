@@ -19,8 +19,6 @@ class SplashSlider extends React.Component {
       adaptiveHeight: true,
       className: 'splash-carousel',
     };
-    this.next = this.next.bind(this);
-    setInterval(() => this.next(), 10000);
   }
 
   update(property) {
@@ -35,6 +33,11 @@ class SplashSlider extends React.Component {
 
   componentWillMount() {
     this.props.requestCampaigns();
+    this.intervalId = setInterval(this.next.bind(this), 10000);
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.intervalId);
   }
 
   componentWillReceiveProps(nextProps) {

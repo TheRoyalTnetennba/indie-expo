@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
 import { requestCampaign } from '../../actions/campaign_actions';
 import CampaignShow from './campaign_show';
 
@@ -10,4 +12,4 @@ const mapDispatchToProps = dispatch => ({
   requestCampaign: id => dispatch(requestCampaign(id)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CampaignShow);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CampaignShow));
