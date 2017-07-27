@@ -1,9 +1,16 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
-import { Link } from 'react-router-dom';
+import Scroll from 'react-scroll';
 
 import { NavBar } from '../common/component_helper';
+
+var Link = Scroll.Link;
+var Element = Scroll.Element;
+var Events = Scroll.Events;
+var scroll = Scroll.animateScroll;
+var scrollSpy = Scroll.scrollSpy;
+var scroller = Scroll.scroller;
 
 class CampaignForm extends React.Component {
   constructor(props) {
@@ -18,6 +25,7 @@ class CampaignForm extends React.Component {
       country: '',
       category: '',
       duration: '',
+      menuOpen: true,
     };
     this.categories = [];
     this.NavBar = NavBar.bind(this);
@@ -26,10 +34,11 @@ class CampaignForm extends React.Component {
     this.requestCategories = this.props.requestCategories.bind(this);
     this.cloudinaryPreset = 'indieexpo';
     this.cloudinaryURL = 'https://api.cloudinary.com/v1_1/dy4gcvjff/image/upload';
+    this.toggleMenu = this.toggleMenu.bind(this);
+    this.handleSetActive = this.handleSetActive.bind(this);
   }
 
   onImageDrop(files) {
-    console.log('images dropped');
     this.setState({
       uploadedFile: files[0]
     });
@@ -37,7 +46,6 @@ class CampaignForm extends React.Component {
   }
 
   handleImageUpload(file) {
-    console.log('images handled');
     let upload = request.post(this.cloudinaryURL)
                         .field('upload_preset', this.cloudinaryPreset)
                         .field('file', file);
@@ -49,14 +57,37 @@ class CampaignForm extends React.Component {
         this.setState({
           image_url: response.body.secure_url
         });
-        console.log('uploaded');
-        console.log(this.props);
       }
+    });
+  }
+
+  toggleMenu() {
+    const menuStatus = !this.state.menuOpen
+    console.log(menuStatus)
+    this.setState({
+      menuOpen: menuStatus,
     });
   }
 
   componentWillMount() {
     this.props.requestCategories();
+  }
+
+  componentDidMount() {
+    Events.scrollEvent.register('begin', function() {
+      console.log("begin", arguments);
+    });
+
+    Events.scrollEvent.register('end', function() {
+      console.log("end", arguments);
+    });
+
+    scrollSpy.update();
+  }
+
+  componentWillUnmount() {
+    Events.scrollEvent.remove('begin');
+    Events.scrollEvent.remove('end');
   }
 
   componentWillReceiveProps(nextProps) {
@@ -71,6 +102,15 @@ class CampaignForm extends React.Component {
     e.preventDefault();
     const newState = Object.assign({}, this.state);
     this.props.signup(newState);
+  }
+
+  handleSetActive(to) {
+    scroller.scrollTo(to, {
+      duration: 1500,
+      delay: 100,
+      smooth: true,
+      // containerId: 'ContainerElementID',
+    })
   }
 
   render() {
@@ -98,11 +138,35 @@ class CampaignForm extends React.Component {
         </div>
       );
     }
+    const icon = this.state.menuOpen ? 'fa fa-angle-up' : 'fa fa-angle-down';
+    const asideNavLinkClass = this.state.menuOpen ? 'aside-nav-link' : 'hidden';
     return (
       <div className="cf campaign-form-main-div">
         <aside className="col col-1-4">
           <div className="annotation-pill-yellow">DRAFT CAMPAIGN</div>
-          <p style={{textTransform: 'uppercase', color: '#C8C8C8'}}>{this.state.title}</p>
+          <p style={{textTransform: 'uppercase', color: '#C8C8C8', minHeight: '19px'}}>{this.state.title}</p>
+          <div className="preview-editor-links">
+            <a>Preview Campaign</a>
+            <a onClick={this.toggleMenu}>Campaign Editor<i className={icon} aria-hidden="true" /></a>
+            <Link className={asideNavLinkClass} activeClass="active-nav-link" to="basics" spy={true} smooth={false} offset={100} duration={50} onSetActive={this.handleSetActive}>
+              basics
+            </Link>
+            <Link className={asideNavLinkClass} activeClass="active-nav-link" to="story" spy={true} smooth={false} offset={50} duration={50} onSetActive={this.handleSetActive}>
+              story
+            </Link>
+            <Link className={asideNavLinkClass} activeClass="active-nav-link" to="perks" spy={true} smooth={false} duration={50} onSetActive={this.handleSetActive}>
+              perks
+            </Link>
+            <Link className={asideNavLinkClass} activeClass="active-nav-link" to="team" spy={true} smooth={false} duration={50} onSetActive={this.handleSetActive}>
+              team
+            </Link>
+            <Link className={asideNavLinkClass} activeClass="active-nav-link" to="funding" spy={true} smooth={false} duration={50} onSetActive={this.handleSetActive}>
+              funding
+            </Link>
+            <Link className={asideNavLinkClass} activeClass="active-nav-link" to="extra" spy={true} smooth={false} duration={50} onSetActive={this.handleSetActive}>
+              extra
+            </Link>
+          </div>
         </aside>
         <div className="col camp-form-content">
           {this.NavBar(this.props)}
@@ -112,8 +176,8 @@ class CampaignForm extends React.Component {
             <a>Save Campaign</a>
             <span className="purple-button">Review & Launch</span>
           </nav>
-          <div>
-            <h1 id="basics">Basics</h1>
+          <Element name="basics">
+            <h1 className="form-header">Basics</h1>
             <p>Make a good first impression: introduce your campaign objectives and entice
               people to learn more. This basic information will represent your campaign on your
               campaign page, on your campaign card, and in searches.</p>
@@ -183,11 +247,43 @@ class CampaignForm extends React.Component {
               <legend className="session-errors">
                 How many days will you be running your campaign for? You can run a campaign for any number of days, with a 60 day duration maximum.
               </legend>
-              <input onChange={this.update('duration')} id="campaign-duration" type="number" value={this.duration}></input>
-              <div className="purple-next-button">Next</div>
+              <input onChange={this.update('duration')} id="campaign-duration" type="number" value={this.duration} />
             </div>
-          </div>
+          </Element>
         </div>
+        <Element name="story" className="col camp-form-content">
+          <div>
+            <h1 className="form-header">Story</h1>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        </Element>
       </div>
     );
   }
