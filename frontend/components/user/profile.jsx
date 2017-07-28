@@ -3,6 +3,7 @@ import React from 'react';
 import { NavBar } from '../common/component_helper';
 import Footer from '../common/footer';
 import CampaignListItem from '../campaigns/campaign_list_item';
+import { SocialIcon } from 'react-social-icons';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -72,7 +73,10 @@ class Profile extends React.Component {
             </div>
             <h1 className="about-me-subtitle">Find Me On</h1>
             <div className="creator-details-profile">
-              <h2 className="about-me-contribution">links</h2>
+              <div className="social-buttons">
+                <SocialIcon url="https://www.linkedin.com/in/graham-paye-2341238b/" />
+                <SocialIcon url="https://github.com/TheRoyalTnetennba" />
+              </div>
             </div>
           </div>
         </div>

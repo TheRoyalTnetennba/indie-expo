@@ -190,8 +190,22 @@ footer {
   width: 50%;
   height: 30px;
   padding: 5px 15px;
+  box-sizing: border-box;
   background-color: #ffffff;
   border: 1px solid #dddddd;
+  height: 42px;
+}
+
+.social-svg-mask {
+  fill: #eb1478 !important;
+}
+
+.social-svg-mask:hover, .social-svg-mask:focus {
+  fill: #fa1681 !important;
+}
+
+.social-svg-icon {
+  fill: white !important;
 }
 
 .search {
@@ -664,7 +678,7 @@ nav a:hover, nav a:focus {
   text-transform: uppercase;
   display: flex;
   align-content: flex-end;
-  justify-content: space-between;
+  justify-content: space-around;
   white-space: nowrap;
   align-items: center;
 }
@@ -677,6 +691,18 @@ nav a:hover, nav a:focus {
 
 .index-carousel {
   display: flex;
+}
+
+.social-buttons {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.social-buttons > a {
+  color: white;
+  background-color: transparent;
+  margin-right: 10px;
 }
 
 .campaign-list-div {

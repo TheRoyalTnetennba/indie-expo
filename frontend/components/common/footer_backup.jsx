@@ -1,7 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { style } from '../user/modal_style';
-import { SocialIcon } from 'react-social-icons';
 
 class Footer extends React.Component {
   constructor(props) {
@@ -79,10 +78,10 @@ class Footer extends React.Component {
         </div>
         <div className="footer-subsection" style={{flex: 2, paddingRight: '90px'}}>
           <h1>Follow Me</h1>
-          <div className="social-buttons">
-            <SocialIcon url="https://www.linkedin.com/in/graham-paye-2341238b/" />
-            <SocialIcon url="https://github.com/TheRoyalTnetennba" />
-          </div>
+          <a onClick={this.openModal}>Essential Guide to Crowdfunding</a>
+          <a onClick={this.openModal}>Trust & Safety</a>
+          <a onClick={this.openModal}>Help & Support</a>
+          <a onClick={this.openModal}>Contact Us</a>
         </div>
         <Modal
           style={style}
