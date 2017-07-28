@@ -27,7 +27,7 @@ class CampaignIndex extends React.Component {
       slidesToScroll: 4,
       adaptiveHeight: false,
       draggable: false,
-      responsive: [ { breakpoint: 768, settings: { slidesToShow: 2 } }, { breakpoint: 1024, settings: { slidesToShow: 3 } } ],
+      responsive: [ { breakpoint: 1079, settings: { slidesToShow: 2 } }, { breakpoint: 1500, settings: { slidesToShow: 3 } } ],
       className: 'campaign-index-item-div',
       flex: 1,
     };

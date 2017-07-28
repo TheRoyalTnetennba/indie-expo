@@ -8,6 +8,7 @@ import CampaignIndexContainer from './campaigns/campaign_index_container';
 import AuthModalContainer from './user/auth_modal_container';
 import CampaignShowContainer from './campaigns/campaign_show_container';
 import CampaignListContainer from './campaigns/campaign_list_container';
+import ProfileContainer from './user/profile_container';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class App extends React.Component {
         <ProtectedRoute exact path="/campaigns/new" component={CampaignFormContainer} />
         <ProtectedRoute path="/campaigns/:campaignID" component={CampaignShowContainer} />
         <ProtectedRoute path="/search/:search" component={CampaignListContainer} />
+        <ProtectedRoute path="/users/:userID" component={ProfileContainer} />
         <Route path="/session" component={AuthModalContainer} />
         <Route path="/" exact component={CampaignIndexContainer} />
       </Switch>

@@ -79,3 +79,10 @@ export const sendContribution = contribution => (
     data: contribution,
   })
 );
+
+export const fetchUser = user => (
+  $.ajax({
+    url: `/api/users/${user}`,
+    method: 'GET',
+  })
+);

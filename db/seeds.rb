@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 User.destroy_all
-guest = User.create(password: "asdfoa2345ijdsofijaoesif1234jaowiejfo", email: "guestUser@IndieExpo.com", bio: "The Architect", first_name: "Graham", last_name: "Paye")
+guest = User.create(password: "asdfoa2345ijdsofijaoesif1234jaowiejfo", email: "guestUser@IndieExpo.com", bio: "The Architect", first_name: "Graham", last_name: "Paye", image_url: "https://res.cloudinary.com/dy4gcvjff/image/upload/c_scale,w_1000/v1501217554/IMG_7732_jdmccf.jpg")
 # guest = User.all.first
 
 Category.destroy_all
