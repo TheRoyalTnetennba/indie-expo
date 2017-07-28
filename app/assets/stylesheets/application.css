@@ -196,6 +196,11 @@ footer {
   height: 42px;
 }
 
+.SocialMediaShareButton {
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
 .social-svg-mask {
   fill: #eb1478 !important;
 }

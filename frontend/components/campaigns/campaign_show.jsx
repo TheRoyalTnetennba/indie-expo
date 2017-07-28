@@ -4,6 +4,30 @@ import Slider from 'react-slick';
 import { NavBar } from '../common/component_helper';
 import Footer from '../common/footer';
 import Perk from './perk';
+import { ShareButtons, ShareCounts, generateShareIcon } from 'react-share';
+const {
+  FacebookShareButton,
+  GooglePlusShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  TelegramShareButton,
+  WhatsappShareButton,
+  PinterestShareButton,
+  VKShareButton,
+  OKShareButton,
+  RedditShareButton,
+} = ShareButtons;
+
+const FacebookIcon = generateShareIcon('facebook');
+const TwitterIcon = generateShareIcon('twitter');
+const TelegramIcon = generateShareIcon('telegram');
+const WhatsappIcon = generateShareIcon('whatsapp');
+const GooglePlusIcon = generateShareIcon('google');
+const LinkedinIcon = generateShareIcon('linkedin');
+const PinterestIcon = generateShareIcon('pinterest');
+const VKIcon = generateShareIcon('vk');
+const OKIcon = generateShareIcon('ok');
+const RedditIcon = generateShareIcon('reddit');
 
 class CampaignShow extends React.Component {
   constructor(props) {
@@ -47,6 +71,7 @@ class CampaignShow extends React.Component {
     this.perks = null;
     this.handleDonationChange = this.handleDonationChange.bind(this);
     this.handlePerkSubmit = this.handlePerkSubmit.bind(this);
+    console.log(this.props);
   }
 
   componentWillMount() {
@@ -120,6 +145,7 @@ class CampaignShow extends React.Component {
   render() {
     const photoMe = (url) => { backgroundImage: `url(${url})` };
     const photoArray = this.campaign.image_urls.map(photo => <div className="campaign-show-photo" style={{backgroundImage: `url(${photo})`}} />);
+    const url = `https://serene-brushlands-97294.herokuapp.com${this.props.match.url}`
     let backit;
     if (this.state.donationClick) {
       backit = (
@@ -132,12 +158,13 @@ class CampaignShow extends React.Component {
       backit = (
         <div className="back-it-bar">
           <a onClick={this.handleDonationInitial.bind(this)}>Back It</a>
-          <div>
-            <a href="mailto:person@example.com" className="fa fa-envelope" aria-hidden="true" />
-            <a className="fa fa-facebook-square" aria-hidden="true" />
-            <a className="fa fa-twitter-square" aria-hidden="true" />
-            <a className="fa fa-link" aria-hidden="true" />
-            <a className="fa fa-reddit" aria-hidden="true" />
+          <div className="social-buttons">
+
+            <FacebookShareButton url={url} children={<FacebookIcon size={45} round={true} />} />
+            <GooglePlusShareButton url={url} children={<GooglePlusIcon size={45} round={true} />} />
+            <LinkedinShareButton url={url} children={<LinkedinIcon size={45} round={true} />} />
+            <TwitterShareButton url={url} children={<TwitterIcon size={45} round={true} />} />
+            <RedditShareButton url={url} children={<RedditIcon size={45} round={true} />} />
           </div>
         </div>
       )
