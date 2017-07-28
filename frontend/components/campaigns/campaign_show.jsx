@@ -32,13 +32,17 @@ class CampaignShow extends React.Component {
         image_url: '',
         first_name: '',
         last_name: '',
+        creator_id: '',
       },
       pretty_funds: '',
       progress: '',
       pretty_goal: '',
       days_left: '',
+      overview: '',
+      pitch: '',
     };
     this.perks = null;
+    this.donationClick = false;
   }
 
   componentWillMount() {
@@ -81,6 +85,14 @@ class CampaignShow extends React.Component {
     that.slider.slickNext();
   }
 
+  handleDonationInitial() {
+    console.log('donating');
+  }
+
+  handleDonationSubmit() {
+    console.log('got it');
+  }
+
   render() {
     const photoMe = (url) => { backgroundImage: `url(${url})` };
     const photoArray = this.campaign.image_urls.map(photo => <div className="campaign-show-photo" style={{backgroundImage: `url(${photo})`}} />);
@@ -105,7 +117,9 @@ class CampaignShow extends React.Component {
             <div className="creator-box">
               <img className="profile-pic img-circle" src={this.campaign.creator.image_url} />
               <div className="creator-details">
-                <p style={{fontWeight: 'bold'}}>{this.campaign.creator.first_name} {this.campaign.creator.last_name}</p>
+                <Link to={`/users/${this.campaign.creator.creator_id}`} className="camp-show-creator-name">
+                  {this.campaign.creator.first_name} {this.campaign.creator.last_name}
+                </Link>
                 <p>{this.campaign.city}, {this.campaign.country}</p>
               </div>
             </div>
@@ -115,7 +129,7 @@ class CampaignShow extends React.Component {
             </div>
             <div className="show-progress-details">
               <div className="show-progress-details-left">
-                <p style={{fontWeight: 'bold'}}>{this.campaign.progress}</p>
+                <p  >{this.campaign.progress}</p>
                 <p style={{marginLeft: '5px'}}>% of ${this.campaign.pretty_goal}</p>
               </div>
               <div className="show-progress-details-right">
@@ -138,6 +152,9 @@ class CampaignShow extends React.Component {
         <section className="campaign-show-main">
           <div className="campaign-main-left">
             <h1>Overview</h1>
+            <p className="camp-show-pitch">{this.campaign.pitch}</p>
+            <h1>Details</h1>
+            <p>{this.campaign.overview}</p>
           </div>
           <div className="campaign-main-right">
             <h1>Perks</h1>

@@ -856,6 +856,7 @@ nav a:hover, nav a:focus {
 .campaign-show-main {
   display: flex;
   padding-top: 40px;
+  padding-bottom: 40px;
   width: 100%;
   justify-content: center;
 }
@@ -984,6 +985,12 @@ nav a:hover, nav a:focus {
   border-radius: 2px;
   text-align: center;
   box-sizing: border-box;
+  cursor: pointer;
+}
+
+.back-it-bar > a:hover, .back-it-bar > a:focus {
+  background-color: #fa1681;
+  border: 1px solid #fa1681;
 }
 
 .back-it-bar div {
@@ -1000,6 +1007,7 @@ nav a:hover, nav a:focus {
   margin-left: 10px;
   color: #a8a8a8;
   display: inline-block;
+  cursor: pointer;
 }
 
 .above-progress-bar:after {
@@ -1224,6 +1232,24 @@ nav a:hover, nav a:focus {
   border: 0;
   box-shadow: 0;
   display: inline;
+}
+
+.camp-show-creator-name {
+  font-weight: bold;
+  cursor: pointer;
+  margin: 5px 0 0 15px;
+  padding: 0;
+  text-decoration: none;
+  color: black;
+}
+
+.camp-show-pitch {
+  font-size: 18px;
+}
+
+.camp-show-creator-name:hover, .camp-show-creator-name:focus {
+  color: #eb1478;
+  text-decoration: underline;
 }
 
 .sneaky {
