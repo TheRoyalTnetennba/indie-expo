@@ -25,6 +25,8 @@ class Footer extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.openModal = this.openModal.bind(this);
     this.handleResponse = this.handleResponse.bind(this);
+    this.myStyle = Object.assign(style);
+    this.myStyle.content.padding = '15px';
   }
 
   closeModal() {
@@ -47,6 +49,7 @@ class Footer extends React.Component {
   handleEmail() {
     return e => {
       e.preventDefault();
+      this.closeModal();
       const newState = Object.assign(this.state);
       submitContact(newState).then(response => this.handleResponse(response));
     };
@@ -121,14 +124,18 @@ class Footer extends React.Component {
           </div>
         </div>
         <Modal
-          style={style}
+          style={this.myStyle}
           contentLabel="Hire Me"
           isOpen={this.state.modalOpen}
           className="SessionForm"
           onRequestClose={this.closeModal}>
           <i className="fa fa-times close-button" aria-hidden="true" onClick={this.closeModal}></i>
-          <button className="guest-login-button">Get in touch</button>
-          <p>This app was made in 10 days using rails, postgresql, nodejs, and react</p>
+          <p className="contact-form-p">This app was made in 10 days using rails, postgresql, nodejs, and react by Graham Paye.</p>
+          <div className="session-errors"><p className="session-instructions">Leave A Message</p></div>
+          <input onChange={this.update('email_address')} type="email" placeholder="Email" value={this.state.email_address} />
+          <input onChange={this.update('subject')} type="text" placeholder="Subject" value={this.state.subject} />
+          <input onChange={this.update('body')} type="text" placeholder="Message" value={this.state.body} />
+          <button onClick={this.handleEmail()} className="guest-login-button">Get in touch</button>
         </Modal>
       </footer>
     );
