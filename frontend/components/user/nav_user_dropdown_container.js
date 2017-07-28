@@ -14,18 +14,6 @@ const style = {
     borderWidth: 0,
   },
   content: {
-    backgroundColor: '#f5f5f5',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'stretch',
-    position: 'absoute',
-    marginTop: '80px',
-    marginLeft: '85%',
-    marginRight: '1%',
-    maxwidth: '150px',
-    // minHeight: '450px',
-    border: '0px solid #f5f5f5',
-    padding: '10px',
     zIndex: 911,
   },
 };

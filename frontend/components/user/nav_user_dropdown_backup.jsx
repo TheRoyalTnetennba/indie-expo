@@ -9,7 +9,6 @@ class NavUserDropdown extends React.Component {
       modalOpen: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleProfile = this.handleProfile.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.openModal = this.openModal.bind(this);
   }
@@ -27,42 +26,23 @@ class NavUserDropdown extends React.Component {
     this.props.logout().then(this.props.history.push("/"));
   }
 
-  handleProfile(e) {
-    e.preventDefault();
-    this.closeModal();
-    this.props.history.push(`/users/${this.props.state.session.currentUser.id}`);
-  }
-
   render() {
-    let dropdown;
-    let nameStyle;
-    if (this.state.modalOpen) {
-      dropdown = { display: 'block' };
-      nameStyle = { borderTop: '1px solid #a8a8a8',
-        borderLeft: '1px solid #a8a8a8', borderRight: '1px solid #a8a8a8',
-        padding: '12px 16px', minWidth: '160px', boxSizing: 'border-box'}
-    } else {
-      dropdown = { display: 'none' };
-      nameStyle = { padding: '12px 16px', borderTop: '1px solid rgba(255, 255, 255, 0)',
-        borderLeft: 'rgba(255, 255, 255, 0)', borderRight: 'rgba(255, 255, 255, 0)',
-        minWidth: '160px', boxSizing: 'border-box'}
-    }
-
     let name = this.props.state.session.currentUser.first_name;
     name = `${name} ${this.props.state.session.currentUser.last_name} `;
     const icon = this.state.modalOpen ? 'fa fa-angle-up' : 'fa fa-angle-down';
     return (
-      <a onClick={this.openModal} className="dropdown" >{name}<i className={icon} aria-hidden="true"></i>
-        <div style={dropdown} className="dropdown-content">
-          <div onClick={this.handleProfile}>Profile</div>
-          <div onClick={this.handleSubmit}>Logout</div>
-        </div>
+      <a onClick={this.openModal}>{name}<i className={icon} aria-hidden="true"></i>
         <Modal
           style={this.props.style}
           contentLabel={this.props.contentLabel}
           isOpen={this.state.modalOpen}
           className="user-nav-dropdown"
           onRequestClose={this.closeModal}>
+          <a>My Campaigns</a>
+          <a>My Contributions</a>
+          <a>My Profile</a>
+          <a>My Settings</a>
+          <a onClick={this.handleSubmit}>Logout</a>
         </Modal>
       </a>
 

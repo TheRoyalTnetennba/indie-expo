@@ -46,6 +46,7 @@ class CampaignShow extends React.Component {
     };
     this.perks = null;
     this.handleDonationChange = this.handleDonationChange.bind(this);
+    this.handlePerkSubmit = this.handlePerkSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -65,6 +66,7 @@ class CampaignShow extends React.Component {
   perkMaker(perks) {
     if (perks.length) {
       this.perks = perks.map(perk => (<Perk
+        updateParent={(el, slice) => this.handlePerkSubmit(el, slice)}
         key={`perk-${perk.id}`}
         price={perk.price}
         title={perk.title}
@@ -75,8 +77,9 @@ class CampaignShow extends React.Component {
     } else {
       this.perks = [];
       this.perks.push(<Perk
+        updateParent={(el, slice) => this.handlePerkSubmit(el, slice)}
         key="null-perk"
-        price="0"
+        price="5"
         title="No Perks Yet"
         description="Please accept our thanks instead"
         image="https://res.cloudinary.com/dy4gcvjff/image/upload/c_scale,w_1000/v1501195537/jqrez0nrkbvc2khsa2dz.jpg"
@@ -104,6 +107,14 @@ class CampaignShow extends React.Component {
     contribution.amount = this.state.donationAmount;
     this.props.newContribution(contribution);
     this.state.donationClick = false;
+  }
+
+  handlePerkSubmit(amount) {
+    const contribution = {};
+    contribution.user_id = this.props.state.session.currentUser.id;
+    contribution.campaign_id = this.campaign.id;
+    contribution.amount = amount;
+    this.props.newContribution(contribution);
   }
 
   render() {
