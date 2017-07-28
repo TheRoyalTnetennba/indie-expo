@@ -190,7 +190,7 @@ class CampaignForm extends React.Component {
           <div className="annotation-pill-yellow">DRAFT CAMPAIGN</div>
           <p style={{textTransform: 'uppercase', color: '#C8C8C8', minHeight: '19px', marginLeft: '20px'}}>{this.state.title}</p>
           <div className="preview-editor-links">
-            <a>Preview Campaign</a>
+            <a onClick={this.handleSubmit()} >Save & Launch</a>
             <a onClick={this.toggleMenu}>Campaign Editor<i className={icon} aria-hidden="true" /></a>
             <Link className={asideNavLinkClass} onSetInactive={this.handleSetInactive} activeClass="active-nav-link" to="basics" spy={true} smooth={false} offset={0} duration={50} onSetActive={this.handleSetActive}>
               basics
@@ -207,9 +207,9 @@ class CampaignForm extends React.Component {
           {this.NavBar(this.props)}
           <nav className="secondary-nav">
             <div>Campaign / <a className="purple-text">{this.state.section}</a></div>
-            <a>Preview</a>
-            <a>Save Campaign</a>
-            <span className="purple-button">Review & Launch</span>
+            <a className="hidden">Preview</a>
+            <a className="hidden">Save Campaign</a>
+            <span onClick={this.handleSubmit()} className="purple-button">Save & Launch</span>
           </nav>
           <div name="basics">
             <h1 className="form-header">Basics</h1>
