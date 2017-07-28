@@ -144,7 +144,7 @@ class CampaignShow extends React.Component {
   render() {
     const photoMe = (url) => { backgroundImage: `url(${url})` };
     const photoArray = this.campaign.image_urls.map(photo => <div className="campaign-show-photo" style={{backgroundImage: `url(${photo})`}} />);
-    const url = `https://serene-brushlands-97294.herokuapp.com${this.props.match.url}`
+    const url = `http://indieexpo.co${this.props.match.url}`
     let backit;
     if (this.state.donationClick) {
       backit = (
