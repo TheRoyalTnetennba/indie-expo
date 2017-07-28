@@ -2,6 +2,7 @@ import React from 'react';
 
 import { NavBar } from '../common/component_helper';
 import Footer from '../common/footer';
+import CampaignListItem from '../campaigns/campaign_list_item';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -21,6 +22,9 @@ class Profile extends React.Component {
     this.user = Object.assign(this.state);
     this.profileTab = this.profileTab.bind(this);
     this.campaignsTab = this.campaignsTab.bind(this);
+    this.profileView = (<h1>loading</h1>);
+    this.campaignsView = (<h1>loading</h1>);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentWillMount() {
@@ -30,6 +34,82 @@ class Profile extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.user = Object.assign(nextProps.state.user.user);
     // this.perkMaker(nextProps.state.showCampaign.showCampaign.perks);
+    this.genProfileTab();
+    this.genCampaignsTab();
+  }
+
+  genProfileTab() {
+    const photo = { backgroundImage: `url(${this.user.image_url})` }
+    let numCampaigns;
+    if (this.user.campaigns.length > 1) {
+      numCampaigns = `Campaigns: ${this.user.campaigns.length}`;
+    } else {
+      numCampaigns = `Campaign: ${this.user.campaigns.length}`;
+    }
+    let numContributions;
+    if (this.user.num_contributions > 1) {
+      numContributions = `Contributions: ${this.user.num_contributions}`;
+    } else {
+      numContributions = `Contribution: ${this.user.num_contributions}`;
+    }
+    this.profileView = (
+      <section className="profile-show-hero">
+        <div className="campaign-show-left">
+          <div className="campaign-show-slider">
+            <div className="campaign-show-photo" style={photo}></div>
+          </div>
+        </div>
+        <div className="campaign-show-right">
+          <div className="creator-box-profile">
+            <div className="about-me">
+              <img className="profile-pic img-circle" src={this.user.image_url} />
+              <h2 className="about-me-title">About Me</h2>
+            </div>
+            <h1 className="about-me-subtitle">Activity</h1>
+            <div className="creator-details-profile">
+              <h2 className="about-me-contribution">{numCampaigns}</h2>
+              <h2 className="about-me-contribution">{numContributions}</h2>
+            </div>
+            <h1 className="about-me-subtitle">Find Me On</h1>
+            <div className="creator-details-profile">
+              <h2 className="about-me-contribution">links</h2>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  genCampaignsTab() {
+    let campaigns;
+    let contributions;
+    if (this.user.campaigns.length > 0) {
+      campaigns = this.user.campaigns.map(userCampaign => <div onClick={e => this.handleClick(userCampaign.id, e)} key={`outer-${userCampaign.id}`} >
+      <CampaignListItem
+        key={userCampaign.id}
+        campaign={userCampaign}
+      /></div>);
+    }
+    if (this.user.num_contributions > 0) {
+      contributions = this.user.campaigns.map(userCampaign => <div onClick={e => this.handleClick(userCampaign.id, e)} key={`outer-${userCampaign.id}`} >
+      <CampaignListItem
+        key={userCampaign.id}
+        campaign={userCampaign}
+      /></div>);
+    }
+    this.campaignsView = (
+      <div className="profile-tabs-campaigns-container">
+        {campaigns ? <h1 className="about-me-campaigns-tab">My Campaigns</h1> : null}
+        {campaigns ? campaigns : null}
+        {contributions ? <h1 className="about-me-campaigns-tab">Campaigns I've Supported</h1> : null}
+        {contributions ? contributions : null}
+      </div>
+    )
+  }
+
+  handleClick(id, e) {
+    e.preventDefault();
+    this.props.history.push(`/campaigns/${id}`)
   }
 
   profileTab() {
@@ -42,20 +122,16 @@ class Profile extends React.Component {
 
   render() {
     const campArray = null;
-    const photo = { backgroundImage: `url(${this.user.image_url})` }
     const profile = this.state.selected ? "profile-tab-link-selected" : "profile-tab-link";
-    const campaigns = this.state.selected ? "profile-tab-link" : "profile-tab-link-selected";
-    let numCampaigns;
-    if (this.user.campaigns.length > 1) {
-      numCampaigns = `Campaigns: ${this.user.campaigns.length}`;
+    const toShow = this.state.selected ? this.profileView : this.campaignsView;
+    let campaigns;
+    if (this.user.num_contributions === 0 && this.user.campaigns.length === 0) {
+      campaigns = 'hidden';
+      this.campaignsTab();
+    } else if (this.state.selected) {
+      campaigns = 'profile-tab-link';
     } else {
-      numCampaigns = `Campaign: ${this.user.campaigns.length}`;
-    }
-    let numContributions;
-    if (this.user.num_contributions > 1) {
-      numContributions = `Contributions: ${this.user.num_contributions}`;
-    } else {
-      numContributions = `Contribution: ${this.user.num_contributions}`;
+      campaigns = 'profile-tab-link-selected';
     }
     return (
       <div className="index-main-div">
@@ -69,30 +145,7 @@ class Profile extends React.Component {
             <a onClick={this.campaignsTab} className={campaigns}>Campaigns</a>
           </div>
         </div>
-        <section className="profile-show-hero">
-          <div className="campaign-show-left">
-            <div className="campaign-show-slider">
-              <div className="campaign-show-photo" style={photo}></div>
-            </div>
-          </div>
-          <div className="campaign-show-right">
-            <div className="creator-box-profile">
-              <div className="about-me">
-                <img className="profile-pic img-circle" src={this.user.image_url} />
-                <h2 className="about-me-title">About Me</h2>
-              </div>
-              <h1 className="about-me-subtitle">Activity</h1>
-              <div className="creator-details-profile">
-                <h2 className="about-me-contribution">{numCampaigns}</h2>
-                <h2 className="about-me-contribution">{numContributions}</h2>
-              </div>
-              <h1 className="about-me-subtitle">Find Me On</h1>
-              <div className="creator-details-profile">
-                <h2 className="about-me-contribution">links</h2>
-              </div>
-            </div>
-          </div>
-        </section>
+        {toShow}
         <section className="profile-show-main">
           <div className="campaign-main-left">
             <h1 className="about-me-subtitle">Introduction</h1>

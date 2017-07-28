@@ -11,6 +11,11 @@ class User < ApplicationRecord
     foreign_key: :creator_id,
     class_name: :Campaign
 
+  has_many :campaigns_contributed_to,
+    source: :campaign,
+    through: :contributions
+
+
   def password=(pass)
     @password = pass
     self.password_digest = BCrypt::Password.create(pass)

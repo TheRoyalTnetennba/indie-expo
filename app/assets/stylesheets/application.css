@@ -1088,6 +1088,18 @@ nav a:hover, nav a:focus {
   color: #6a6a6a;
 }
 
+.about-me-campaigns-tab {
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 5px;
+  font-size: 24px;
+  line-height: 35px;
+  letter-spacing: 0;
+  font-weight: normal;
+  color: #6a6a6a;
+}
+
 .below-progress-bar div {
   color: #a8a8a8;
   font-size: 13px;
@@ -1130,6 +1142,26 @@ nav a:hover, nav a:focus {
   margin: 0;
   padding-top: 22px;
   text-align: center;
+}
+
+.profile-tabs-campaigns-container > div > .campaign-index-item {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.profile-tabs-campaigns-container > div {
+  margin-bottom: 10px;
+}
+
+.profile-tabs-campaigns-container {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .profile-tabs-container {
