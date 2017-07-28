@@ -14,7 +14,8 @@ class Campaign < ApplicationRecord
   has_many :contributions
 
   def self.search(search)
-    where('lower(title) LIKE ?', "%#{search.downcase}%")
+    campaigns = where('lower(title) LIKE ?', "%#{search.downcase}%")
+    campaigns.length > 0 ? campaigns : Campaign.all
   end
 
   def progress

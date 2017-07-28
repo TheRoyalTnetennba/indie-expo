@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { NavBar } from '../common/component_helper';
 import Footer from '../common/footer';
+import Perk from './perk';
 
 class CampaignShow extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class CampaignShow extends React.Component {
       pretty_goal: '',
       days_left: '',
     };
+    this.perks = null;
   }
 
   componentWillMount() {
@@ -50,6 +52,28 @@ class CampaignShow extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.campaign = Object.assign(nextProps.state.showCampaign.showCampaign);
+    this.perkMaker(nextProps.state.showCampaign.showCampaign.perks);
+  }
+
+  perkMaker(perks) {
+    if (perks.length) {
+      this.perks = perks.map(perk => (<Perk
+        key={`perk-${perk.id}`}
+        price={perk.price}
+        title={perk.title}
+        description={perk.description}
+        image={perk.image_url}
+      />
+    ));
+    } else {
+      this.perks = [];
+      this.perks.push(<Perk
+        price="0"
+        title="No Perks Yet"
+        description="Please accept our thanks instead"
+        image="https://res.cloudinary.com/dy4gcvjff/image/upload/c_scale,w_1000/v1501195537/jqrez0nrkbvc2khsa2dz.jpg"
+      />);
+    }
   }
 
   next() {
@@ -117,6 +141,7 @@ class CampaignShow extends React.Component {
           </div>
           <div className="campaign-main-right">
             <h1>Perks</h1>
+            {this.perks}
           </div>
         </section>
         <Footer />

@@ -16,6 +16,7 @@ var scroller = Scroll.scroller;
 class CampaignForm extends React.Component {
   constructor(props) {
     super(props);
+    const creator = parseInt(this.props.state.session.currentUser.id, 10);
     this.state = {
       title: '',
       tagline: '',
@@ -29,6 +30,7 @@ class CampaignForm extends React.Component {
       menuOpen: true,
       overview: '',
       pitch: '',
+      creator_id: creator,
       perks: {
         0: {
           title: '',
@@ -42,7 +44,6 @@ class CampaignForm extends React.Component {
     };
     this.categories = [];
     this.NavBar = NavBar.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.requestCategories = this.props.requestCategories.bind(this);
     this.cloudinaryPreset = 'indieexpo';
@@ -54,6 +55,7 @@ class CampaignForm extends React.Component {
     this.onImageDrop = this.onImageDrop.bind(this);
     this.incrementPerks = this.incrementPerks.bind(this);
     this.updatePerkNum = this.updatePerkNum.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   onImageDrop(files) {
@@ -104,19 +106,21 @@ class CampaignForm extends React.Component {
     const newPerks = Object.assign(this.state.perks);
     newPerks[idx] = Object.assign(newPerkSlice);
     this.setState({ perks: newPerks });
-    console.log(this.state);
   }
 
   updatePerkNum(numPerks) {
     this.setState({ numPerks });
-    console.log(this.state.numPerks);
     return e => this.perkFormGen(numPerks);
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    const newState = Object.assign({}, this.state);
-    this.props.signup(newState);
+  handleSubmit() {
+    return e => {
+      e.preventDefault();
+      const newState = Object.assign(this.state);
+      console.log(newState);
+      delete newState.uploadedFile;
+      this.props.newCampaign(newState);
+    };
   }
 
   perkFormGen(numPerks) {
@@ -264,6 +268,15 @@ class CampaignForm extends React.Component {
               </legend>
               <input onChange={this.update('duration')} id="campaign-duration" type="number" value={this.state.duration} />
             </div>
+            <div className="campaign-form-field">
+              <label htmlFor="campaign-goal">
+                Fundraising Goal<span className="required" />
+              </label>
+              <legend className="session-errors">
+                How much money would you like to raise for this campaign?
+              </legend>
+              <input onChange={this.update('goal')} id="campaign-goal" type="number" value={this.state.goal} />
+            </div>
           </div>
         </div>
         <div className="col camp-form-content">
@@ -298,7 +311,7 @@ class CampaignForm extends React.Component {
           <div className="campaign-form-field">
             <div style={{display: 'flex', justifyContent: 'flex-end', width: '100%'}}>
               <a onClick={this.incrementPerks} className="purple-button">Add More Perks</a>
-              <a onClick={this.handleSubmit} className="pink-button">Launch Campaign</a>
+              <a onClick={this.handleSubmit()} className="pink-button">Launch Campaign</a>
             </div>
           </div>
         </div>

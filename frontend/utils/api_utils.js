@@ -55,3 +55,19 @@ export const searchCampaigns = string => (
     method: 'GET',
   })
 );
+
+export const createCampaign = campaign => (
+  $.ajax({
+    url: 'api/campaigns',
+    method: 'POST',
+    data: campaign,
+  })
+);
+
+export const createPerk = perk => (
+  $.ajax({
+    url: 'api/perks',
+    method: 'POST',
+    data: perk,
+  })
+);

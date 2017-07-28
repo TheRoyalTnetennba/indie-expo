@@ -30,3 +30,9 @@ export const searchCampaigns = string => dispatch => (
     dispatch(receiveCampaigns(campaigns))
   ))
 );
+
+export const newCampaign = campaign => dispatch => (
+  APIUtil.createCampaign(campaign).then(createdCampaign => (
+    dispatch(receiveCampaign(createdCampaign))
+  ))
+);
