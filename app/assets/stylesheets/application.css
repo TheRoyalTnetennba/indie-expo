@@ -755,6 +755,7 @@ nav a:hover, nav a:focus {
 .profile-pic {
   max-width: 50px;
   max-height: 50px;
+  min-height: 50px;
   flex: 1;
 }
 
@@ -772,12 +773,26 @@ nav a:hover, nav a:focus {
 }
 
 .creator-box {
+  margin-top: 25px;
   display: flex;
+  width: 100%;
+}
+
+.creator-box-profile {
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
 .creator-details {
   flex: 1;
+}
+
+.creator-details-profile {
+  flex: 1;
+  border: 10px solid #f5f5f5;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .creator-details p {
@@ -853,9 +868,22 @@ nav a:hover, nav a:focus {
   justify-content: center;
 }
 
+.profile-show-hero {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
 .campaign-show-main {
   display: flex;
   padding-top: 40px;
+  padding-bottom: 40px;
+  width: 100%;
+  justify-content: center;
+}
+
+.profile-show-main {
+  display: flex;
   padding-bottom: 40px;
   width: 100%;
   justify-content: center;
@@ -918,6 +946,20 @@ nav a:hover, nav a:focus {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+}
+
+.about-me {
+  flex: 1;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.about-me-title {
+  margin-left: 25px;
 }
 
 .preview-editor-links {
@@ -1033,6 +1075,19 @@ nav a:hover, nav a:focus {
   display: flex;
 }
 
+.about-me-subtitle {
+  flex: 1;
+  text-transform: uppercase;
+  width: 100%;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #a8a8a8;
+  font-size: 24px;
+  line-height: 35px;
+  letter-spacing: 0;
+  font-weight: normal;
+  color: #6a6a6a;
+}
+
 .below-progress-bar div {
   color: #a8a8a8;
   font-size: 13px;
@@ -1075,6 +1130,49 @@ nav a:hover, nav a:focus {
   margin: 0;
   padding-top: 22px;
   text-align: center;
+}
+
+.profile-tabs-container {
+  border-top: 1px solid #a8a8a8;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-tabs {
+  flex: 1;
+  display: flex;
+  width: 100%;
+  max-width: 1250px;
+  border-bottom: 1px solid #a8a8a8;
+  margin-bottom: 30px;
+}
+
+.profile-tab-link {
+  padding-bottom: 7px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-right: 25px;
+  cursor: pointer;
+
+}
+
+.profile-tab-link:hover, .profile-tab-link:active, .profile-tab-link-selected {
+  padding-bottom: 5px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-right: 25px;
+  color: #eb1478;
+  cursor: pointer;
+  border-bottom: 2px solid #eb1478;
+}
+
+.profile-name {
+  font-size: 46px;
+  flex: 1;
+  width: 100%;
+  max-width: 1250px;
 }
 
 .secondary-nav > a {

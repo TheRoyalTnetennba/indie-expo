@@ -15,9 +15,12 @@ class Profile extends React.Component {
       image_url: '',
       id: '',
       num_contributions: '',
+      selected: true,
     };
     this.NavBar = NavBar.bind(this);
     this.user = Object.assign(this.state);
+    this.profileTab = this.profileTab.bind(this);
+    this.campaignsTab = this.campaignsTab.bind(this);
   }
 
   componentWillMount() {
@@ -27,48 +30,77 @@ class Profile extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.user = Object.assign(nextProps.state.user.user);
     // this.perkMaker(nextProps.state.showCampaign.showCampaign.perks);
+  }
 
+  profileTab() {
+    this.setState({ selected: true });
+  }
+
+  campaignsTab() {
+    this.setState({ selected: false });
   }
 
   render() {
     const campArray = null;
     const photo = { backgroundImage: `url(${this.user.image_url})` }
+    const profile = this.state.selected ? "profile-tab-link-selected" : "profile-tab-link";
+    const campaigns = this.state.selected ? "profile-tab-link" : "profile-tab-link-selected";
+    let numCampaigns;
+    if (this.user.campaigns.length > 1) {
+      numCampaigns = `Campaigns: ${this.user.campaigns.length}`;
+    } else {
+      numCampaigns = `Campaign: ${this.user.campaigns.length}`;
+    }
+    let numContributions;
+    if (this.user.num_contributions > 1) {
+      numContributions = `Contributions: ${this.user.num_contributions}`;
+    } else {
+      numContributions = `Contribution: ${this.user.num_contributions}`;
+    }
     return (
       <div className="index-main-div">
         <header>
           {this.NavBar(this.props)}
         </header>
-        <div className="campaign-list-div">
-          <section className="campaign-show-hero">
-            <div className="campaign-show-left">
-              <div className="campaign-show-slider">
-                <div className="campaign-show-photo" style={photo}></div>
-              </div>
-            </div>
-            <div className="campaign-show-right">
-              <div className="creator-box">
-                <img className="profile-pic img-circle" src={this.user.image_url} />
-                <div className="creator-details">
-                  <h2 className="about-me">About Me</h2>
-                  <h2 className="about-me-campaign">placeholder6</h2>
-                  <h2 className="about-me-contribution">placeholder7</h2>
-                </div>
-              </div>
-              <div className="show-pretty-funds">placeholder5</div>
-
-              <div className="show-progress-details">
-                <div className="show-progress-details-left">
-                  <p>placeholder1</p>
-                  <p style={{marginLeft: '5px'}}>% of placeholder2</p>
-                </div>
-                <div className="show-progress-details-right">
-                  <p style={{fontWeight: 'bold'}}>placeholder3</p>
-                  <p style={{marginLeft: '5px'}}>placeholder4</p>
-                </div>
-              </div>
-            </div>
-          </section>
+        <div className="profile-tabs-container">
+          <h1 className="profile-name">{this.user.first_name} {this.user.last_name}</h1>
+          <div className="profile-tabs">
+            <a onClick={this.profileTab} className={profile}>Profile</a>
+            <a onClick={this.campaignsTab} className={campaigns}>Campaigns</a>
+          </div>
         </div>
+        <section className="profile-show-hero">
+          <div className="campaign-show-left">
+            <div className="campaign-show-slider">
+              <div className="campaign-show-photo" style={photo}></div>
+            </div>
+          </div>
+          <div className="campaign-show-right">
+            <div className="creator-box-profile">
+              <div className="about-me">
+                <img className="profile-pic img-circle" src={this.user.image_url} />
+                <h2 className="about-me-title">About Me</h2>
+              </div>
+              <h1 className="about-me-subtitle">Activity</h1>
+              <div className="creator-details-profile">
+                <h2 className="about-me-contribution">{numCampaigns}</h2>
+                <h2 className="about-me-contribution">{numContributions}</h2>
+              </div>
+              <h1 className="about-me-subtitle">Find Me On</h1>
+              <div className="creator-details-profile">
+                <h2 className="about-me-contribution">links</h2>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="profile-show-main">
+          <div className="campaign-main-left">
+            <h1 className="about-me-subtitle">Introduction</h1>
+            <p className="camp-show-pitch">{this.user.bio}</p>
+          </div>
+          <div className="campaign-main-right">
+          </div>
+        </section>
         <Footer />
       </div>
     )
