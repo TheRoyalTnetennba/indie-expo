@@ -22,7 +22,7 @@ class CampaignForm extends React.Component {
       title: '',
       tagline: '',
       goal: '',
-      section: 'Basics',
+      section: 'basics',
       image_url: '',
       city: '',
       country: '',
@@ -57,6 +57,8 @@ class CampaignForm extends React.Component {
     this.incrementPerks = this.incrementPerks.bind(this);
     this.updatePerkNum = this.updatePerkNum.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSetInactive = this.handleSetInactive.bind(this);
+    this.handleSetActive = this.handleSetActive.bind(this);
   }
 
   onImageDrop(files) {
@@ -138,6 +140,14 @@ class CampaignForm extends React.Component {
     this.updatePerkNum(this.state.numPerks + 1)
   }
 
+  handleSetInactive(e) {
+    console.log(e);
+  }
+
+  handleSetActive(e) {
+    this.setState({ section: e })
+  }
+
   render() {
     const categories = this.categories.map(cat => <option key={cat.id} value={cat.title}>{cat.title}</option>);
     const photoStyles = {
@@ -182,9 +192,15 @@ class CampaignForm extends React.Component {
           <div className="preview-editor-links">
             <a>Preview Campaign</a>
             <a onClick={this.toggleMenu}>Campaign Editor<i className={icon} aria-hidden="true" /></a>
-            <a className={asideNavLinkClass} id="#basics-l">basics</a>
-            <a className={asideNavLinkClass} id="#story-l">story</a>
-            <a className={asideNavLinkClass} id="#perks-l">perks</a>
+            <Link className={asideNavLinkClass} onSetInactive={this.handleSetInactive} activeClass="active-nav-link" to="basics" spy={true} smooth={false} offset={0} duration={50} onSetActive={this.handleSetActive}>
+              basics
+            </Link>
+            <Link className={asideNavLinkClass} activeClass="active-nav-link" to="story" spy={true} smooth={false} offset={0} duration={50} onSetActive={this.handleSetActive}>
+              story
+            </Link>
+            <Link className={asideNavLinkClass} activeClass="active-nav-link" to="perks" spy={true} smooth={false} offset={0} duration={50} onSetActive={this.handleSetActive}>
+              perks
+            </Link>
           </div>
         </aside>
         <div className="col camp-form-content" id="basics">
