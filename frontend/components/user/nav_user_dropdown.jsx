@@ -47,13 +47,18 @@ class NavUserDropdown extends React.Component {
         borderLeft: 'rgba(255, 255, 255, 0)', borderRight: 'rgba(255, 255, 255, 0)',
         minWidth: '160px', boxSizing: 'border-box'}
     }
-
+    let dropDownClass;
+    if (this.props.match.path === '/campaigns/new') {
+      dropDownClass = 'dropdown-content-form';
+    } else {
+      dropDownClass = 'dropdown-content';
+    }
     let name = this.props.state.session.currentUser.first_name;
     name = `${name} ${this.props.state.session.currentUser.last_name} `;
     const icon = this.state.modalOpen ? 'fa fa-angle-up' : 'fa fa-angle-down';
     return (
       <a onClick={this.openModal} className="dropdown" >{name}<i className={icon} aria-hidden="true"></i>
-        <div style={dropdown} className="dropdown-content">
+        <div style={dropdown} className={dropDownClass}>
           <div onClick={this.handleProfile}>Profile</div>
           <div onClick={this.handleSubmit}>Logout</div>
         </div>

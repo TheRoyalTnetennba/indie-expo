@@ -105,7 +105,7 @@ class PerkForm extends React.Component {
             Set an amount that you want to collect from backers who claim this perk.
             This amount should represent how much you want to receive for all the items included in this perk.
           </legend>
-          <input onChange={this.updatePerk()} id={`perk-price-${this.props.perkNum}`} type="number" value={this.state.price}></input>
+          <input onChange={this.updatePerk()} id={`perk-price-${this.props.perkNum}`} type="number" min="0" value={this.state.price}></input>
         </div>
         <div className="campaign-form-field">
           <label htmlFor={`perk-image-${this.props.perkNum}`}>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :categories
       resources :campaigns
       resources :campaign
+      resources :emails
       get 'campaigns/search/:search', :to => 'campaigns#search'
     end
     root "static_pages#root"

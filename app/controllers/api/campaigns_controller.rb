@@ -23,7 +23,7 @@ attr_reader :campaign
   end
 
   def create
-    category = params[:category].length > 0 ? Category.find_by(title: params[:category]) : Category.all.first.id
+    category = params[:category].length > 0 ? Category.find_by(title: params[:category]) : Category.all.first
     @campaign = Campaign.new(title: params[:title], tagline: params[:tagline],
       goal: params[:goal], image_urls: [params[:image_url]], city: params[:city],
       country: params[:country], category: category, duration: params[:duration],

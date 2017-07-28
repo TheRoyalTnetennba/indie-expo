@@ -118,9 +118,8 @@ class CampaignForm extends React.Component {
     return e => {
       e.preventDefault();
       const newState = Object.assign(this.state);
-      console.log(newState);
       delete newState.uploadedFile;
-      this.props.newCampaign(newState);
+      this.props.newCampaign(newState).then(() => this.props.history.push(`/campaigns/${this.props.state.showCampaign.showCampaign.id}`));
     };
   }
 
@@ -176,10 +175,10 @@ class CampaignForm extends React.Component {
     );
     const perkForms = this.perkFormGen(this.state.numPerks);
     return (
-      <div className="cf campaign-form-main-div">
+      <div className="cf campaign-form-main-div" >
         <aside className="col col-1-4">
           <div className="annotation-pill-yellow">DRAFT CAMPAIGN</div>
-          <p style={{textTransform: 'uppercase', color: '#C8C8C8', minHeight: '19px'}}>{this.state.title}</p>
+          <p style={{textTransform: 'uppercase', color: '#C8C8C8', minHeight: '19px', marginLeft: '20px'}}>{this.state.title}</p>
           <div className="preview-editor-links">
             <a>Preview Campaign</a>
             <a onClick={this.toggleMenu}>Campaign Editor<i className={icon} aria-hidden="true" /></a>
@@ -188,7 +187,7 @@ class CampaignForm extends React.Component {
             <a className={asideNavLinkClass} id="#perks-l">perks</a>
           </div>
         </aside>
-        <div className="col camp-form-content">
+        <div className="col camp-form-content" id="basics">
           {this.NavBar(this.props)}
           <nav className="secondary-nav">
             <div>Campaign / <a className="purple-text">{this.state.section}</a></div>
@@ -267,7 +266,7 @@ class CampaignForm extends React.Component {
               <legend className="session-errors">
                 How many days will you be running your campaign for? You can run a campaign for any number of days, with a 60 day duration maximum.
               </legend>
-              <input onChange={this.update('duration')} id="campaign-duration" type="number" value={this.state.duration} />
+              <input onChange={this.update('duration')} id="campaign-duration" type="number" min="0" value={this.state.duration} />
             </div>
             <div className="campaign-form-field">
               <label htmlFor="campaign-goal">
@@ -276,11 +275,11 @@ class CampaignForm extends React.Component {
               <legend className="session-errors">
                 How much money would you like to raise for this campaign?
               </legend>
-              <input onChange={this.update('goal')} id="campaign-goal" type="number" value={this.state.goal} />
+              <input onChange={this.update('goal')} id="campaign-goal" type="number" min="0" value={this.state.goal} />
             </div>
           </div>
         </div>
-        <div className="col camp-form-content">
+        <div className="col camp-form-content" id="story">
           <div name="story">
             <h1 className="form-header">Story</h1>
             <p>Introduce yourself, your background, your campaign and why it’s important to you.
@@ -306,7 +305,7 @@ class CampaignForm extends React.Component {
             </div>
           </div>
         </div>
-        <div className="col camp-form-content" name="perks">
+        <div className="col camp-form-content" id="perks">
           {perkOpenner}
           {perkForms}
           <div className="campaign-form-field">

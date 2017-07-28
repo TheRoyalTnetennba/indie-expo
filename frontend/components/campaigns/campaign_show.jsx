@@ -71,7 +71,6 @@ class CampaignShow extends React.Component {
     this.perks = null;
     this.handleDonationChange = this.handleDonationChange.bind(this);
     this.handlePerkSubmit = this.handlePerkSubmit.bind(this);
-    console.log(this.props);
   }
 
   componentWillMount() {

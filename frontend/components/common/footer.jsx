@@ -1,21 +1,30 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { style } from '../user/modal_style';
 import { SocialIcon } from 'react-social-icons';
+
+import { submitContact } from '../../utils/api_utils';
+import { style } from '../user/modal_style';
 
 class Footer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       modalOpen: false,
-      email: '',
+      email_address: '',
       password: '',
+      title: '',
+      subject: '',
+      body: '',
+      other: '',
+      email_submitted: false,
+      response: [],
     };
     this.style = style;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.openModal = this.openModal.bind(this);
+    this.handleResponse = this.handleResponse.bind(this);
   }
 
   closeModal() {
@@ -35,7 +44,38 @@ class Footer extends React.Component {
     const newState = Object.assign({}, this.state);
   }
 
+  handleEmail() {
+    return e => {
+      e.preventDefault();
+      const newState = Object.assign(this.state);
+      submitContact(newState).then(response => this.handleResponse(response));
+    };
+  }
+
+  handleResponse(reply) {
+    this.setState({ response: reply, email_submitted: true, email_address: '' });
+    console.log(reply);
+  }
+
   render() {
+    let email;
+    if (this.state.email_submitted) {
+      email = (
+        <div className="footer-subsection" style={{flex: 2, paddingRight: '90px'}}>
+          <h1>Sign Up For Inspiration</h1>
+          <input type="email" placeholder={this.state.response.slice(-1)[0]} onChange={this.update('email_address')} value={this.state.email_address} />
+          <div className="newsletter-signup-button" onClick={this.handleEmail()}>Sign Up Now</div>
+        </div>
+      )
+    } else {
+      email = (
+        <div className="footer-subsection" style={{flex: 2, paddingRight: '90px'}}>
+          <h1>Sign Up For Inspiration</h1>
+          <input type="email" placeholder="Your email address" onChange={this.update('email_address')} value={this.state.email_address} />
+          <div className="newsletter-signup-button" onClick={this.handleEmail()}>Sign Up Now</div>
+        </div>
+      )
+    }
     return (
       <footer>
         <div className="footer-subsection" style={{paddingLeft: '90px'}}>
@@ -55,11 +95,7 @@ class Footer extends React.Component {
           <a onClick={this.openModal}>Parner Pages</a>
           <a onClick={this.openModal}>Equity</a>
         </div>
-        <div className="footer-subsection" style={{flex: 2, paddingRight: '90px'}}>
-          <h1>Sign Up For Inspiration</h1>
-          <input type="email" placeholder="Your email address"/>
-          <div className="newsletter-signup-button">Sign Up Now</div>
-        </div>
+        {email}
         <div className="footer-subsection" style={{paddingLeft: '90px'}}>
           <h1>About Indie-Expo</h1>
           <a onClick={this.openModal}>How It Works</a>

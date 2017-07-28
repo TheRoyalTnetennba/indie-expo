@@ -82,7 +82,15 @@ export const sendContribution = contribution => (
 
 export const fetchUser = user => (
   $.ajax({
-    url: `/api/users/${user}`,
+    url: `api/users/${user}`,
     method: 'GET',
+  })
+);
+
+export const submitContact = contact => (
+  $.ajax({
+    url: 'api/emails/',
+    method: 'POST',
+    data: contact,
   })
 );
