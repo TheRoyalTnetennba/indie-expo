@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-Perks.destroy_all
+Perk.destroy_all
 Campaign.destroy_all
 Contribution.destroy_all
 Category.destroy_all
@@ -16,8 +16,8 @@ pw = SecureRandom.urlsafe_base64
 guest = User.create(password: pw, email: "guestUser@IndieExpo.com", bio: "The Architect", first_name: "Graham", last_name: "Paye", image_url: "https://res.cloudinary.com/dy4gcvjff/image/upload/q_auto:eco/v1501237422/child-children-girl-happy_za3sjw.jpg")
 fenchurch = User.create(password: pw, email: 'fenchurchdent@IndieExpo.com', bio: 'Plays the cello, has good taste in music and owns a pair of speakers that would have impressed the guys who put up Stonehenge', first_name: 'Fenchurch', last_name: 'Dent', image_url: 'https://res.cloudinary.com/dy4gcvjff/image/upload/q_auto:eco/v1501217994/woman-umbrella-floating-jumping-466455_utajmz.jpg')
 bourgeois = User.create(password: pw, email: 'spiders@IndieExpo.com', bio: "French-American artist. Best known for her large-scale sculpture and installation art, Bourgeois was also a prolific painter and printmaker. She explored a variety of themes over the course of her long career including domesticity and the family, and the body, as well as death and the subconscious. Although Bourgeois exhibited with the Abstract Expressionists and her work has much in common with Surrealism and Feminist art, she was not formally affiliated with a particular artistic movement.", first_name: "Louise", last_name: "Bourgeois", image_url: "https://res.cloudinary.com/dy4gcvjff/image/upload/q_auto:eco/v1501277805/pexels-photo-211816_tflrpy.jpg")
-sissa = User.create(password: pw, email: 'grainsowheat@IndieExpo.com', bio: "Legendary inventor of chess." first_name: "Sissa", last_name: "ibn Dahir", image_url: "https://res.cloudinary.com/dy4gcvjff/image/upload/q_auto:eco/v1501278425/pexels-photo-57018_xbak30.jpg")
- hillyer = User.create(password: pw, email: 'juleshillyer@IndieExpo.com', bio: "Tinkerer. Mechanic. Inventor. Travel Journalist.", first_name: "Jules", last_name: " Mr. Hillyer", image_url: "https://res.cloudinary.com/dy4gcvjff/image/upload/q_auto:eco/v1501281512/sidney-perry-105613_edydkp.jpg")
+sissa = User.create(password: pw, email: "grainsowheat@IndieExpo.com", bio: "Legendary inventor of chess.", first_name: "Sissa", last_name: "ibn Dahir", image_url: "https://res.cloudinary.com/dy4gcvjff/image/upload/q_auto:eco/v1501278425/pexels-photo-57018_xbak30.jpg")
+ hillyer = User.create(password: pw, email: "juleshillyer@IndieExpo.com", bio: "Tinkerer. Mechanic. Inventor. Travel Journalist.", first_name: "Jules", last_name: " Mr. Hillyer", image_url: "https://res.cloudinary.com/dy4gcvjff/image/upload/q_auto:eco/v1501281512/sidney-perry-105613_edydkp.jpg")
 
 
 # CATEGORIES CATEGORIES CATEGORIES CATEGORIES CATEGORIES CATEGORIES CATEGORIES CATEGORIES CATEGORIES CATEGORIES CATEGORIES
