@@ -5,6 +5,8 @@
 ## Technologies
 IndieExpo uses Rails 5 and PostgreSQL for the back-end. The front-end is written in React/Redux.
 
+![campaign show screenshot](screenshots/bow-wow-bionics.png)
+![campaign show screenshot](screenshots/levitating-footwear.png)
 
 
 ## Features
