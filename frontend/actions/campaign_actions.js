@@ -36,3 +36,9 @@ export const newCampaign = campaign => dispatch => (
     dispatch(receiveCampaign(createdCampaign))
   ))
 );
+
+export const newContribution = contribution => dispatch => (
+  APIUtil.sendContribution(contribution).then(campaign => (
+    dispatch(receiveCampaign(campaign))
+  ))
+);

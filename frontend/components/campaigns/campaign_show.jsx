@@ -10,6 +10,8 @@ class CampaignShow extends React.Component {
     super(props);
     this.NavBar = NavBar.bind(this);
     this.state = {
+      donationClick: false,
+      donationAmount: '',
     };
     this.settings = {
       dots: false,
@@ -40,9 +42,10 @@ class CampaignShow extends React.Component {
       days_left: '',
       overview: '',
       pitch: '',
+      id: '',
     };
     this.perks = null;
-    this.donationClick = false;
+    this.handleDonationChange = this.handleDonationChange.bind(this);
   }
 
   componentWillMount() {
@@ -72,6 +75,7 @@ class CampaignShow extends React.Component {
     } else {
       this.perks = [];
       this.perks.push(<Perk
+        key="null-perk"
         price="0"
         title="No Perks Yet"
         description="Please accept our thanks instead"
@@ -86,16 +90,48 @@ class CampaignShow extends React.Component {
   }
 
   handleDonationInitial() {
-    console.log('donating');
+    this.setState({ donationClick: true })
+  }
+
+  handleDonationChange() {
+    return e => this.setState({ donationAmount: e.currentTarget.value })
   }
 
   handleDonationSubmit() {
-    console.log('got it');
+    const contribution = {};
+    contribution.user_id = this.props.state.session.currentUser.id;
+    contribution.campaign_id = this.campaign.id;
+    contribution.amount = this.state.donationAmount;
+    this.props.newContribution(contribution);
+    this.state.donationClick = false;
   }
 
   render() {
     const photoMe = (url) => { backgroundImage: `url(${url})` };
     const photoArray = this.campaign.image_urls.map(photo => <div className="campaign-show-photo" style={{backgroundImage: `url(${photo})`}} />);
+    let backit;
+    if (this.state.donationClick) {
+      backit = (
+        <div className="back-it-bar">
+          <input className="back-it-bar-number" type="number" onChange={this.handleDonationChange()} placeholder="donation amount" value={this.state.donationAmount} />
+          <a style={{marginLeft: '10px'}} onClick={this.handleDonationSubmit.bind(this)}>Submit Donation</a>
+        </div>
+      )
+    } else {
+      backit = (
+        <div className="back-it-bar">
+          <a onClick={this.handleDonationInitial.bind(this)}>Back It</a>
+          <div>
+            <a href="mailto:person@example.com" className="fa fa-envelope" aria-hidden="true" />
+            <a className="fa fa-facebook-square" aria-hidden="true" />
+            <a className="fa fa-twitter-square" aria-hidden="true" />
+            <a className="fa fa-link" aria-hidden="true" />
+            <a className="fa fa-reddit" aria-hidden="true" />
+          </div>
+        </div>
+      )
+    }
+    const progress = this.campaign.progress >= 100 ? 100 : this.campaign.progress;
     return (
       <div className="index-main-div">
         <header>
@@ -125,11 +161,11 @@ class CampaignShow extends React.Component {
             </div>
             <div className="show-pretty-funds">${this.campaign.pretty_funds}</div>
             <div className="show-progress-bar-outer">
-              <div className="show-progress-bar-inner" style={{width: `${this.campaign.progress}%`}}></div>
+              <div className="show-progress-bar-inner" style={{width: `${progress}%`}}></div>
             </div>
             <div className="show-progress-details">
               <div className="show-progress-details-left">
-                <p  >{this.campaign.progress}</p>
+                <p>{progress}</p>
                 <p style={{marginLeft: '5px'}}>% of ${this.campaign.pretty_goal}</p>
               </div>
               <div className="show-progress-details-right">
@@ -137,16 +173,7 @@ class CampaignShow extends React.Component {
                 <p style={{marginLeft: '5px'}}>days left</p>
               </div>
             </div>
-            <div className="back-it-bar">
-              <a>Back It</a>
-              <div>
-                <a href="mailto:person@example.com" className="fa fa-envelope" aria-hidden="true" />
-                <a className="fa fa-facebook-square" aria-hidden="true" />
-                <a className="fa fa-twitter-square" aria-hidden="true" />
-                <a className="fa fa-link" aria-hidden="true" />
-                <a className="fa fa-reddit" aria-hidden="true" />
-              </div>
-            </div>
+            {backit}
           </div>
         </section>
         <section className="campaign-show-main">

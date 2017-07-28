@@ -71,3 +71,11 @@ export const createPerk = perk => (
     data: perk,
   })
 );
+
+export const sendContribution = contribution => (
+  $.ajax({
+    url: 'api/contributions',
+    method: 'POST',
+    data: contribution,
+  })
+);

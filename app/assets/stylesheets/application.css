@@ -965,6 +965,14 @@ nav a:hover, nav a:focus {
   font-weight: bold;
 }
 
+.back-it-bar-number {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
 .back-it-bar {
   flex: 1;
   margin-top: auto;
