@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { NavBar } from '../common/component_helper';
+import Slider from 'react-slick';
+
+import { NavBar, dummyCampaignShow } from '../common/component_helper';
 import CampaignIndexItem from './campaign_index_item';
 import SplashSliderContainer from './splash_slider_container';
 import Footer from '../common/footer';
-import Slider from 'react-slick';
 import { LeftNavButton, RightNavButton } from '../common/slider_arrows';
+
 
 class CampaignIndex extends React.Component {
   constructor(props) {
     super(props);
     this.NavBar = NavBar.bind(this);
-    this.campaigns = [];
     this.state = {
     };
     this.settings = {
@@ -32,6 +33,7 @@ class CampaignIndex extends React.Component {
       flex: 1,
     };
     this.handleClick = this.handleClick.bind(this);
+    this.campaigns = Object.keys(dummyCampaignShow).map(camp => camp);
   }
 
   componentWillMount() {
@@ -46,14 +48,15 @@ class CampaignIndex extends React.Component {
     // console.log('Hello ' + e.target.dataset.message); // Hello world
   }
 
-  handleClick(id, e) {
+  handleClick(idx, e) {
     e.preventDefault();
-    this.props.history.push(`/campaigns/${id}`)
+    const id = this.campaigns[idx].id;
+    this.props.history.push(`/campaigns/${id}`);
   }
 
   render() {
     const campArray = this.campaigns.map(camp => <CampaignIndexItem key={camp.id} campaign={camp} />);
-    const keyArray = this.campaigns.map(camp => camp.id);
+
     return (
       <div className="index-main-div">
         <header>
@@ -61,13 +64,7 @@ class CampaignIndex extends React.Component {
         </header>
         <SplashSliderContainer />
         <Slider {...this.settings}>
-          <div onClick={e => this.handleClick(keyArray[0], e)}>{campArray[0]}</div>
-          <div onClick={e => this.handleClick(keyArray[1], e)}>{campArray[1]}</div>
-          <div onClick={e => this.handleClick(keyArray[2], e)}>{campArray[2]}</div>
-          <div onClick={e => this.handleClick(keyArray[3], e)}>{campArray[3]}</div>
-          <div onClick={e => this.handleClick(keyArray[4], e)}>{campArray[4]}</div>
-          <div onClick={e => this.handleClick(keyArray[5], e)}>{campArray[5]}</div>
-          <div onClick={e => this.handleClick(keyArray[6], e)}>{campArray[6]}</div>
+          { this.campaigns.map((camp, idx) => <div key={`i-s-div-${idx}`} ref={c => camp = c} onClick={e => this.handleClick(idx, e)}><CampaignIndexItem key={camp.id} campaign={camp} /></div>) }
         </Slider>
         <Footer />
       </div>

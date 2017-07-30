@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import SplashItem from './splash_item';
+import { dummyCampaignShow } from '../common/component_helper';
 
 class SplashSlider extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class SplashSlider extends React.Component {
       adaptiveHeight: true,
       className: 'splash-carousel',
     };
+    this.campaigns = [Object.assign(dummyCampaignShow)];
   }
 
   update(property) {
@@ -51,24 +53,19 @@ class SplashSlider extends React.Component {
 
   render() {
     const campArray = this.campaigns.map(camp => <SplashItem key={camp.id} campaign={camp} />);
-
     return (
       <Slider ref={c => this.slider = c} {...this.settings}>
-        <div>{campArray[0]}</div>
-        <div>{campArray[1]}</div>
-        <div>{campArray[2]}</div>
+        {this.campaigns.map(camp => <div ref={c => camp = c} key={`slider-div-${camp.id}`}><SplashItem key={camp.id} campaign={camp} /></div>)}
       </Slider>
+
     );
   }
 }
 
 export default SplashSlider;
 
-//
-//
-//
-//
-//
+
+
 //
 // <head>
 //   <title>Bootstrap Example</title>

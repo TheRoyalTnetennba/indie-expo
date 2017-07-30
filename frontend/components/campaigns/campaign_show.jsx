@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
-import { NavBar } from '../common/component_helper';
+import { ShareButtons, ShareCounts, generateShareIcon } from 'react-share';
+
+import { NavBar, dummyCampaignShow } from '../common/component_helper';
 import Footer from '../common/footer';
 import Perk from './perk';
-import { ShareButtons, ShareCounts, generateShareIcon } from 'react-share';
 const {
   FacebookShareButton,
   GooglePlusShareButton,
@@ -51,23 +52,7 @@ class CampaignShow extends React.Component {
       className: 'campaign-show-slider',
       flex: 1,
     };
-    this.campaign = {
-      title: '',
-      image_urls: [],
-      creator: {
-        image_url: '',
-        first_name: '',
-        last_name: '',
-        creator_id: '',
-      },
-      pretty_funds: '',
-      progress: '',
-      pretty_goal: '',
-      days_left: '',
-      overview: '',
-      pitch: '',
-      id: '',
-    };
+    this.campaign = Object.assign(dummyCampaignShow);
     this.perks = null;
     this.handleDonationChange = this.handleDonationChange.bind(this);
     this.handlePerkSubmit = this.handlePerkSubmit.bind(this);
@@ -143,7 +128,7 @@ class CampaignShow extends React.Component {
 
   render() {
     const photoMe = (url) => { backgroundImage: `url(${url})` };
-    const photoArray = this.campaign.image_urls.map(photo => <div className="campaign-show-photo" style={{backgroundImage: `url(${photo})`}} />);
+
     const url = `http://indieexpo.co${this.props.match.url}`
     let backit;
     if (this.state.donationClick) {
@@ -158,7 +143,6 @@ class CampaignShow extends React.Component {
         <div className="back-it-bar">
           <a onClick={this.handleDonationInitial.bind(this)}>Back It</a>
           <div className="social-buttons">
-
             <FacebookShareButton url={url} children={<FacebookIcon size={45} round={true} />} />
             <GooglePlusShareButton url={url} children={<GooglePlusIcon size={45} round={true} />} />
             <LinkedinShareButton url={url} children={<LinkedinIcon size={45} round={true} />} />
@@ -177,10 +161,7 @@ class CampaignShow extends React.Component {
         <section className="campaign-show-hero">
           <div className="campaign-show-left">
             <Slider ref={c => this.slider = c} {...this.settings}>
-              <div>{photoArray[0]}</div>
-              <div>{photoArray[1]}</div>
-              <div>{photoArray[2]}</div>
-              <div>{photoArray[3]}</div>
+              {this.campaign.image_urls.map(photo => <div ref={c => photo = c} key={`slider-div-${photo}`}><div className="campaign-show-photo" style={{backgroundImage: `url(${photo})`}} /></div>)}
             </Slider>
           </div>
           <div className="campaign-show-right">
