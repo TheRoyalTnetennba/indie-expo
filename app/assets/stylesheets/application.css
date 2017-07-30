@@ -306,6 +306,7 @@ nav a:hover, nav a:focus {
   cursor: pointer;
   height: auto;
   margin-right: 15px;
+  min-width: 87px;
   text-decoration: none;
   z-index: 55;
 }
