@@ -13,10 +13,10 @@ const CampaignListItem = (props) => {
       <div className="progress-bar-outer">
         <div className="progress-bar-inner" style={{width: `${progress}%`}}></div>
       </div>
-      <div className="above-progress-bar">${props.campaign.prettyFunds}</div>
+      <div className="above-progress-bar">${props.campaign.prettyFunds || props.campaign.pretty_funds}</div>
       <div className="below-progress-bar">
         <div>{progress}%</div>
-        <div style={{textAlign: 'right'}}>{props.campaign.daysRemaining} days left</div>
+        <div style={{textAlign: 'right'}}>{props.campaign.daysRemaining || props.campaign.days_left} days left</div>
       </div>
     </div>
   );
