@@ -49,7 +49,7 @@ class CampaignList extends React.Component {
     }
     campArray = campaigns.map(camp => <div onClick={e => this.handleClick(camp.id, e)} key={`outer-${camp.id}`} ><CampaignListItem key={camp.id} campaign={camp} /></div>);
     return (
-      <div className="index-main-div">
+      <div className="index-main-div" key={`index-main-div-${this.props.state.searchResults.length}`}>
         <header>
           {this.NavBar(this.props)}
         </header>
