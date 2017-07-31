@@ -129,7 +129,7 @@ class CampaignShow extends React.Component {
   render() {
     const photoMe = (url) => { backgroundImage: `url(${url})` };
 
-    const url = `http://indieexpo.co${this.props.match.url}`
+    const url = `https://www.indieexpo.co${this.props.match.url}`
     let backit;
     if (this.state.donationClick) {
       backit = (
