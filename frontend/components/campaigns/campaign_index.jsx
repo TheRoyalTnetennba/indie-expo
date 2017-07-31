@@ -64,7 +64,7 @@ class CampaignIndex extends React.Component {
         </header>
         <SplashSliderContainer />
         <Slider {...this.settings}>
-          { this.campaigns.map((camp, idx) => <div key={`i-s-div-${idx}`} ref={c => camp = c} onClick={e => this.handleClick(idx, e)}><CampaignIndexItem key={camp.id} campaign={camp} /></div>) }
+          { this.campaigns.reverse().map((camp, idx) => <div key={`i-s-div-${idx}`} ref={c => camp = c} onClick={e => this.handleClick(idx, e)}><CampaignIndexItem key={camp.id} campaign={camp} /></div>) }
         </Slider>
         <Footer />
       </div>
