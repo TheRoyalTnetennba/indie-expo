@@ -134,7 +134,7 @@ class CampaignShow extends React.Component {
     if (this.state.donationClick) {
       backit = (
         <div className="back-it-bar">
-          <input className="back-it-bar-number" type="number" onChange={this.handleDonationChange()} placeholder="donation amount" value={this.state.donationAmount} />
+          <input className="back-it-bar-number" type="number" min="0" onChange={this.handleDonationChange()} placeholder="donation amount" value={this.state.donationAmount} />
           <a style={{marginLeft: '10px'}} onClick={this.handleDonationSubmit.bind(this)}>Submit Donation</a>
         </div>
       )
