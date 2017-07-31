@@ -153,7 +153,7 @@ class CampaignShow extends React.Component {
       )
     }
     const progress = this.campaign.progress >= 100 ? 100 : this.campaign.progress;
-    const searchLength = this.props.state.searchResults ? Object.keys(this.props.state.searchResults).length : 978
+    const searchLength = this.props.state.searchResults ? Object.keys(this.props.state.searchResults)[0] * Object.keys(this.props.state.searchResults).length : 978
     return (
       <div className="index-main-div">
         <header>
