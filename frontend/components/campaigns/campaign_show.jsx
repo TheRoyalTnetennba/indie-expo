@@ -153,12 +153,13 @@ class CampaignShow extends React.Component {
       )
     }
     const progress = this.campaign.progress >= 100 ? 100 : this.campaign.progress;
+    const searchLength = this.props.state.searchResults ? Object.keys(this.props.state.searchResults).length : 978
     return (
       <div className="index-main-div">
         <header>
           {this.NavBar(this.props)}
         </header>
-        <section className="campaign-show-hero">
+        <section className="campaign-show-hero" key={`search-result-num-${searchLength}`}>
           <div className="campaign-show-left">
             <Slider ref={c => this.slider = c} {...this.settings}>
               {this.campaign.image_urls.map(photo => <div ref={c => photo = c} key={`slider-div-${photo}`}><div className="campaign-show-photo" style={{backgroundImage: `url(${photo})`}} /></div>)}
