@@ -74,6 +74,7 @@ class PerkForm extends React.Component {
         </div>
       );
     }
+
     return (
       <div key={`perkForm-${this.props.perkNum}`} >
         <div className="campaign-form-field">

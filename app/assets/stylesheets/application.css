@@ -935,6 +935,7 @@ nav a:hover, nav a:focus {
   max-width: 700px;
   display: flex;
   margin-right: 25px;
+  margin-left: 25px;
   flex-direction: column;
 }
 
@@ -943,6 +944,7 @@ nav a:hover, nav a:focus {
   max-width: 500px;
   display: flex;
   margin-left: 25px;
+  margin-right: 25px;
   flex-direction: column;
 }
 
@@ -954,6 +956,7 @@ nav a:hover, nav a:focus {
 
 .campaign-show-right {
   flex: 1.25;
+  margin-right: 25px;
   margin-left: 25px;
   max-width: 500px;
   display: flex;
@@ -966,6 +969,7 @@ nav a:hover, nav a:focus {
   max-width: 700px;
   display: flex;
   margin-right: 25px;
+  margin-left: 25px;
   flex-direction: column;
 }
 
