@@ -16,7 +16,7 @@ end
 
 
 def sendor(message)
-  conn = Faraday.new(:url => 'http://localhost:2020') do |faraday|
+  conn = Faraday.new(:url => 'https://email.grahampaye.com') do |faraday|
     faraday.request  :url_encoded             # form-encode POST params
     faraday.response :logger do | logger |
       logger.filter(/(api_key=)(\w+)/,'\1[REMOVED]')
