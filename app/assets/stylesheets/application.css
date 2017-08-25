@@ -326,6 +326,12 @@ nav a:hover, nav a:focus {
   width: 100%;
 }
 
+.splash-loader {
+  position: relative;
+  top: -130px;
+  left: 40%;
+}
+
 .splash-content-text-container {
   display: flex;
   flex-direction: column;
