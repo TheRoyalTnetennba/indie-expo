@@ -1,12 +1,15 @@
 import React from 'react';
 import Slider from 'react-slick';
 import SplashItem from './splash_item';
+import SplashLoader from './splash_loader';
 import { dummyCampaignShow } from '../common/component_helper';
+import { RingLoader } from 'react-spinners';
 
 class SplashSlider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
     };
     this.campaigns = [];
     this.settings = {
@@ -44,6 +47,7 @@ class SplashSlider extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.campaigns = Object.keys(nextProps.state.campaigns).map(idx => nextProps.state.campaigns[idx]).slice(0,6);
+    this.setState({ loading: false })
   }
 
   next() {
@@ -52,13 +56,20 @@ class SplashSlider extends React.Component {
   }
 
   render() {
-    const campArray = this.campaigns.map(camp => <SplashItem key={camp.id} campaign={camp} />);
-    return (
-      <Slider ref={c => this.slider = c} {...this.settings}>
-        {this.campaigns.map(camp => <div ref={c => camp = c} key={`slider-div-${camp.id}`}><SplashItem key={camp.id} campaign={camp} /></div>)}
-      </Slider>
-
-    );
+    const campArray = this.campaigns.map(camp => <SplashLoader key={camp.id} campaign={camp} />);
+    if (this.state.loading) {
+      return (
+        <Slider ref={c => this.slider = c} {...this.settings}>
+          {this.campaigns.map(camp => <div ref={c => camp = c} key={`slider-div-${camp.id}`}><SplashLoader key={camp.id} campaign={camp} /></div>)}
+        </Slider>
+      )
+    } else {
+      return (
+        <Slider ref={c => this.slider = c} {...this.settings}>
+          {this.campaigns.map(camp => <div ref={c => camp = c} key={`slider-div-${camp.id}`}><SplashItem key={camp.id} campaign={camp} /></div>)}
+        </Slider>
+      )
+    }
   }
 }
 
