@@ -1,6 +1,7 @@
 import React from 'react';
 
 import CampaignListItem from './campaign_list_item';
+import CampaignListLoader from './campaign_list_loader';
 import { NavBar } from '../common/component_helper';
 import Footer from '../common/footer';
 
@@ -10,6 +11,32 @@ class CampaignList extends React.Component {
     this.campaigns = [];
     this.NavBar = NavBar.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      loading: true,
+    }
+  }
+
+  itemLoading() {
+    let campaigns = [];
+    for (let i = 0; i < 8; i++) {
+      campaigns.push(<div key={`outer-${i}`} ><CampaignListLoader key={i} /></div>);
+    }
+    return campaigns;
+  }
+
+  campaignsLister() {
+    if (this.state.loading) {
+      return this.itemLoading();
+    }
+    let campArray;
+    let campaigns;
+    if (this.isSearch()) {
+      campaigns = Object.keys(this.props.searchResults).map(idx => this.props.searchResults[idx]);
+    } else {
+      campaigns = Object.keys(this.props.campaigns).map(idx => this.props.campaigns[idx]);
+    }
+    campArray = campaigns.map(camp => <div onClick={e => this.handleClick(camp.id, e)} key={`outer-${camp.id}`} ><CampaignListItem key={camp.id} campaign={camp} /></div>);
+    return campArray;
   }
 
   isSearch() {
@@ -37,24 +64,18 @@ class CampaignList extends React.Component {
         this.props.searchCampaigns(nextProps.match.params.search);
       }
     }
+    this.setState({ loading: false })
   }
 
   render() {
-    let campArray;
-    let campaigns;
-    if (this.isSearch()) {
-      campaigns = Object.keys(this.props.searchResults).map(idx => this.props.searchResults[idx]);
-    } else {
-      campaigns = Object.keys(this.props.campaigns).map(idx => this.props.campaigns[idx]);
-    }
-    campArray = campaigns.map(camp => <div onClick={e => this.handleClick(camp.id, e)} key={`outer-${camp.id}`} ><CampaignListItem key={camp.id} campaign={camp} /></div>);
+
     return (
       <div className="index-main-div">
         <header>
           {this.NavBar(this.props)}
         </header>
         <div className="campaign-list-div">
-          {campArray}
+          {this.campaignsLister()}
         </div>
         <Footer />
       </div>

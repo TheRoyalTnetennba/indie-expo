@@ -771,6 +771,12 @@ nav a:hover, nav a:focus {
   cursor: pointer;
 }
 
+.campaign-index-loader {
+  display: flex;
+  justify-content: center;
+  padding-top: 200px;
+}
+
 .campaign-index-item p, .campaign-index-item legend {
   padding-left: 3%;
   padding-top: 5px;
