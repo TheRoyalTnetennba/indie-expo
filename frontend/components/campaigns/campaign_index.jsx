@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import Slider from 'react-slick';
 
 import { NavBar, dummyCampaignShow } from '../common/component_helper';
 import CampaignIndexItem from './campaign_index_item';
 import SplashSliderContainer from './splash_slider_container';
 import Footer from '../common/footer';
-import { LeftNavButton, RightNavButton } from '../common/slider_arrows';
 
 
 class CampaignIndex extends React.Component {
@@ -56,6 +54,7 @@ class CampaignIndex extends React.Component {
 
   render() {
     const campArray = this.campaigns.map(camp => <CampaignIndexItem key={camp.id} campaign={camp} />);
+    // { this.campaigns.reverse().map((camp, idx) => <div key={`i-s-div-${idx}`} ref={c => camp = c} onClick={e => this.handleClick(idx, e)}><CampaignIndexItem key={camp.id} campaign={camp} /></div>) }
 
     return (
       <div className="index-main-div">
@@ -63,9 +62,10 @@ class CampaignIndex extends React.Component {
           {this.NavBar(this.props)}
         </header>
         <SplashSliderContainer />
-        <Slider {...this.settings}>
-          { this.campaigns.reverse().map((camp, idx) => <div key={`i-s-div-${idx}`} ref={c => camp = c} onClick={e => this.handleClick(idx, e)}><CampaignIndexItem key={camp.id} campaign={camp} /></div>) }
-        </Slider>
+        <div className="home-slider-lower">
+          <i onClick={this.props.onClick} className="fa fa-angle-left index-card-arrows" aria-hidden="true" />
+          <i onClick={this.props.onClick} className="fa fa-angle-right index-card-arrows" aria-hidden="true" />
+        </div>
         <Footer />
       </div>
     );
