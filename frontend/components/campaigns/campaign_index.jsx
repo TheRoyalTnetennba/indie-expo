@@ -12,23 +12,7 @@ class CampaignIndex extends React.Component {
     super(props);
     this.NavBar = NavBar.bind(this);
     this.state = {
-    };
-    this.settings = {
-      dots: false,
-      infinite: true,
-      lazyLoad: true,
-      speed: 500,
-      arrows: true,
-      autoplay: false,
-      nextArrow: <RightNavButton />,
-      prevArrow: <LeftNavButton />,
-      slidesToShow: 4,
-      slidesToScroll: 4,
-      adaptiveHeight: false,
-      draggable: false,
-      responsive: [ { breakpoint: 1079, settings: { slidesToShow: 2 } }, { breakpoint: 1500, settings: { slidesToShow: 3 } } ],
-      className: 'campaign-index-item-div',
-      flex: 1,
+      sliderIdx: 0,
     };
     this.handleClick = this.handleClick.bind(this);
     this.campaigns = Object.keys(dummyCampaignShow).map(camp => camp);
@@ -52,8 +36,25 @@ class CampaignIndex extends React.Component {
     this.props.history.push(`/campaigns/${id}`);
   }
 
-  render() {
+  moveSlider(num) {
+    const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    let slidesToShow;
+    if (width > 1080) {
+      slidesToShow = 4;
+    } else if (width > 749) {
+      slidesToShow = 3;
+    } else if (width > 499) {
+      slidesToShow = 2;
+    } else {
+      slidesToShow = 1;
+    }
     const campArray = this.campaigns.map(camp => <CampaignIndexItem key={camp.id} campaign={camp} />);
+    if (this.state.sliderIdx + num < 0) {
+
+    } else if (this.state.sliderIdx + num + slidesToShow > campArray.length)
+  }
+
+  render() {
     // { this.campaigns.reverse().map((camp, idx) => <div key={`i-s-div-${idx}`} ref={c => camp = c} onClick={e => this.handleClick(idx, e)}><CampaignIndexItem key={camp.id} campaign={camp} /></div>) }
 
     return (
@@ -63,8 +64,8 @@ class CampaignIndex extends React.Component {
         </header>
         <SplashSliderContainer />
         <div className="home-slider-lower">
-          <i onClick={this.props.onClick} className="fa fa-angle-left index-card-arrows" aria-hidden="true" />
-          <i onClick={this.props.onClick} className="fa fa-angle-right index-card-arrows" aria-hidden="true" />
+          <i onClick={el => this.moveSlider(-1)} className="fa fa-angle-left index-card-arrows" aria-hidden="true" />
+          <i onClick={el => this.moveSlider(1)} className="fa fa-angle-right index-card-arrows" aria-hidden="true" />
         </div>
         <Footer />
       </div>

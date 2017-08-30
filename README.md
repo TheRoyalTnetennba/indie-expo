@@ -1,60 +1,31 @@
 # IndieExpo
 
-[Heroku link][heroku]
+[Live link][Live]
 
-[heroku]: https://serene-brushlands-97294.herokuapp.com/
+## Overview
 
-## Minimum Viable Product
+A single-page web application inspired by Indiegogo. Users can create accounts, log in,
+launch a fundraising campaign, search for campaigns, view and contribute to campaigns, and buy perks. 
 
-IndieExpo is a web application inspired by IndieGogo built using Ruby on Rails
-and React/Redux.  By the end of Week 9, this app will, at a minimum, satisfy the
-following criteria with smooth, bug-free navigation, adequate seed data and
-sufficient CSS styling:
+## Technologies
 
-- [ ] Hosting on Heroku
-- [ ] New account creation, login, and guest/demo login
-- [ ] Campaigns
-- [ ] Contributions
-- [ ] Perks
-- [ ] Profiles
-- [ ] Production README [sample](docs/production_readme.md)
+IndieExpo was built using the following technologies:
 
-## Design Docs
-* [View Wireframes][wireframes]
-* [React Components][components]
-* [API endpoints][api-endpoints]
-* [DB schema][schema]
-* [Sample State][sample-state]
+- [ ] HTML5 (so you can see things)
+- [ ] CSS3 (so the things you see will have pretty colors)
+- [ ] JavaScript (so you can interact with the colorful and definitely visible things)
+- [ ] jQuery (so the server will hear of your interactions)
+- [ ] Ruby On Rails (so that your interactions might have consequences)
+- [ ] React (so that those consequences might affect the things you see without having to reload all the things)
+- [ ] Redux (so that a single, immutable record of your interactions might be kept and elegantly shared amongst the other things)
+- [ ] PostgreSQL (so that the record of interactions might survive the cataclysmic event of a server restart)
+- [ ] Go + Gorilla mux (for sending emails, repo [here][emailserver])
+- [ ] Heroku (hosting)
+- [ ] Cloudinary (CDN)
 
-[wireframes]: docs/wireframes
-[components]: docs/component-hierarchy.md
-[sample-state]: docs/sample-state.md
-[api-endpoints]: docs/api-endpoints.md
-[schema]: docs/schema.md
 
-## Implementation Timeline
 
-### Phase 1: Backend setup and Front End User Authentication (2 days)
 
-**Objective:** Functioning rails project with front-end Authentication
+[Live]: https://www.indieexpo.co
+[emailserver]: https://github.com/TheRoyalTnetennba/email-server
 
-### Phase 2: Navbar, Footer (1 day)
-
-**Objective:** Modal styling, navbar, and footer
-
-### Phase 3: Campaigns Model, API, and components (4 days)
-
-**Objective:** Campaigns can be created, read, edited and destroyed through
-the API.
-
-### Phase 4: Perks and Contributions (2 days)
-
-**Objective:** Users can contribute to campaigns and receive perks
-
-### Phase 5: Polish and styling
-
-**Objective:** Clean up user UI and UX
-
-### Bonus 1: Categories
-### Bonus 2: Follows
-### Bonus 3: Marketplace
