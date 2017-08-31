@@ -960,6 +960,15 @@ nav a:hover, nav a:focus {
   flex-direction: column;
 }
 
+.home-slider-lower {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: 80px;
+    padding-top: 80px;
+    align-items: center;
+}
+
 .campaign-show-slider {
   flex: 1;
   width: 100%;

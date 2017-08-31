@@ -23,7 +23,7 @@ IndieExpo was built using the following technologies:
 - [ ] Heroku (hosting)
 - [ ] Cloudinary (CDN)
 
-
+## Features
 
 
 [Live]: https://www.indieexpo.co
