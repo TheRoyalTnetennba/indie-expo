@@ -43,7 +43,7 @@ Users can also create new fund-raising campaigns.
 <img src ="/docs/screenshots/create.png">
 </p>
 
-This was one of the more challanging aspects of the development process.
+This was one of the more challenging aspects of the development process.
 Users must be able to add an arbitrary number of perks to a given campaign
 to encourage others to contribute to the campaign. For each perk, users
 must also be able to upload a photo, and regardless of how many perks they
