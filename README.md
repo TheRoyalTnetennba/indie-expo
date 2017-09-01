@@ -34,7 +34,7 @@ The passwords are hashed and salted with BCrypt, the output of which is stored i
 the PostgreSQL database. There is also a guest account for people in a hurry.
 
 <p align="center">
-<img src ="/docs/screenshots/signup.png">
+<img height="50%" src ="/docs/screenshots/signup.png">
 </p>
 
 Users can also create new fund-raising campaigns.
