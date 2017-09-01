@@ -94,8 +94,10 @@ the user and their other campaigns, they can click the link to view their profil
 
 If a users wishes to send a message to me via one of the footer links, they simply
 have to fill out the very brief form and click send. The site then makes an AJAX
-post to a Google Cloud Compute instance, which runs a minimal Go server. The server
-then processes the request, and sends me an email via the gmail smtp servers:
+post to a Google Cloud Compute instance, which runs a minimal Go server. The code
+is kept fairly generic as I use the same, email-sending server anytime I wish to
+receive an email as a result of some programatic event. The server then processes
+the request, and sends me an email via the gmail smtp servers:
 
 ``` go
 func SendEmail(w http.ResponseWriter, r *http.Request) {
@@ -106,7 +108,7 @@ func SendEmail(w http.ResponseWriter, r *http.Request) {
 
 	msg := "From: " + from + "\n" +
 		"To: " + to + "\n" +
-		"Subject: " + "IndieExpo is awesome" + "\n\n" +
+		"Subject: " + "BotGraham needs to talk" + "\n\n" +
 		body
 	err := smtp.SendMail("smtp.gmail.com:587",
 		smtp.PlainAuth("", from, pass, "smtp.gmail.com"),
