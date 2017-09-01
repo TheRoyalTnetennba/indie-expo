@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import Slider from 'react-slick';
+import { MoonLoader } from 'react-spinners';
 
 import { NavBar, dummyCampaignShow } from '../common/component_helper';
 import CampaignIndexItem from './campaign_index_item';
 import SplashSliderContainer from './splash_slider_container';
 import Footer from '../common/footer';
-import { LeftNavButton, RightNavButton } from '../common/slider_arrows';
 
 
 class CampaignIndex extends React.Component {
@@ -14,26 +13,12 @@ class CampaignIndex extends React.Component {
     super(props);
     this.NavBar = NavBar.bind(this);
     this.state = {
-    };
-    this.settings = {
-      dots: false,
-      infinite: true,
-      lazyLoad: true,
-      speed: 500,
-      arrows: true,
-      autoplay: false,
-      nextArrow: <RightNavButton />,
-      prevArrow: <LeftNavButton />,
+      slideIdx: 0,
       slidesToShow: 4,
-      slidesToScroll: 4,
-      adaptiveHeight: false,
-      draggable: false,
-      responsive: [ { breakpoint: 1079, settings: { slidesToShow: 2 } }, { breakpoint: 1500, settings: { slidesToShow: 3 } } ],
-      className: 'campaign-index-item-div',
-      flex: 1,
+      loading: true,
     };
+    this.camps = [];
     this.handleClick = this.handleClick.bind(this);
-    this.campaigns = Object.keys(dummyCampaignShow).map(camp => camp);
   }
 
   componentWillMount() {
@@ -42,10 +27,8 @@ class CampaignIndex extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.campaigns = Object.keys(nextProps.state.campaigns).map(idx => nextProps.state.campaigns[idx]);
-  }
-
-  handler (e) {
-    // console.log('Hello ' + e.target.dataset.message); // Hello world
+    this.campaigns = this.campaigns.reverse();
+    this.moveSlider(0)
   }
 
   handleClick(idx, e) {
@@ -54,18 +37,59 @@ class CampaignIndex extends React.Component {
     this.props.history.push(`/campaigns/${id}`);
   }
 
-  render() {
-    const campArray = this.campaigns.map(camp => <CampaignIndexItem key={camp.id} campaign={camp} />);
+  moveSlider(num) {
+    const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    let slidesToShow;
+    if (width > 1080) {
+      slidesToShow = 4;
+    } else if (width > 749) {
+      slidesToShow = 3;
+    } else if (width > 499) {
+      slidesToShow = 2;
+    } else {
+      slidesToShow = 1;
+    }
+    let slideIdx = this.state.slideIdx + num;
+    this.camps = this.campaigns.map((camp, idx) => 
+      <div 
+       key={`i-s-div-${idx}`} 
+       ref={c => camp = c} 
+       onClick={e => this.handleClick(idx, e)}>
+        <CampaignIndexItem key={camp.id} campaign={camp} />
+      </div>)
+    this.setState({ slideIdx: slideIdx, loading: false, slidesToShow: slidesToShow });
+  }
 
+  idxNormalize(idx, len = this.camps.length) {
+    if (idx < 0) {
+      return (idx + len) % len;
+    } else if (idx >= len) {
+      return idx % len;
+    }
+    return idx;
+  }
+
+  
+  render() {
+    const spinner = (<MoonLoader color={'#123abc'} loading={this.state.loading} />);
+    const campWindow = [];
+    if (!this.state.loading) {
+      for (let i = this.state.slideIdx; i < this.state.slidesToShow + this.state.slideIdx; i += 1) {
+        campWindow.push(this.camps[this.idxNormalize(i)])
+      }
+    }
+    console.log(this.state.slideIdx);
     return (
       <div className="index-main-div">
         <header>
           {this.NavBar(this.props)}
         </header>
         <SplashSliderContainer />
-        <Slider {...this.settings}>
-          { this.campaigns.reverse().map((camp, idx) => <div key={`i-s-div-${idx}`} ref={c => camp = c} onClick={e => this.handleClick(idx, e)}><CampaignIndexItem key={camp.id} campaign={camp} /></div>) }
-        </Slider>
+        <div className="home-slider-lower">
+          <i onClick={el => this.moveSlider(-1)} className="fa fa-angle-left index-card-arrows" aria-hidden="true" />
+            { this.state.loading ? spinner : campWindow }
+          <i onClick={el => this.moveSlider(1)} className="fa fa-angle-right index-card-arrows" aria-hidden="true" />
+        </div>
         <Footer />
       </div>
     );

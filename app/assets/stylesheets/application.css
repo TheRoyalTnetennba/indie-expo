@@ -761,7 +761,7 @@ nav a:hover, nav a:focus {
   flex: 1;
   padding: 0;
 
-  margin-left: 10%;
+  /* margin-left: 10%; */
   min-width: 252px;
   max-width: 252px;
   height: 500px;
@@ -958,6 +958,15 @@ nav a:hover, nav a:focus {
   margin-left: 25px;
   margin-right: 25px;
   flex-direction: column;
+}
+
+.home-slider-lower {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: 80px;
+    padding-top: 80px;
+    align-items: center;
 }
 
 .campaign-show-slider {
