@@ -18,7 +18,7 @@ IndieExpo was built using the following technologies:
 - [ ] HTML5 (so you can see things)
 - [ ] CSS3 (so the things you see will have pretty colors)
 - [ ] JavaScript (so you can interact with the colorful and definitely visible things)
-- [ ] jQuery (so the server will hear of your interactions)
+- [ ] jQuery & AJAX (so the server will hear of your interactions)
 - [ ] Ruby On Rails (so that your interactions might have consequences)
 - [ ] React (so that those consequences might affect the things you see without having to reload all the things)
 - [ ] Redux (so that a single, immutable record of your interactions might be kept and elegantly shared amongst the other things)
