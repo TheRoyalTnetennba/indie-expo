@@ -24,8 +24,8 @@ IndieExpo was built using the following technologies:
 - [ ] Redux (so that a single, immutable record of your interactions might be kept and elegantly shared amongst the other things)
 - [ ] PostgreSQL (so that the record of interactions might survive the cataclysmic event of a server restart)
 - [ ] Go + Gorilla mux (for sending emails, repo [here][emailserver])
-- [ ] Heroku (hosting)
-- [ ] Cloudinary (CDN)
+- [ ] Heroku (hosting - so that the things have somewhere to load from)
+- [ ] Cloudinary (CDN - so that the things might load in a reasonable amount of time)
 
 ## Features
 
