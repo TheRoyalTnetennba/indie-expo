@@ -62,10 +62,11 @@ class CampaignIndex extends React.Component {
 
   idxNormalize(idx, len = this.camps.length) {
     if (idx < 0) {
-      return (idx + len) % len;
+      return (idx + (888 * len)) % len;
     } else if (idx >= len) {
       return idx % len;
     }
+    console.log(idx);
     return idx;
   }
 
@@ -78,7 +79,6 @@ class CampaignIndex extends React.Component {
         campWindow.push(this.camps[this.idxNormalize(i)])
       }
     }
-    console.log(this.state.slideIdx);
     return (
       <div className="index-main-div">
         <header>
@@ -97,13 +97,3 @@ class CampaignIndex extends React.Component {
 }
 
 export default CampaignIndex;
-
-
-// nextArrow: <i className="fa fa-angle-right index-card-arrows" aria-hidden="true" />,
-// prevArrow: <i className="fa fa-angle-left index-card-arrows" aria-hidden="true" />,
-// className="index-main-div"
-// className="index-main-div"
-// className="index-card"
-
-// nextArrow: <i className="fa fa-angle-right index-card-arrows" aria-hidden="true" />,
-// prevArrow: <i className="fa fa-angle-left index-card-arrows" aria-hidden="true" />,
